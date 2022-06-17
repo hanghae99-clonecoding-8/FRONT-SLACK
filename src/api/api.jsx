@@ -2,7 +2,7 @@ import axios from "axios";
 import { getCookie } from "../shared/Cookie";
 
 const api = axios.create({
-  baseURL: "",
+  baseURL: "http://localhost:4000",
 
 });
 
@@ -19,8 +19,8 @@ api.interceptors.request.use(
 
 const apis = {
   //user
-  addUser: (newUser) => api.post("/api/user/signup", newUser),
-  postLogin: (userdata) => api.post("/api/user/login", userdata),
+  addUser: (newUser) => api.post("/comments", newUser),
+  postLogin: (userdata) => api.post("/posts", userdata),
   //post
   addPost: (contents) => api.post("/api/board/write", contents),
   editPost: (id, contents) => api.post(`/posts/${id}`, contents),
