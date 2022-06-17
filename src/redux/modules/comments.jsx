@@ -1,4 +1,4 @@
-import apis from "../../api/index";
+import apis from "../../api/api";
 /* ----------------- 모듈의 초기 상태 ------------------ */
 let intialstate = {
   list: [],
