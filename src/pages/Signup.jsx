@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { useNavigate } from "react-router-dom";
 import { storage } from '../shared/Firebase';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import apis from "../api/api";
 import styled from "styled-components";
+
+
+
 
 
 const SignUp = () => {
