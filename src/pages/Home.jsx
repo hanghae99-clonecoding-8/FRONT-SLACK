@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Login from './Login';
 import styled from 'styled-components'
 import SignUp from './Signup';
+import './css.css';
 
 
 
@@ -32,7 +33,8 @@ const Home = () => {
 </div>
 
        <Link to="/main"><button>main</button></Link>
-      {/* <Link to="/signup"><button>signup</button></Link>  */}
+      <Img2 src="https://ifh.cc/g/KHJTRC.png"></Img2>
+      <Title>Sleep은 어디에 있든 팀을 하나로</Title>
       <Img src='https://ifh.cc/g/n9s83T.png'/>
     </Background>
   )
@@ -48,6 +50,26 @@ const Img = styled.img`
   position: fixed;
   bottom: 10%;
   right: 5%;
+
+  width: 44%;
+  height: 7;
+`
+const Img2 = styled.img`
+  position: fixed;
+  bottom: 60%;
+  right: 60%;
+  width: 44%;
+  height: 7;
+  width: 300px;
+`
+const Title = styled.div`
+  font-size: 45px;
+  color: white;
+  font-weight: 600;
+  width: 450px;
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
 `
 
 export default Home
