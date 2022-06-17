@@ -4,9 +4,12 @@ import { storage } from '../shared/Firebase';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import apis from "../api/api";
 import styled from "styled-components";
+import "./css.css"
 
 
-const SignUp = () => {
+const SignUp = (props) => {
+  const { open, close, header } = props;
+
     const navigate = useNavigate();
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
@@ -122,8 +125,17 @@ const SignUp = () => {
 
     return (
         <div>
-            <div>
-                <img src="https://ifh.cc/g/d0DDWg.png" style={{ width: "100%" }} />
+            <div className={open ? 'openModal modal' : 'modal'}>
+
+              {open?(
+                <section>
+                            <header>
+                  {header}
+                <button className="close" onClick={close}>
+                        &times;
+                      </button>
+                </header>
+                  <main>
                 <div onSubmit={onSubmitUserHandler} style={{ marginTop: "30px" }}>
                     아이디 :
                     <input
@@ -197,10 +209,20 @@ const SignUp = () => {
                     <div style={{ fontSize: "10px", color: "tomato" }}>
                         사진변경하지 말아주세요 오류생겨요...:울음:
                     </div>
-                    <button>가입하기</button>
-                </div>
-            </div>
-        </div>
+                              <button>가입하기</button>
+                       </div>
+
+                       </main>
+                       <footer>
+            <button className="close" onClick={close}>
+              close
+            </button>
+          </footer>
+                 </section>
+              ):null}
+           </div>      
+           </div>
+       
     );
 };
 
