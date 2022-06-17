@@ -12,6 +12,7 @@ import apis from '../api/api'
 
 const Login = () => {
   //hook
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -23,12 +24,14 @@ const Login = () => {
   const loginClick = async () => {
     try {
       const response = await apis.postLogin(
-        {
-          username: "email",
-          password: "1234"
-        }
-      )
-      setCookie("token", response.headers.authorization.split(" ")[1])
+ 
+      {
+        username: emailRef.current.value,
+        password: passwordRef.current.value
+      }
+    )
+      setCookie("token", response.headers.authorization.split(" ")[1])  
+
 
       alert("환영합니다")
       navigate("/")

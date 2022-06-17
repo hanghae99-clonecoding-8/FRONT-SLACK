@@ -22,6 +22,7 @@ const apis = {
   checkNickName: (nickName) => api.post(`/api/users/${nickName}`),
   addUser: (newUser) => api.post("/posts", newUser),
   postLogin: (userdata) => api.post("/posts", userdata),
+  
   //post
   addPost: (contents) => api.post("/api/board/write", contents),
   editPost: (id, contents) => api.post(`/posts/${id}`, contents),
