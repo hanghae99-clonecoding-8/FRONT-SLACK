@@ -3,7 +3,6 @@ import { getCookie } from "../shared/Cookie";
 
 const api = axios.create({
   baseURL: "http://localhost:4000",
-
 });
 
 api.interceptors.request.use(
@@ -13,13 +12,15 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-  
+
   }
 );
 
 const apis = {
   //user
-  addUser: (newUser) => api.post("/comments", newUser),
+  checkEmail: (userEmail) => api.post(`/api/users/${userEmail}`),
+  checkNickName: (nickName) => api.post(`/api/users/${nickName}`),
+  addUser: (newUser) => api.post("/posts", newUser),
   postLogin: (userdata) => api.post("/posts", userdata),
   //post
   addPost: (contents) => api.post("/api/board/write", contents),
