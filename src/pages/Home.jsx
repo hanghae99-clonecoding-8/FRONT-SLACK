@@ -50,6 +50,7 @@ const Img = styled.img`
   position: fixed;
   bottom: 10%;
   right: 5%;
+
   width: 44%;
   height: 7;
 `
@@ -70,4 +71,5 @@ const Title = styled.div`
   bottom: 50%;
   right: 50%;
 `
+
 export default Home

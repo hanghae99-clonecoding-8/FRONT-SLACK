@@ -1,5 +1,5 @@
 import React from 'react';
-import './pages/css.css';
+import './css/modal.css';
 import { Routes, Route } from 'react-router-dom';
 import SignUp from './pages/Signup';
 import Login from './pages/Login';
