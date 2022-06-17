@@ -8,6 +8,7 @@ import SignUp from './Signup';
 
 const Home = () => {
   const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalOpen2, setModalOpen2] = React.useState(false);
 
   const openModal = () => {
     setModalOpen(true);
@@ -15,13 +16,19 @@ const Home = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const openModal2 = () => {
+    setModalOpen2(true);
+  };
+  const closeModal2 = () => {
+    setModalOpen2(false);
+  };
   return (
     <Background>
        <button onClick={openModal}><div>login</div></button>
        <Login open={modalOpen} close={closeModal} header="로그인"/>
      <div>
-      <button onClick={openModal}><div>signup</div></button>
-      <SignUp open={modalOpen} close={closeModal} header="회원가입"/>
+      <button onClick={openModal2}><div>signup</div></button>
+      <SignUp open={modalOpen2} close={closeModal2} header="회원가입"/>
 </div>
 
        <Link to="/main"><button>main</button></Link>
