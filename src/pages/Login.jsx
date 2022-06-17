@@ -13,7 +13,6 @@ import apis from '../api/api'
 const Login = () => {
   //hook
   const navigate =useNavigate();
-  const dispatch = useDispatch();
 
   //ref
   const emailRef = useRef(null)
@@ -24,8 +23,8 @@ const Login = () => {
     try{
       const response = await apis.postLogin(
       {
-        username: "email",
-        password: "1234"
+        username: emailRef.current.value,
+        password: passwordRef.current.value
       }
     )
       setCookie("token", response.headers.authorization.split(" ")[1])  

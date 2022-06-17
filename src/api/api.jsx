@@ -21,6 +21,7 @@ const apis = {
   //user
   addUser: (newUser) => api.post("/comments", newUser),
   postLogin: (userdata) => api.post("/posts", userdata),
+  
   //post
   addPost: (contents) => api.post("/api/board/write", contents),
   editPost: (id, contents) => api.post(`/posts/${id}`, contents),
