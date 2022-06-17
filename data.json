@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "userName": "운철",
+      "passWord": 1234,
+      "id": 2
+    },
+    {
+      "username": "unchul87",
+      "password": "pipy4211",
+      "password2": "pipy4211",
+      "nickname": "흰둥오리",
+      "profileUrl": "https://firebasestorage.googleapis.com/v0/b/latte-horse2.appspot.com/o/profileimages%2F20170430_092301.jpg?alt=media&token=36ad22c9-5cde-48a0-ac94-172c66ce4f9b",
+      "id": 3
+    },
+    {
+      "email": "pipyu@naver.com",
+      "password": "pipy4211",
+      "password2": "pipy4211",
+      "nickname": "gdasdf",
+      "profileUrl": "https://firebasestorage.googleapis.com/v0/b/latte-horse2.appspot.com/o/profileimages%2F20170430_075554.jpg?alt=media&token=3b9d583f-e0fb-439a-8060-ed78c75eb71a",
+      "id": 4
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
