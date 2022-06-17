@@ -1,10 +1,10 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { storage } from '../shared/Firebase';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import apis from "../api/api";
 import styled from "styled-components";
-import "./css.css"
+import "../css/modal.css"
 
 const SignUp = (props) => {
     const { open, close, header } = props;
@@ -150,6 +150,21 @@ const SignUp = (props) => {
                                 </button>
                                 <h6>E-mail주소를 입력해 주세요</h6>
                                 <br />
+                                닉네임 :
+                                <input
+                                    type="text"
+                                    placeholder="예전 느낌 살려서! 큰거온다!!!"
+                                    value={Nickname}
+                                    onChange={(event) => {
+                                        setNickname(event.target.value);
+                                    }}
+                                />
+                                <button onClick={dupNick}
+                                >
+                                    중복확인
+                                </button>
+                                <h6>닉네임은 당신의 멋대로에요</h6>
+                                <br />
                                 비밀번호 :
                                 <input
                                     type="password"
@@ -174,21 +189,6 @@ const SignUp = (props) => {
                                 />
                                 <p ref={check} />
                                 <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요</h6>
-                                <br />
-                                닉네임 :
-                                <input
-                                    type="text"
-                                    placeholder="예전 느낌 살려서! 큰거온다!!!"
-                                    value={Nickname}
-                                    onChange={(event) => {
-                                        setNickname(event.target.value);
-                                    }}
-                                />
-                                <button onClick={dupNick}
-                                >
-                                    중복확인
-                                </button>
-                                <h6>닉네임은 당신의 멋대로에요</h6>
                                 <br />
                                 프로필 사진
                                 {fileImage && (

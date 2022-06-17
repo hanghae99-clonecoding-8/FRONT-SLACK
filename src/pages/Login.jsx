@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { setCookie } from "../shared/Cookie"
 //css
 import styled from 'styled-components'
-import "./css.css"
+import "../css/modal.css"
 //middleware
 import apis from '../api/api'
 

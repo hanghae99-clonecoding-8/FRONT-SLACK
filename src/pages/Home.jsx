@@ -48,7 +48,6 @@ const Img = styled.img`
   position: fixed;
   bottom: 10%;
   right: 5%;
-
-  
 `
+
 export default Home
