@@ -4,12 +4,10 @@ import { storage } from '../shared/Firebase';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import apis from "../api/api";
 import styled from "styled-components";
+import "./css.css"
 
-
-
-
-
-const SignUp = () => {
+const SignUp = (props) => {
+    const { open, close, header } = props;
     const navigate = useNavigate();
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
@@ -125,85 +123,104 @@ const SignUp = () => {
 
     return (
         <div>
-            <div>
-                <img src="https://ifh.cc/g/d0DDWg.png" style={{ width: "100%" }} />
-                <div onSubmit={onSubmitUserHandler} style={{ marginTop: "30px" }}>
-                    아이디 :
-                    <input
-                        type="text"
-                        placeholder="아이디를 입력하세요"
-                        value={Email}
-                        onChange={(event) => {
-                            setEmail(event.target.value);
-                        }}
-                    />
-                    <button onClick={dupEmail}
-                    >
-                        중복확인
-                    </button>
-                    <h6>E-mail주소를 입력해 주세요</h6>
-                    <br />
-                    비밀번호 :
-                    <input
-                        type="password"
-                        placeholder="비밀번호를 입력하세요"
-                        value={Password}
-                        onChange={(event) => {
-                            setPassword(event.target.value);
-                        }}
-                        ref={password}
-                    />
-                    <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요</h6>
-                    <br />
-                    비밀번호 재확인 :
-                    <input
-                        type="password"
-                        placeholder="비밀번호를 재입력하세요"
-                        value={Password2}
-                        onChange={(event) => {
-                            setPassword2(event.target.value);
-                        }}
-                        ref={password2}
-                    />
-                    <p ref={check} />
-                    <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요</h6>
-                    <br />
-                    닉네임 :
-                    <input
-                        type="text"
-                        placeholder="예전 느낌 살려서! 큰거온다!!!"
-                        value={Nickname}
-                        onChange={(event) => {
-                            setNickname(event.target.value);
-                        }}
-                    />
-                    <button onClick={dupNick}
-                    >
-                        중복확인
-                    </button>
-                    <h6>닉네임은 당신의 멋대로에요</h6>
-                    <br />
-                    프로필 사진
-                    {fileImage && (
-                        <img
-                            alt="sample"
-                            src={fileImage}
-                            style={{ margin: "auto", maxWidth: "300px", maxHeight: "250px" }}
-                        />)}
-                    <input
-                        name="imgUpload"
-                        type="file"
-                        accept="image/*"
-                        ref={fileInputRef}
-                        onChange={saveFileImage}
-                    />
-                    <div style={{ fontSize: "10px", color: "tomato" }}>
-                        사진변경하지 말아주세요 오류생겨요...:울음:
-                    </div>
-                    <button>가입하기</button>
-                </div>
+            <div className={open ? 'openModal modal' : 'modal'}>
+
+                {open ? (
+                    <section>
+                        <header>
+                            {header}
+                            <button className="close" onClick={close}>
+                                &times;
+                            </button>
+                        </header>
+                        <main>
+                            <div onSubmit={onSubmitUserHandler} style={{ marginTop: "30px" }}>
+                                아이디 :
+                                <input
+                                    type="text"
+                                    placeholder="아이디를 입력하세요"
+                                    value={Email}
+                                    onChange={(event) => {
+                                        setEmail(event.target.value);
+                                    }}
+                                />
+                                <button onClick={dupEmail}
+                                >
+                                    중복확인
+                                </button>
+                                <h6>E-mail주소를 입력해 주세요</h6>
+                                <br />
+                                비밀번호 :
+                                <input
+                                    type="password"
+                                    placeholder="비밀번호를 입력하세요"
+                                    value={Password}
+                                    onChange={(event) => {
+                                        setPassword(event.target.value);
+                                    }}
+                                    ref={password}
+                                />
+                                <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요</h6>
+                                <br />
+                                비밀번호 재확인 :
+                                <input
+                                    type="password"
+                                    placeholder="비밀번호를 재입력하세요"
+                                    value={Password2}
+                                    onChange={(event) => {
+                                        setPassword2(event.target.value);
+                                    }}
+                                    ref={password2}
+                                />
+                                <p ref={check} />
+                                <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요</h6>
+                                <br />
+                                닉네임 :
+                                <input
+                                    type="text"
+                                    placeholder="예전 느낌 살려서! 큰거온다!!!"
+                                    value={Nickname}
+                                    onChange={(event) => {
+                                        setNickname(event.target.value);
+                                    }}
+                                />
+                                <button onClick={dupNick}
+                                >
+                                    중복확인
+                                </button>
+                                <h6>닉네임은 당신의 멋대로에요</h6>
+                                <br />
+                                프로필 사진
+                                {fileImage && (
+                                    <img
+                                        alt="sample"
+                                        src={fileImage}
+                                        style={{ margin: "auto", maxWidth: "300px", maxHeight: "250px" }}
+                                    />)}
+                                <input
+                                    name="imgUpload"
+                                    type="file"
+                                    accept="image/*"
+                                    ref={fileInputRef}
+                                    onChange={saveFileImage}
+                                />
+                                <div style={{ fontSize: "10px", color: "tomato" }}>
+                                    사진변경하지 말아주세요 오류생겨요...:울음:
+                                </div>
+                                <button>가입하기</button>
+                            </div>
+
+                        </main>
+                        <footer>
+                            <button className="close" onClick={close}>
+                                close
+                            </button>
+                        </footer>
+                    </section>
+                ) : null}
             </div>
         </div>
+
     );
 };
 
