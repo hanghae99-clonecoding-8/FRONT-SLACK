@@ -43,48 +43,44 @@ export function removePost(post_index) {
 /* ----------------- 미들웨어 ------------------ */
 export const loadPostJson = () => {
   return async function (dispatch) {
-
-  };
-};
-
-export const AddHeartJson = () => {
-  return async function (dispatch) {
-
+    const loadData = await apis.getPosts();
+    dispatch(loadPosts(loadData.data));
   };
 };
 
 export const createPostJson = (post) => {
+  console.log(post);
   return async function (dispatch) {
- 
+    dispatch(createPost(post));
   };
 };
 export const updatePostJson = () => {
-  return async function (dispatch) {};
+  return async function (dispatch) { };
 };
 export const deletePostJson = (id) => {
   return async function (dispatch) {
   };
 };
 /* ----------------- 리듀서 ------------------ */
-export default function Post_reducer(state = intialstate, action) {
+const Post_reducer = (state = intialstate, action) => {
+  console.log(action);
   // 새로운 액션 타입 추가시 case 추가한다.
   switch (action.type) {
-    case LOAD_POSTS: {
-      return { list: action.payload.reverse() };
-    }
-    case CREATE_POST: {
+    case LOAD_POSTS:
+      return { list: action.payload };
+
+    case CREATE_POST:
       return { ...state, list: [...state.list, action.payload] };
-    }
-    case LOAD_DETAIL: {
+
+    case LOAD_DETAIL:
       return { ...state, detail_list: action.loadDetailData };
-    }
-    case REMOVE_POST: {
+
+    case REMOVE_POST:
       return state.filter((list) => list.id !== action.id);
-    }
-    // case CREATE_HEART: {
-    //   return { ...state, list: [...state.list, action.payload] };
-    // }
+
     default:
       return state;
   }
-}
+};
+
+export default Post_reducer

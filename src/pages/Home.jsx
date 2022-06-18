@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Login from './Login';
 import styled from 'styled-components'
 import SignUp from './Signup';
@@ -25,6 +25,7 @@ const Home = () => {
   };
   return (
     <Background>
+
        <Topbar src="https://ifh.cc/g/FN87rg.png"/>
        <Mainbutton onClick={openModal}><div>이메일로 로그인해 보세요</div></Mainbutton>
        <Login open={modalOpen} close={closeModal} header="로그인"/>
@@ -41,6 +42,7 @@ const Home = () => {
       <Img2 src="https://ifh.cc/g/WWsml4.png"></Img2>
       <Title>Sleep은 어디에 있든 팀을 하나로</Title>
       <Img src='https://ifh.cc/g/n9s83T.png'/>
+
 
     </Background>
   )
@@ -93,6 +95,7 @@ const Bottom =styled.div`
  left: 21%;
   
 `
+
 
 const Img = styled.img`
   position: fixed;
