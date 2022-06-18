@@ -22,12 +22,12 @@ const apis = {
   checkNickName: (nickName) => api.post(`/api/users/${nickName}`),
   addUser: (newUser) => api.post("/posts", newUser),
   postLogin: (userdata) => api.post("/posts", userdata),
-  
+
   //post
-  addPost: (contents) => api.post("/api/board/write", contents),
+  addPost: (contents) => api.post("/comments", contents),
   editPost: (id, contents) => api.post(`/posts/${id}`, contents),
   delPost: (id) => api.delete(`/api/board/${id}`),
-  getPosts: () => api.get("/api/boards"),
+  getPosts: () => api.get("/comments"),
   getDetail: (id) => api.get(`/api/detail/${id}`),
 
   //comment

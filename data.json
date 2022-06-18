@@ -29,9 +29,76 @@
   ],
   "comments": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "contents": "123",
+      "id": 1
+    },
+    {
+      "contents": "123445",
+      "id": 2
+    },
+    {
+      "contents": "1234451123",
+      "id": 3
+    },
+    {
+      "contents": "ㅂㅈㅂㅈ",
+      "id": 4
+    },
+    {
+      "contents": "이게 지금 쓰는글",
+      "id": 5
+    },
+    {
+      "contents": "이건 진짜 이번에 쓴글",
+      "id": 6
+    },
+    {
+      "contents": "이건 실험용",
+      "id": 7
+    },
+    {
+      "contents": "두번째 실험",
+      "id": 8
+    },
+    {
+      "contents": "3번째 실험용",
+      "id": 9
+    },
+    {
+      "contents": "4번째 실험용",
+      "id": 10
+    },
+    {
+      "contents": "라스트 실험용",
+      "id": 11
+    },
+    {
+      "contents": "라스트 실험용?",
+      "id": 12
+    },
+    {
+      "contents": "(리)라스트 실험용",
+      "id": 13
+    },
+    {
+      "contents": "몰루?",
+      "id": 14
+    },
+    {
+      "contents": "ㅇ너ㅏㅣㅗㅁㄴㅇ러ㅘㄴ안ㅁㅇㄹ",
+      "id": 15
+    },
+    {
+      "contents": "첫번째 실험용",
+      "id": 16
+    },
+    {
+      "contents": "두번째 실험용",
+      "id": 17
+    },
+    {
+      "contents": "세번째 실험용",
+      "id": 18
     }
   ],
   "profile": {

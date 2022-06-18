@@ -49,7 +49,9 @@ export const loadPostJson = () => {
 };
 
 export const createPostJson = (post) => {
+  console.log(post);
   return async function (dispatch) {
+    dispatch(createPost(post));
   };
 };
 export const updatePostJson = () => {
@@ -61,13 +63,14 @@ export const deletePostJson = (id) => {
 };
 /* ----------------- 리듀서 ------------------ */
 const Post_reducer = (state = intialstate, action) => {
+  console.log(action);
   // 새로운 액션 타입 추가시 case 추가한다.
   switch (action.type) {
     case LOAD_POSTS:
-      return { list: action.payload.reverse() };
+      return { list: action.payload };
 
     case CREATE_POST:
-      return { ...state, list: [...state.list, action.payload] };
+      return { ...state, list: [action.payload, ...state.list] };
 
     case LOAD_DETAIL:
       return { ...state, detail_list: action.loadDetailData };
