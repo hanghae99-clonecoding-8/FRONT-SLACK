@@ -2,9 +2,6 @@ import apis from "../../api/api";
 /* ----------------- 모듈의 초기 상태 ------------------ */
 let intialstate = {
   list: [],
-  detail_list: null,
-
-  heart_list: null,
 };
 /* ----------------- 액션 타입 ------------------ */
 
@@ -40,8 +37,10 @@ export function removecomment(comment_index) {
 
 
 /* ----------------- 미들웨어 ------------------ */
-export const loadCOMMENTJson = () => {
+export const loadCommentJson = (comments) => {
   return async function (dispatch) {
+    dispatch(loadcomments(comments))
+    console.log(comments)
   };
 };
 
@@ -51,9 +50,10 @@ export const AddHeartJson = () => {
   };
 };
 
-export const createCommentJson = (COMMENT) => {
+export const createCommentJson = (comment) => {
   return async function (dispatch) {
-
+    await apis.addComment(comment)
+    dispatch(createcomment(comment))
   };
 };
 export const updateCOMMENTJson = () => {
@@ -68,10 +68,10 @@ export default function Comment_reducer(state = intialstate, action) {
   // 새로운 액션 타입 추가시 case 추가한다.
   switch (action.type) {
     case LOAD_COMMENTS: {
-      return { list: action.payload.reverse() };
+      return { list: [...action.payload] };
     }
     case CREATE_COMMENT: {
-      return { ...state, list: [...state.list, action.payload] };
+      return { ...state, list: [...state.list, action.comment] };
     }
     case REMOVE_COMMENT: {
       return state.filter((list) => list.id !== action.id);

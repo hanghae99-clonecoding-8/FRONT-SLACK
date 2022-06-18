@@ -1,76 +1,71 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import axios from 'axios'
+import apis from '../api/api'
+import { createCommentJson, loadCommentJson } from '../redux/modules/comments'
 import styled from 'styled-components'
+import {useDispatch} from 'react-redux'
 
 const Comments = () => {
+    let res = useQuery(['posts'],apis.getPosts)
+    const [text,setText] = React.useState('')
+    const dispatch = useDispatch()
 
-    let res = useQuery(['posts'], ()=>
-  axios.get('http://localhost:4000/posts'))
+const comment = () => {
+    console.log(res.data)
+  // 로딩 중일 경우
+          if(res.isLoading) {
+              return (
+                  <div>Loading...</div>
+              )
+          }
+          // 결과값이 전달되었을 경우
+          if(res.data) {
+              const comments= res.data.data;
+              console.log(comments)
+              dispatch(loadCommentJson(comments))
+              return (
+                  <div>
+                      {comments.map((comments) => {
+                          return (
+                              <div key={comments.id}>
+                                  <h2>{comments.id}.</h2>
+                                  <span>{comments.comment}</span>
+                              </div>
+                          )
+                      })}
+                  </div>
+              )
+          }
+      
+  }
+//  const res2 = useQuery(['posts'],apis.addComment(
+//   {comment : text}))
 
-  console.log(res.data)
-// 로딩 중일 경우
-        if(res.isLoading) {
-            return (
-                <LoadingText>Loading...</LoadingText>
-            )
-        }
-
-        // 결과값이 전달되었을 경우
-        if(res.data) {
-            const posts= res.data.data;
-            console.log(posts)
-            return (
-                <Person.Container>
-                    {posts.map((posts) => {
-                        return (
-                            <Person.Box key={posts.id}>
-                                <Person.Title>{posts.id}.</Person.Title>
-                                <Person.Text>{posts.nickname}</Person.Text>
-                                <Person.Text>({posts.email})</Person.Text>
-                            </Person.Box>
-                        )
-                    })}
-                </Person.Container>
-            )
-        }
-    
+const plusComment = (e)=>{
+  e.preventDefault();
+   dispatch(createCommentJson({comment:text}))
+          
+  console.log(text)
+}
 
     return (
-        <Wrapper>
-            {Comments()}
-        </Wrapper>
+      <>
+        <div>
+            {comment()}
+        </div>
+        <input
+              type="text"
+              placeholder='댓글자리'
+              value={text}
+              onChange={(e)=>{
+                setText(e.target.value)
+              }}
+              />
+              <button onClick={plusComment}>등록스</button>
+      </>
     )
 }
 
-const Wrapper = styled.div`
-    max-width: 728px;
 
-    margin: 0 auto;
-`;
-
-const LoadingText = styled.h3`
-    text-align: center;
-`;
-
-const Person = {
-    Container: styled.div`
-        padding: 8px;
-    `,
-
-    Box: styled.div`
-        border-bottom: 2px solid olive;
-    `,
-
-    Title: styled.h2`
-        display: inline-block;
-        
-        margin: 0 12px;
-
-        line-height: 48px;
-    `,
-
-    Text: styled.span`
-        margin: 0 6px;
-    `}
 export default Comments

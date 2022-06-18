@@ -4,9 +4,10 @@ import Comments from '../components/Comments';
 
 
 const Main = () => {
+  
   return (
     <div>
-      <Comments/>
+      
     </div>
   )
 }
