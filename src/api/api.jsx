@@ -27,12 +27,13 @@ const apis = {
   addPost: (contents) => api.post("/comments", contents),
   editPost: (id, contents) => api.post(`/posts/${id}`, contents),
   delPost: (id) => api.delete(`/api/board/${id}`),
+
   getPosts: () => api.get("/comments"),
   getDetail: (id) => api.get(`/api/detail/${id}`),
 
   //comment
-  addComment: (id, comment) =>
-    api.post(`/api/board/${id}/comment/write`, comment),
+  addComment: ( comment) =>
+    api.post(`/posts`, comment),
   editComment: (id, commentId, comments) =>
     api.post(`/api/board/${id}/comment/${commentId}`, comments),
   delComment: (id, commentId) =>

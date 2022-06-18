@@ -1,52 +1,51 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "comment": "나는 한다 등록을",
+      "id": 9
     },
     {
-      "userName": "운철",
-      "passWord": 1234,
-      "id": 2
+      "comment": "나는한다 새로",
+      "id": 10
     },
     {
-      "username": "unchul87",
-      "password": "pipy4211",
-      "password2": "pipy4211",
-      "nickname": "흰둥오리",
-      "profileUrl": "https://firebasestorage.googleapis.com/v0/b/latte-horse2.appspot.com/o/profileimages%2F20170430_092301.jpg?alt=media&token=36ad22c9-5cde-48a0-ac94-172c66ce4f9b",
-      "id": 3
+      "comment": "나는한다 새로",
+      "id": 11
     },
     {
-      "email": "pipyu@naver.com",
-      "password": "pipy4211",
-      "password2": "pipy4211",
-      "nickname": "gdasdf",
-      "profileUrl": "https://firebasestorage.googleapis.com/v0/b/latte-horse2.appspot.com/o/profileimages%2F20170430_075554.jpg?alt=media&token=3b9d583f-e0fb-439a-8060-ed78c75eb71a",
-      "id": 4
+      "comment": "나는한다 다시한번",
+      "id": 12
+    },
+    {
+      "comment": "혼나나나",
+      "id": 13
+    },
+    {
+      "comment": "추가해",
+      "id": 14
+    },
+    {
+      "comment": "ㄹㅇㅁㄴㅁㄴㅇ",
+      "id": 15
+    },
+    {
+      "comment": "쿠리에이트",
+      "id": 16
+    },
+    {
+      "comment": "왜?",
+      "id": 17
     }
   ],
   "comments": [
     {
-      "contents": "첫번째",
-      "id": 1
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
     },
     {
-      "contents": "두번째",
+      "contents": "내용이용",
       "id": 2
-    },
-    {
-      "contents": "세번째",
-      "id": 3
-    },
-    {
-      "contents": "네번째",
-      "id": 4
-    },
-    {
-      "contents": "다섯번째",
-      "id": 5
     }
   ],
   "profile": {

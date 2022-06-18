@@ -47,7 +47,6 @@ const Login = (props) => {
   return (
     <>
     <div className={open ? 'openModal modal' : 'modal'}>
-      <Link to='/'><div>homebutton</div></Link>
       {open?(
        <section>
       <header>

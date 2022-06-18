@@ -1,8 +1,9 @@
 import React from 'react'
+import Comments from '../components/Comments';
 
 const Detail = () => {
   return (
-    <div>Detail</div>
+    <div><Comments/></div>
   )
 }
 
