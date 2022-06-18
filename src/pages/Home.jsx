@@ -1,9 +1,9 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Login from './Login';
 import styled from 'styled-components'
 import SignUp from './Signup';
-import './css.css';
+import '../css/modal.css';
 
 
 
@@ -25,17 +25,22 @@ const Home = () => {
   };
   return (
     <Background>
-       <button onClick={openModal}><div>login</div></button>
-       <Login open={modalOpen} close={closeModal} header="로그인"/>
-     <div>
-      <button onClick={openModal2}><div>signup</div></button>
-      <SignUp open={modalOpen2} close={closeModal2} header="회원가입"/>
-</div>
+      <button onClick={openModal}><div>login</div></button>
+      <Login open={modalOpen} close={closeModal} header="로그인" />
+      <div>
+        <button onClick={openModal2}><div>signup</div></button>
+        <SignUp open={modalOpen2} close={closeModal2} header="회원가입" />
+      </div>
+      <Sleep>
 
-       <Link to="/main"><button>main</button></Link>
-      <Img2 src="https://ifh.cc/g/KHJTRC.png"></Img2>
-      <Title>Sleep은 어디에 있든 팀을 하나로</Title>
-      <Img src='https://ifh.cc/g/n9s83T.png'/>
+        <Img2 src="https://ifh.cc/g/KHJTRC.png"></Img2>
+        <Title>Sleep은 어디에 있든 팀을 하나로</Title>
+        <Img src='https://ifh.cc/g/n9s83T.png' />
+      </Sleep>
+      <Link to = '/Main'>
+        <button>main</button>
+      </Link>
+
     </Background>
   )
 }
@@ -46,6 +51,11 @@ const Background = styled.div`
   width: 100vw;
   height: 100vh;
 `
+const Sleep = styled.div`
+  position: fixed;
+  bottom: 60%;
+  right: 60%;
+`
 const Img = styled.img`
   position: fixed;
   bottom: 10%;
@@ -55,9 +65,7 @@ const Img = styled.img`
   height: 7;
 `
 const Img2 = styled.img`
-  position: fixed;
-  bottom: 60%;
-  right: 60%;
+  
   width: 44%;
   height: 7;
   width: 300px;
