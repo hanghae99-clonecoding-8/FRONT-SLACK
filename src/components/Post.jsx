@@ -26,14 +26,13 @@ const Post = () => {
                 //res의 타이틀 이런식으로바꿔줘야함
                 dispatch(
                     createPostJson({
-
                         contents: res.data.contents,
                         id: res.data.id,
                     })
                 );
                 console.log(res);
                 // dispatch(createPostJson(res.data)); 서버오픈시 시도
-                window.alert("등록성공");
+                //window.alert("등록성공");
                 navigate("/main");
             })
             .catch((err) => {

@@ -18,3 +18,6 @@ function App() {
 }
 
 export default App;
+
+
+//npx json-server ./data.json --port 4000

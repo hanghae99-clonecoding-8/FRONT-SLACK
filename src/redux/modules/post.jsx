@@ -70,7 +70,7 @@ const Post_reducer = (state = intialstate, action) => {
       return { list: action.payload };
 
     case CREATE_POST:
-      return { ...state, list: [action.payload, ...state.list] };
+      return { ...state, list: [...state.list, action.payload] };
 
     case LOAD_DETAIL:
       return { ...state, detail_list: action.loadDetailData };

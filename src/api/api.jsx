@@ -44,3 +44,5 @@ const apis = {
 };
 
 export default apis;
+
+//npx json-server ./data.json --port 4000
