@@ -1,16 +1,6 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "userName": "운철",
-      "passWord": 1234,
-      "id": 2
-    },
-    {
       "username": "unchul87",
       "password": "pipy4211",
       "password2": "pipy4211",

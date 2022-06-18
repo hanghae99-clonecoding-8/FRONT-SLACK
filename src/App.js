@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import Main from './pages/Main';
 import Home from './pages/Home';
 function App() {
-
+//npx json-server ./data.json --port 4000
   return (
     <Routes>
       <Route path='/' element={<Home />} />
