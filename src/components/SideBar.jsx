@@ -79,9 +79,6 @@ const PBList = styled.div`
     ${(props) => (props.height ? `height: ${props.height};` : "")};
     ${(props) => (props.height ? `line-height: ${props.height};` : "")};
     ${(props) => (props.border ? `border: 1px solid ${props.border};` : "")};
-    &:hover {
-    background: #350D36;
-    }
 `
 const ListElement = styled.div`
     overflow: hidden;
