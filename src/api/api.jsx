@@ -18,6 +18,46 @@ api.interceptors.request.use(
   }
 );
 
+export const ChatAPI = {
+
+  // 방 목록 가져오기
+  getChatRoom: () => api.get('/api/chat/rooms', {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem('token')}`
+    }
+  }),
+
+  // 방 추가하기
+  addChatRoom: (room) => api.post('/api/chat/rooms', room, {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+    }
+  }),
+
+  // 방 접속하기
+  enterRoom: (roomId) => api.get(`/api/chat/rooms/${roomId}`, {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem('token')}`
+    }
+  }),
+
+  // 유저 초대하기
+  inviteUser: (roomid, username) => api.post(`/api/chat/invite`, { username: username, roomId: roomid }, {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem('token')}`
+    }
+  }),
+
+  // 이전 메세지 가져오기
+  getMessage: (roomId) => api.get(`/api/chat/rooms/${roomId}/messages`, {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem('token')}`
+    }
+  }),
+
+
+}
+
 const apis = {
   //user
 

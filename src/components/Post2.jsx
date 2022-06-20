@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import apis from "../api/api";
-import { createCommentJson, deleteCommentJson, loadCommentJson } from '../redux/modules/comments'
+import { createCommentJson, deleteCommentJson, loadCommentJson } from '../redux/modules/Comments'
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createPostJson, loadPostJson } from "../redux/modules/post";
+import { createPostJson, loadPostJson } from "../redux/modules/Post";
 import styled from "styled-components";
 
 

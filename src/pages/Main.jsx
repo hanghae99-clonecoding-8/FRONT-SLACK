@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { getCookie } from '../shared/Cookie'
-import { loadPostJson } from "../redux/modules/post";
+import { loadPostJson } from "../redux/modules/Post";
 import Post from '../components/Post'
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
@@ -10,6 +10,7 @@ import Header from '../components/Header';
 import SideBar from '../components/SideBar';
 import Detail from './Detail';
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
 
@@ -22,16 +23,16 @@ const Main = () => {
   const PostReducer = useSelector((state) => state.post.list);
   console.log(PostReducer);
 
-  const [postId,setPostId] = React.useState()
+  const [postId, setPostId] = React.useState()
 
   const scrollRef = React.useRef();
   const scollToMyRef = () => {
     const scroll =
       scrollRef.current.scrollHeight - scrollRef.current.clientHeight
-      scrollRef.current.scrollTo(0, scroll);
+    scrollRef.current.scrollTo(0, scroll);
     console.log(scrollRef.current.clientHeight)
   };
-  
+
   const [modalOpen, setModalOpen] = React.useState(false);
   const openModal = () => {
     setModalOpen(true);
@@ -39,8 +40,8 @@ const Main = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
-  
-console.log(PostReducer.postId)
+
+  console.log(PostReducer.postId)
   useEffect(() => {
     scollToMyRef();
     dispatch(loadPostJson());
@@ -48,34 +49,32 @@ console.log(PostReducer.postId)
 
   // console.log(scrollRef)
   return (
+    <Box>
+      <Header />
+      <Wrap>
+        <div ><SideBar /></div>
+        <CardList>
+          <Cardbar ref={scrollRef}>
+            {PostReducer?.map((item, index) => {
+              //console.log(PostReducer);
+              return (
+                <>
+                  <Cardbox key={index}  >
+                    <Card item={item} setPostId={setPostId} />
+                  </Cardbox>
 
-      <Box>
-        <Header />
-          <Wrap>
-            <div ><SideBar /></div>
-              <CardList>
-                <Cardbar ref={scrollRef}>
-                     {PostReducer?.map((item, index) => {
-                    //console.log(PostReducer);
-                    return (
-                      <>
-                      <Cardbox key={index}  >
-                          <Card  item={item} setPostId={setPostId}/>
-                      </Cardbox>
-                      
-                        </>
-                    ); } )} 
-                       {/* <Detail open={modalOpen} close={closeModal} id={item.postId}/> */}
-                </Cardbar>
-                       <Post  scrollRef={scrollRef} />    
-              </CardList>
-             {/* <DetailBox> */}
-            <Detail close={closeModal} open={modalOpen} id={postId}/>
-              {/* </DetailBox> */}
-          </Wrap>
-     
-     
-      </Box>
+                </>
+              );
+            })}
+            {/* <Detail open={modalOpen} close={closeModal} id={item.postId}/> */}
+          </Cardbar>
+          <Post scrollRef={scrollRef} />
+        </CardList>
+        {/* <DetailBox> */}
+        <Detail close={closeModal} open={modalOpen} id={postId} />
+        {/* </DetailBox> */}
+      </Wrap>
+    </Box>
   )
 }
 

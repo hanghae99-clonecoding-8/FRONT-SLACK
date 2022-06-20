@@ -3,8 +3,8 @@ import Comments from '../components/Comments';
 import apis from '../api/api'
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { loadCommentJson } from '../redux/modules/comments';
-import { deletePostJson } from '../redux/modules/post';
+import { loadCommentJson } from '../redux/modules/Comments';
+import { deletePostJson } from '../redux/modules/Post';
 import { useDispatch } from 'react-redux';
 import DelPost from '../components/DelPost';
 

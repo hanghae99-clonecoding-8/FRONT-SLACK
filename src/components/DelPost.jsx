@@ -2,7 +2,7 @@ import React from 'react'
 import "../css/modal.css"
 
 import { useDispatch, useSelector } from "react-redux";
-import { deletePostJson } from "../redux/modules/post";
+import { deletePostJson } from "../redux/modules/Post";
 
 const DelPost = (props) => {
   const { open, close, header, id } = props;

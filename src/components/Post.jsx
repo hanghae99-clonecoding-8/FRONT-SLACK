@@ -4,27 +4,40 @@ import { storage } from "../shared/Firebase";
 import { ref, uploadBytes } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createPostJson, loadPostJson } from "../redux/modules/post";
+import { createPostJson, loadPostJson } from "../redux/modules/Post";
 import styled from "styled-components";
+import { VscBold, VscItalic, VscListOrdered, VscMention } from "react-icons/vsc";
+import { RiStrikethrough, RiFileCodeLine, RiSendPlane2Fill, RiArrowDownSLine } from "react-icons/ri";
+import { IoIosLink } from "react-icons/io";
+import { TbList, TbCode, TbVideo } from "react-icons/tb";
+import { BsBarChartSteps, BsType } from "react-icons/bs";
+import { CgMic } from "react-icons/cg";
 
-const Post = ({scrollRef}) => {
+
+
+
+
+
+
+
+const Post = ({ scrollRef }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [content, setContent] = React.useState("");
     const [textareaHeight, setTextareaHeight] = useState(0);
     const text = React.useRef(null)
-console.log(scrollRef)
+    console.log(scrollRef)
 
-const scollToMyRef = () => {
-  const scroll =
-    scrollRef.current.scrollHeight - scrollRef.current.clientHeight
-    scrollRef.current.scrollTo(0, scroll);
-  console.log(scrollRef.current.clientHeight)
-};
+    const scollToMyRef = () => {
+        const scroll =
+            scrollRef.current.scrollHeight - scrollRef.current.clientHeight
+        scrollRef.current.scrollTo(0, scroll);
+        console.log(scrollRef.current.clientHeight)
+    };
 
-    useEffect(() => {  
+    useEffect(() => {
         scollToMyRef();
-    
+
         dispatch(loadPostJson());
     }, [dispatch]);
 
@@ -47,12 +60,14 @@ const scollToMyRef = () => {
                     })
                 );
                 console.log(text.current.value)
+
                  console.log(res)
+
                 // console.log(res);
                 // dispatch(createPostJson(res.data)); 서버오픈시 시도
                 //window.alert("등록성공");
-                
-              
+
+
                 navigate("/main");
             })
             .catch((err) => {
@@ -71,9 +86,15 @@ const scollToMyRef = () => {
             <Wrap>
                 <MessageForm>
                     <div className='m_format'>
-                        <button>B</button>
-                        <button>I</button>
-                        <button>S</button>
+                        <button>
+                            <VscBold className="icon1" color="#000000" size="20px" />
+                        </button>
+                        <button>
+                            <VscItalic className="icon2" color="#000" size="20px" />
+                        </button>
+                        <button>
+                            <RiStrikethrough className="icon2" color="#000" size="20px" />
+                        </button>
                         <span></span>
                         <button>L</button>
                         <span></span>
@@ -111,7 +132,10 @@ const scollToMyRef = () => {
                         <div className='submit'>
                             <UnderBar>
 
-                                <button onClick={postNew} type="submit">
+                                <button onClick={
+                                    postNew
+
+                                } type="submit">
                                     보내기
                                 </button>
 
@@ -233,7 +257,7 @@ const MessageForm = styled.div`
     }
     .submit {
       button {
-        heigth: 28px;
+        height: 28px;
         border-radius: 4px;
         padding: 2px 8px;
         width: 100px;
