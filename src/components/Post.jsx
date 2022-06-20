@@ -91,7 +91,10 @@ const Post = () => {
                         <div className='submit'>
                             <UnderBar>
 
-                                <button onClick={postNew} type="submit">
+                                <button onClick={
+                                    postNew
+                                    
+                                    } type="submit">
                                     보내기
                                 </button>
 

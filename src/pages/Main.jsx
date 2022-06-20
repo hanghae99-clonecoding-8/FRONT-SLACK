@@ -10,6 +10,7 @@ import Header from '../components/Header';
 import SideBar from '../components/SideBar';
 import Detail from './Detail';
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
 
@@ -31,7 +32,10 @@ const Main = () => {
           <Wrap>
             <div ><SideBar /></div>
               <CardList>
-                <Cardbar>
+                <Routes>
+                  <Route path={"/main/:roomId"} components={Post} />
+                </Routes>
+                {/* <Cardbar>
                      {PostReducer?.map((item, index) => {
                     //console.log(PostReducer);
                     return (
@@ -40,7 +44,7 @@ const Main = () => {
                       </Cardbox>
                     ); } )}  
                 </Cardbar>
-                       <Post />    
+                       <Post />     */}
               </CardList>
               <Detail/>
           </Wrap>
