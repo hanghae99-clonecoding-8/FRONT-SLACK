@@ -20,37 +20,49 @@ const Main = () => {
   getCookie("token");
   const PostReducer = useSelector((state) => state.post.list);
   console.log(PostReducer);
+
+  const scrollRef = React.useRef();
+  const scollToMyRef = () => {
+    const scroll =
+      scrollRef.current.scrollHeight - scrollRef.current.clientHeight
+    scrollRef.current.scrollTo(0, scroll);
+    console.log(scrollRef.current.clientHeight)
+  };
+
+
+
   useEffect(() => {
+    scollToMyRef();
     dispatch(loadPostJson());
   }, [dispatch]);
 
-  
+  console.log(scrollRef)
   return (
 
-      <Box>
-        <Header />
-          <Wrap>
-            <div ><SideBar /></div>
-              <CardList>
-                <Routes>
-                  <Route path={"/main/:roomId"} components={Post} />
-                </Routes>
-                {/* <Cardbar>
-                     {PostReducer?.map((item, index) => {
-                    //console.log(PostReducer);
-                    return (
-                      <Cardbox key={index}>
-                          <Card item={item} />
-                      </Cardbox>
-                    ); } )}  
-                </Cardbar>
-                       <Post />     */}
-              </CardList>
-              <Detail/>
-          </Wrap>
-     
-     
-      </Box>
+    <Box>
+      <Header />
+      <Wrap>
+        <div ><SideBar /></div>
+        <CardList>
+          <Cardbar ref={scrollRef}>
+            {PostReducer?.map((item, index) => {
+              //console.log(PostReducer);
+              return (
+                <Cardbox key={index} >
+                  <Card item={item} />
+                </Cardbox>
+              );
+            })}
+          </Cardbar>
+          <Post scrollRef={scrollRef} />
+        </CardList>
+        {/* <DetailBox> */}
+        <Detail />
+        {/* </DetailBox> */}
+      </Wrap>
+
+
+    </Box>
   )
 }
 
@@ -87,6 +99,9 @@ width: 100vw;
 const Wrap = styled.div`
   display: flex;  
 `
+// const DetailBox = styled.div`
+//   flex: 3;  
+// `
 
 
 export default Main

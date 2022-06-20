@@ -49,12 +49,24 @@ const Detail = () => {
      <img src={Detail.profileUrl}/>
      <div>{Detail.contents}</div>
      <div>{Detail?.contents}</div> */}
+     <Headbar>
+      <h1 style={{fontSize:"23px"}}>스레드</h1>
+      <div style={{fontSize:"15px",fontWeight:"500", margin:"18px 0 5px 20px", color:"grey"}}>_7기_a반_잡담방</div>
+     <button style={{right:"1%",top:"5.6%", position:"absolute", border:"none", backgroundColor:"white",fontWeight:"bold", fontSize:"15px",}}
+     onClick={onClick}>X</button>
+     </Headbar>
+      <DetailWarp>
       <div>왜못읽지</div>
-      <button onClick={onClick}>X</button>
+      <div>왜못읽지</div>
+      <div>왜못읽지</div>
+      <div>왜못읽지</div>
+      <div>왜못읽지</div>
+      </DetailWarp>
+      
      <button onClick={openModal}>삭제하기</button>
      <DelPost open={modalOpen} close={closeModal} id={id} header="메세지 삭제"/>
-     <div><Comments id={Detail?.id}/></div>
-     
+     <CommentWrap><Comments id={Detail?.id}/></CommentWrap>
+    
      </Wrap>
    ):null}
    </>
@@ -64,6 +76,22 @@ const Detail = () => {
 const Wrap = styled.div`
 display: flex;
 flex-direction: column;
+width: 30vw;
+`
+const Headbar = styled.div`
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid grey;
+  padding:0px 10px ;
+`
+
+const DetailWarp = styled.div`
+  height: 20vh;
+
+`
+
+const CommentWrap = styled.div`
+  height: calc(100% - 50vh);
 `
 
 export default Detail
