@@ -3,6 +3,8 @@ import { getCookie } from "../shared/Cookie";
 
 const api = axios.create({
   baseURL: "http://localhost:4000",
+  //http://localhost:4000
+  //http://3.39.190.102:8080
 });
 
 api.interceptors.request.use(
@@ -12,24 +14,23 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-
   }
 );
 
 const apis = {
   //user
-  checkEmail: (userEmail) => api.post(`/api/users/${userEmail}`),
-  checkNickName: (nickName) => api.post(`/api/users/${nickName}`),
-  addUser: (newUser) => api.post("/posts", newUser),
-  postLogin: (userdata) => api.post("/posts", userdata),
+  checkEmail: (userEmail) => api.post(`/api/checkId`,userEmail),
+  checkNickName: (nickName) => api.post(`/api/checkNick`,nickName),
+  addUser: (newUser) => api.post("/api/users", newUser),
+  postLogin: (userdata) => api.post("/api/users/login", userdata),
 
   //post
   addPost: (contents) => api.post("/comments", contents),
-  editPost: (id, contents) => api.post(`/posts/${id}`, contents),
-  delPost: (id) => api.delete(`/api/board/${id}`),
+  // editPost: (id, contents) => api.post(`/posts/${id}`, contents),
+  delPost: (id) => api.delete(`/comments/${id}`),
 
   getPosts: () => api.get("/comments"),
-  getDetail: (id) => api.get(`/api/detail/${id}`),
+  getDetail: (id) => api.get(`/comments`),
 
   //comment
   addComment: ( comment) =>
@@ -37,8 +38,8 @@ const apis = {
   editComment: (id, commentId, comments) =>
     api.post(`/api/board/${id}/comment/${commentId}`, comments),
   delComment: (id, commentId) =>
-    api.delete(`/api/board/${id}/comment/${commentId}`),
-  getComments: (id) => api.get(`/api/board/${id}/comments`),
+    api.delete(`/posts/${id}`),
+  getComments: () => api.get(`/posts`),
 
   //heart
   addheart: (id) => api.post(`/api/board/${id}/like`),

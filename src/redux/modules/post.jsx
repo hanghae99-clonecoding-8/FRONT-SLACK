@@ -1,7 +1,7 @@
 import apis from "../../api/api";
 /* ----------------- 모듈의 초기 상태 ------------------ */
 let intialstate = {
-  post_list: [],
+  list: [],
 };
 /* ----------------- 액션 타입 ------------------ */
 
@@ -59,11 +59,19 @@ export const updatePostJson = () => {
 };
 export const deletePostJson = (id) => {
   return async function (dispatch) {
+    await apis.delPost(id)
+    dispatch(removePost(id))
   };
 };
+// export const deletePostJson = (id) =>{
+//   return async function (dispatch) {
+//      dispatch(removePost(id))
+// }
+//   }
+
 /* ----------------- 리듀서 ------------------ */
 const Post_reducer = (state = intialstate, action) => {
-  console.log(action);
+  // console.log(action);
   // 새로운 액션 타입 추가시 case 추가한다.
   switch (action.type) {
     case LOAD_POSTS:
@@ -76,9 +84,9 @@ const Post_reducer = (state = intialstate, action) => {
       return { ...state, detail_list: action.loadDetailData };
 
     case REMOVE_POST:
-      return state.filter((list) => list.id !== action.id);
-
-    default:
+      return state.list.filter((state) => state.id !== action.id);
+      
+      default:
       return state;
   }
 };

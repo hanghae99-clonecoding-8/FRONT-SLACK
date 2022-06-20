@@ -14,8 +14,8 @@ const REMOVE_COMMENT = "comment_reducer/REMOVE";
 // const CREATE_HEART = "COMMENT_reducer/CREATE";
 
 /* ----------------- 액션 생성 함수 ------------------ */
-export function loadcomments(payload) {
-  return { type: LOAD_COMMENTS, payload };
+export function loadcomments(comments) {
+  return { type: LOAD_COMMENTS, comments };
 }
 export function loadId() {
   return { type: LOAD_ID };
@@ -37,10 +37,11 @@ export function removecomment(comment_index) {
 
 
 /* ----------------- 미들웨어 ------------------ */
-export const loadCommentJson = (comments) => {
+export const loadCommentJson = () => {
   return async function (dispatch) {
-    dispatch(loadcomments(comments))
-    console.log(comments)
+    const res = await apis.getComments()
+    dispatch(loadcomments(res.data))
+    console.log(res)
   };
 };
 
@@ -52,14 +53,15 @@ export const AddHeartJson = () => {
 
 export const createCommentJson = (comment) => {
   return async function (dispatch) {
-    await apis.addComment(comment)
-    dispatch(createcomment(comment))
+   const res = await apis.addComment({comment:comment})
+    dispatch(createcomment(res.data))
+    console.log(res.data)
   };
 };
 export const updateCOMMENTJson = () => {
   return async function (dispatch) {};
 };
-export const deleteCOMMENTJson = (id) => {
+export const deleteCommentJson = (id) => {
   return async function (dispatch) {
   };
 };
@@ -68,10 +70,10 @@ export default function Comment_reducer(state = intialstate, action) {
   // 새로운 액션 타입 추가시 case 추가한다.
   switch (action.type) {
     case LOAD_COMMENTS: {
-      return { list: [...action.payload] };
+      return { list: [...action.comments] };
     }
     case CREATE_COMMENT: {
-      return { ...state, list: [...state.list, action.comment] };
+      return { ...state, list: [...state.list, action.payload] };
     }
     case REMOVE_COMMENT: {
       return state.filter((list) => list.id !== action.id);

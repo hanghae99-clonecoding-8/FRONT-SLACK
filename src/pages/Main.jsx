@@ -4,9 +4,12 @@ import styled from 'styled-components'
 import { getCookie } from '../shared/Cookie'
 import { loadPostJson } from "../redux/modules/post";
 import Post from '../components/Post'
+import { Link } from 'react-router-dom';
+import Card from '../components/Card';
 import Header from '../components/Header';
 import SideBar from '../components/SideBar';
-import Chat from '../components/Chat';
+import Detail from './Detail';
+
 
 
 
@@ -20,63 +23,66 @@ const Main = () => {
     dispatch(loadPostJson());
   }, [dispatch]);
 
+  
   return (
-    <>
-      <Header />
+
       <Box>
-
-
-        <SideBar />
-        <ChatContainer>
-         
-        </ChatContainer>
-        {/* {PostReducer?.map((item, index) => {
-          //console.log(PostReducer);
-          return (
-            <>
-              <Cardbox key={index}>
-                <div>
-                  {item.contents}
-                </div>
-              </Cardbox>
-            </>
-          );
-        })}
-        <Post /> */}
+        <Header />
+          <Wrap>
+            <div ><SideBar /></div>
+              <CardList>
+                <Cardbar>
+                     {PostReducer?.map((item, index) => {
+                    //console.log(PostReducer);
+                    return (
+                      <Cardbox key={index}>
+                          <Card item={item} />
+                      </Cardbox>
+                    ); } )}  
+                </Cardbar>
+                       <Post />    
+              </CardList>
+              <Detail/>
+          </Wrap>
+     
+     
       </Box>
-    </>
   )
 }
 
 const Cardbox = styled.div`
-  width: 280px;
-  height: 460px;
-  border: 3px solid navy;
-  border-radius: 5px;
-  margin: 3px;
+  background-color: white;
+  width: calc(100% - 32px);
+  border-bottom: 0.5px solid grey;
+  /* margin: 3px; */
   padding: 16px;
-  background-color: wheat;
+  display: block;
+  overflow-x: hidden;
 `;
+
+const Cardbar = styled.div`
+  overflow-y: scroll ;
+  height: 750px;
+`
+const CardList = styled.div`
+    flex: 13;
+    display: block;
+    flex-direction: column;
+`
 
 const Box = styled.div`
 position: flex;
 height: 100vh;
 width: 100vw;
     overflow: hidden;
-    background-image: url('https://www.itworld.co.kr/files/itworld/2020/12_01/slack_logo_with_background_by_mudassir_ali_cc0_via_pexels_2400x1600-100838404-large.jpg') ;
-    background-size: 90%;
+    /* background-image: url('https://www.itworld.co.kr/files/itworld/2020/12_01/slack_logo_with_background_by_mudassir_ali_cc0_via_pexels_2400x1600-100838404-large.jpg') ; */
+    /* background-size: 90%; */
     background-position: 100% 70%;
     
 `
-const ChatContainer = styled.div`
-  flex: 1;
-  margin-top: 44px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  justify-content: space-between;
-`;
+const Wrap = styled.div`
+  display: flex;  
+`
 
 
 export default Main

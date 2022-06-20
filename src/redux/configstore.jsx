@@ -7,19 +7,17 @@ import comment from "./modules/comments";
 import { composeWithDevTools } from 'redux-devtools-extension';
 // root 리듀서를 만들어줍니다.
 
-import { createBrowserHistory } from "history";
-import { connectRouter } from "connected-react-router";
 
-export const history = createBrowserHistory();
 
-const middlewares = [thunk.withExtraArgument({history:history})];
+
+
+const middlewares = [thunk];
 
 
 const enhancer = composeWithDevTools(applyMiddleware(...middlewares));
 const rootReducer = combineReducers({ 
   post,
   comment,
-  router: connectRouter(history),
  });
 
  
