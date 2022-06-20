@@ -6,13 +6,23 @@ import comment from "./modules/comments";
 //리덕스 데브 툴쓰는거야
 import { composeWithDevTools } from 'redux-devtools-extension';
 // root 리듀서를 만들어줍니다.
-const middlewares = [thunk];
+
+import { createBrowserHistory } from "history";
+import { connectRouter } from "connected-react-router";
+
+export const history = createBrowserHistory();
+
+const middlewares = [thunk.withExtraArgument({history:history})];
+
 
 const enhancer = composeWithDevTools(applyMiddleware(...middlewares));
 const rootReducer = combineReducers({ 
   post,
   comment,
+  router: connectRouter(history),
  });
+
+ 
 // 스토어를 만듭니다.
 const store = createStore(rootReducer, enhancer );
 export default store;
