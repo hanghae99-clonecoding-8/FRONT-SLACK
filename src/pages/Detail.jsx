@@ -49,12 +49,13 @@ const Detail = () => {
      <img src={Detail.profileUrl}/>
      <div>{Detail.contents}</div>
      <div>{Detail?.contents}</div> */}
+
       <div>왜못읽지</div>
       <button onClick={onClick}>X</button>
      <button onClick={openModal}>삭제하기</button>
      <DelPost open={modalOpen} close={closeModal} id={id} header="메세지 삭제"/>
-     <div><Comments id={Detail?.id}/></div>
-     
+     <CommentWrap><Comments id={Detail?.id}/></CommentWrap>
+    
      </Wrap>
    ):null}
    </>
@@ -64,6 +65,12 @@ const Detail = () => {
 const Wrap = styled.div`
 display: flex;
 flex-direction: column;
+overflow-y: scroll;
+width: 60vw;
+`
+
+const CommentWrap = styled.div`
+  overflow-y: scroll;
 `
 
 export default Detail
