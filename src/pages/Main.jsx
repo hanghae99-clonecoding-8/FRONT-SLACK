@@ -6,6 +6,8 @@ import { loadPostJson } from "../redux/modules/post";
 import Post from '../components/Post'
 import Header from '../components/Header';
 import SideBar from '../components/SideBar';
+import Chat from '../components/Chat';
+
 
 
 
@@ -20,9 +22,14 @@ const Main = () => {
 
   return (
     <>
+      <Header />
       <Box>
-        <Header />
+
+
         <SideBar />
+        <ChatContainer>
+         
+        </ChatContainer>
         {/* {PostReducer?.map((item, index) => {
           //console.log(PostReducer);
           return (
@@ -52,13 +59,24 @@ const Cardbox = styled.div`
 `;
 
 const Box = styled.div`
+position: flex;
+height: 100vh;
+width: 100vw;
     overflow: hidden;
     background-image: url('https://www.itworld.co.kr/files/itworld/2020/12_01/slack_logo_with_background_by_mudassir_ali_cc0_via_pexels_2400x1600-100838404-large.jpg') ;
     background-size: 90%;
     background-position: 100% 70%;
     
 `
-
+const ChatContainer = styled.div`
+  flex: 1;
+  margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+`;
 
 
 export default Main
