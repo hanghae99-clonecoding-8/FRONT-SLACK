@@ -12,6 +12,8 @@ import Detail from './Detail';
 
 
 
+
+
 const Main = () => {
   const dispatch = useDispatch();
   getCookie("token");
@@ -69,6 +71,9 @@ const CardList = styled.div`
 `
 
 const Box = styled.div`
+position: flex;
+height: 100vh;
+width: 100vw;
     overflow: hidden;
     /* background-image: url('https://www.itworld.co.kr/files/itworld/2020/12_01/slack_logo_with_background_by_mudassir_ali_cc0_via_pexels_2400x1600-100838404-large.jpg') ; */
     /* background-size: 90%; */
