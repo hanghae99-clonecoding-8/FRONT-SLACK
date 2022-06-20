@@ -4,9 +4,23 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import apis from "../api/api";
 import '../css/modal.css';
+import Detail from "../pages/Detail";
 
 
-const Card = ({ item} ) => {
+const Card = ({item, setPostId} ) => {
+  const [modalOpen2, setModalOpen2] = React.useState(false);
+ 
+
+  const openModal2 = () => {
+    setModalOpen2(true);
+    setPostId(item.postId)
+  };
+  const closeModal2= () => {
+    setModalOpen2(false);
+  };
+
+  // const [id,setId] = React.useState();
+  
   // const PostReducer = useSelector((state) => state.Post_reducer.list);
   // console.log(PostReducer);
   // const [heart, setHeart] = React.useState(false);
@@ -17,31 +31,33 @@ const Card = ({ item} ) => {
   //   // dispatch(AddHeartJson(heartData.data))
   //   setHeart(heartData.data);
   // };
-
+console.log(item)
   return (
     <div>
       {/* <span>{item?.nickname}</span>
       <span>{item?.createAt}</span> */}
     
-     
+      
       <Wrap>
       <Imgbox>
-      <Image className="text_photo" src='https://ca.slack-edge.com/T01L2TNGW3T-U03DL8GEU0G-dc38fbbc5656-512' />
-      {/* <Image className="text_photo" src={`${item?.profileUrl}`} /> */}
+      {/* <Image className="text_photo" src='https://ca.slack-edge.com/T01L2TNGW3T-U03DL8GEU0G-dc38fbbc5656-512' /> */}
+      <Image className="text_photo" src={`${item?.profileUrl}`} />
       </Imgbox>
       <TextArea>
         <Toptext>
-        <Nickname>최경식(항해99 매니저)</Nickname>
-        <CreateAt> 오전 8:30 </CreateAt>
-        {/*  <Nickname>{item?.nickname}</Nickname> */}
-        {/* <CreateAt>{item?.createAt}</CreateAt> */}
+        {/* <Nickname>최경식(항해99 매니저)</Nickname>
+        <CreateAt> 오전 8:30 </CreateAt> */}
+         <Nickname>{item?.nickname}</Nickname>
+         <Nickname>({item?.username})</Nickname>
+        <CreateAt>{item?.createdAt.split("T")[0]}</CreateAt>
         </Toptext>
       <Title>{item?.contents}</Title>
       </TextArea>
       <Heart>🤍</Heart>
-        <Link to={`/detail/${item?.postId}`} style={{ textDecoration: "none" }}>
-          <Dat>💬</Dat>
-        </Link>
+
+          <Dat onClick={openModal2}>💬</Dat>
+          
+
       </Wrap>
       {/* <Item>{item?.contents}</Item> */}
       <Underbar className="underbar">
