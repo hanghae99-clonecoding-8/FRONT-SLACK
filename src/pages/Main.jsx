@@ -16,10 +16,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
 const Main = () => {
+
+
   const dispatch = useDispatch();
   getCookie("token");
   const PostReducer = useSelector((state) => state.post.list);
   console.log(PostReducer);
+
+  const [postId, setPostId] = React.useState()
 
   const scrollRef = React.useRef();
   const scollToMyRef = () => {
@@ -29,16 +33,22 @@ const Main = () => {
     console.log(scrollRef.current.clientHeight)
   };
 
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
-
+  console.log(PostReducer.postId)
   useEffect(() => {
     scollToMyRef();
     dispatch(loadPostJson());
   }, [dispatch]);
 
-  console.log(scrollRef)
+  // console.log(scrollRef)
   return (
-
     <Box>
       <Header />
       <Wrap>
@@ -48,20 +58,22 @@ const Main = () => {
             {PostReducer?.map((item, index) => {
               //console.log(PostReducer);
               return (
-                <Cardbox key={index} >
-                  <Card item={item} />
-                </Cardbox>
+                <>
+                  <Cardbox key={index}  >
+                    <Card item={item} setPostId={setPostId} />
+                  </Cardbox>
+
+                </>
               );
             })}
+            {/* <Detail open={modalOpen} close={closeModal} id={item.postId}/> */}
           </Cardbar>
           <Post scrollRef={scrollRef} />
         </CardList>
         {/* <DetailBox> */}
-        <Detail />
+        <Detail close={closeModal} open={modalOpen} id={postId} />
         {/* </DetailBox> */}
       </Wrap>
-
-
     </Box>
   )
 }
@@ -84,6 +96,7 @@ const CardList = styled.div`
     flex: 13;
     display: block;
     flex-direction: column;
+    padding: 0 0.5%;
 `
 
 const Box = styled.div`

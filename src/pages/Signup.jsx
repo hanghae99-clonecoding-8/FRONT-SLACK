@@ -101,8 +101,13 @@ const SignUp = (props) => {
             profileUrl: fileInputRef.current?.url,
         });
         console.log(res);
-        // alert(res.data.body[0].message);
-        navigate("/");
+        alert(res.data.body.message);
+        close(event)
+        setEmail(null)
+        setPassword(null)
+        setPassword2(null)
+        setNickname(null)
+        setFileImage(null)
     };
     //프로필 사진 업로드
     const saveFileImage = async (e) => {
@@ -210,10 +215,6 @@ const SignUp = (props) => {
                                     ref={fileInputRef}
                                     onChange={saveFileImage}
                                 />)}
-
-                                {/* <div style={{ fontSize: "10px", color: "tomato" ,marginLeft:"74px", marginTop:"10px" }}>
-                                    사진변경하지 말아주세요 오류생겨요...ㅠAㅠ
-                                </div> */}
                                 <LoginButton onClick={onSubmitUserHandler}>가입하기</LoginButton>
                             </div>
 

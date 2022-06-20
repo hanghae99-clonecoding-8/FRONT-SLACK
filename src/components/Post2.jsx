@@ -94,11 +94,10 @@ const Wrap = styled.div`
       border: 1px white solid; */
       width: 95%;
       margin: auto;
-      margin-top: 25px;
+      margin-top: 57px;
       position: relative;
-      bottom: px;
       overflow-x: hidden;
-
+      margin-right: 9%;
     `;
 
 

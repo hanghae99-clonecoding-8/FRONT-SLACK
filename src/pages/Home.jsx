@@ -10,7 +10,7 @@ import '../css/modal.css';
 const Home = () => {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalOpen2, setModalOpen2] = React.useState(false);
-
+  
   const openModal = () => {
     setModalOpen(true);
   };
