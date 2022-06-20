@@ -1,6 +1,6 @@
 import React from 'react'
 import apis from '../api/api'
-import { createCommentJson, deleteCommentJson, loadCommentJson } from '../redux/modules/comments'
+import { createCommentJson, deleteCommentJson, loadCommentJson } from '../redux/modules/Comments'
 import styled from 'styled-components'
 import {useDispatch,useSelector} from 'react-redux'
 import Post2 from './Post2'

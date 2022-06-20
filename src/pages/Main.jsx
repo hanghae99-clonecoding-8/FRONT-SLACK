@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { getCookie } from '../shared/Cookie'
-import { loadPostJson } from "../redux/modules/post";
+import { loadPostJson } from "../redux/modules/Post";
 import Post from '../components/Post'
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
