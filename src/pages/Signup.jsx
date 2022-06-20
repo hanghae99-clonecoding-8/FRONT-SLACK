@@ -5,7 +5,6 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import apis from "../api/api";
 import styled from "styled-components";
 import "../css/modal.css"
-import { margin } from '@mui/system';
 
 const SignUp = (props) => {
     const { open, close, header } = props;
@@ -23,7 +22,7 @@ const SignUp = (props) => {
     // 이메일 중복 체크
     // console.log(Nickname)
     const dupEmail = async () => {
-        await apis.checkEmail({username : Email})
+        await apis.checkEmail({ username: Email })
             .then(() => {
                 window.alert("사용 가능한 아이디입니다.");
             })
@@ -35,7 +34,7 @@ const SignUp = (props) => {
 
     // 닉네임 중복 체크
     const dupNick = async () => {
-        await apis.checkNickName({nickname : Nickname})
+        await apis.checkNickName({ nickname: Nickname })
             .then(() => {
                 window.alert("사용 가능한 닉네임입니다.");
             })
@@ -136,41 +135,41 @@ const SignUp = (props) => {
                         </header>
                         <main>
                             <div onSubmit={onSubmitUserHandler} style={{ marginTop: "30px" }}>
-                         <Wrap>
-                                <Inputbox
-                                    type="text"
-                                    placeholder="Email"
-                                    value={Email}
-                                    onChange={(event) => {
-                                        setEmail(event.target.value);
-                                    }}
-                                    style={{marginRight:"10px"}}
-                                />
-                                <DupliButton onClick={dupEmail}
-                                >
-                                    중복확인
-                                </DupliButton>
+                                <Wrap>
+                                    <Inputbox
+                                        type="text"
+                                        placeholder="Email"
+                                        value={Email}
+                                        onChange={(event) => {
+                                            setEmail(event.target.value);
+                                        }}
+                                        style={{ marginRight: "10px" }}
+                                    />
+                                    <DupliButton onClick={dupEmail}
+                                    >
+                                        중복확인
+                                    </DupliButton>
                                 </Wrap>
                                 <Condition>E-mail주소를 입력해 주세요</Condition>
                                 <br />
                                 <Wrap>
-                                <Inputbox
-                                    type="text"
-                                    placeholder="Nickname"
-                                    value={Nickname}
-                                    onChange={(event) => {
-                                        setNickname(event.target.value);
-                                    }}
-                                    style={{marginRight:"10px"}}
-                                />
-                                <DupliButton onClick={dupNick}
-                                >
-                                    중복확인
-                                </DupliButton>
+                                    <Inputbox
+                                        type="text"
+                                        placeholder="Nickname"
+                                        value={Nickname}
+                                        onChange={(event) => {
+                                            setNickname(event.target.value);
+                                        }}
+                                        style={{ marginRight: "10px" }}
+                                    />
+                                    <DupliButton onClick={dupNick}
+                                    >
+                                        중복확인
+                                    </DupliButton>
                                 </Wrap>
                                 <Condition>당신이 불리고 싶은 이름을 입력해주세요</Condition>
                                 <br />
-                               
+
                                 <Inputbox
                                     type="password"
                                     placeholder="Password"
@@ -179,11 +178,11 @@ const SignUp = (props) => {
                                         setPassword(event.target.value);
                                     }}
                                     ref={password}
-                                    style={{marginRight:"110px"}}
+                                    style={{ marginRight: "110px" }}
                                 />
                                 <Condition>비밀번호는 8자 이상 영문과 숫자로만 만들어 주세요</Condition>
                                 <br />
-                              
+
                                 <Inputbox
                                     type="password"
                                     placeholder="Password check"
@@ -192,26 +191,26 @@ const SignUp = (props) => {
                                         setPassword2(event.target.value);
                                     }}
                                     ref={password2}
-                                    style={{marginRight:"110px"}}
+                                    style={{ marginRight: "110px" }}
                                 />
-                      
+
                                 <Condition>비밀번호를 다시 입력해주세요</Condition>
                                 <br />
-                                <h5 style={{marginLeft:"70px"}}>프로필 사진</h5>
+                                <h5 style={{ marginLeft: "70px" }}>프로필 사진</h5>
                                 {fileImage && (
                                     <img
                                         alt="sample"
                                         src={fileImage}
-                                        style={{ margin: "10px auto 7px 80px" ,maxWidth: "300px", maxHeight: "250px" }}
+                                        style={{ margin: "10px auto 7px 80px", maxWidth: "300px", maxHeight: "250px" }}
                                     />)}
-                                    {fileImage? (null):(<Inputbox
+                                {fileImage ? (null) : (<Inputbox
                                     name="imgUpload"
                                     type="file"
                                     accept="image/*"
                                     ref={fileInputRef}
                                     onChange={saveFileImage}
                                 />)}
-                                
+
                                 {/* <div style={{ fontSize: "10px", color: "tomato" ,marginLeft:"74px", marginTop:"10px" }}>
                                     사진변경하지 말아주세요 오류생겨요...ㅠAㅠ
                                 </div> */}
@@ -232,7 +231,7 @@ const SignUp = (props) => {
     );
 };
 
-const Inputbox =styled.input`
+const Inputbox = styled.input`
     display: flex;
     align-items: center;
     flex-direction: column;
