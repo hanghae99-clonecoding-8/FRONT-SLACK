@@ -28,13 +28,14 @@ const Main = () => {
     console.log(scrollRef.current.clientHeight)
   };
   
+  
 
   useEffect(() => {
     scollToMyRef();
     dispatch(loadPostJson());
   }, [dispatch]);
 
-
+  console.log(scrollRef)
   return (
 
       <Box>
@@ -46,16 +47,16 @@ const Main = () => {
                      {PostReducer?.map((item, index) => {
                     //console.log(PostReducer);
                     return (
-                      <Cardbox key={index}>
-                          <Card item={item} />
+                      <Cardbox key={index} >
+                          <Card  item={item} />
                       </Cardbox>
                     ); } )}  
                 </Cardbar>
-                       <Post />    
+                       <Post  scrollRef={scrollRef} />    
               </CardList>
-             <DetailBox>
+             {/* <DetailBox> */}
               <Detail/>
-              </DetailBox>
+              {/* </DetailBox> */}
           </Wrap>
      
      
@@ -96,9 +97,9 @@ width: 100vw;
 const Wrap = styled.div`
   display: flex;  
 `
-const DetailBox = styled.div`
-  /* flex: 9; */
-`
+// const DetailBox = styled.div`
+//   flex: 3;  
+// `
 
 
 export default Main
