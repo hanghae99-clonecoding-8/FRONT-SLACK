@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { getCookie } from '../shared/Cookie'
 import { loadPostJson } from "../redux/modules/post";
 import Post from '../components/Post'
+import { Link } from 'react-router-dom';
+import Card from '../components/Card';
 
 
 
@@ -16,18 +18,19 @@ const Main = () => {
     dispatch(loadPostJson());
   }, [dispatch]);
 
+  
   return (
     <>
       {PostReducer?.map((item, index) => {
         //console.log(PostReducer);
         return (
           <Cardbox key={index}>
-            <div>
-              {item.contents}
-            </div>
+              <Card item={item} />
           </Cardbox>
         );
-      })}
+       
+      } 
+      )}
 
       <Post />
     </>
@@ -35,13 +38,11 @@ const Main = () => {
 }
 
 const Cardbox = styled.div`
-  width: 280px;
-  height: 460px;
-  border: 3px solid navy;
-  border-radius: 5px;
+  width: 70%;
+  border-bottom: 0.5px solid grey;
   margin: 3px;
   padding: 16px;
-  background-color: wheat;
+  
 `;
 
 

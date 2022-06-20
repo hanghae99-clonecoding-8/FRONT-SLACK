@@ -5,6 +5,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import apis from "../api/api";
 import styled from "styled-components";
 import "../css/modal.css"
+import { margin } from '@mui/system';
 
 const SignUp = (props) => {
     const { open, close, header } = props;
@@ -20,8 +21,9 @@ const SignUp = (props) => {
     const check = React.useRef();
 
     // 이메일 중복 체크
+    // console.log(Nickname)
     const dupEmail = async () => {
-        await apis.checkEmail(Email)
+        await apis.checkEmail({username : Email})
             .then(() => {
                 window.alert("사용 가능한 아이디입니다.");
             })
@@ -33,7 +35,7 @@ const SignUp = (props) => {
 
     // 닉네임 중복 체크
     const dupNick = async () => {
-        await apis.checkNickName(Nickname)
+        await apis.checkNickName({nickname : Nickname})
             .then(() => {
                 window.alert("사용 가능한 닉네임입니다.");
             })
@@ -93,15 +95,15 @@ const SignUp = (props) => {
         // const ret = await apis.getDetail(1)
         // console.log(ret)
         const res = await apis.addUser({
-            email: Email,
-            password: Password,
-            password2: Password2,
+            username: Email,
             nickname: Nickname,
+            password: Password,
+            passwordCheck: Password2,
             profileUrl: fileInputRef.current?.url,
         });
         console.log(res);
-        alert(res.data.body[0].message);
-        navigate("/login");
+        // alert(res.data.body[0].message);
+        navigate("/");
     };
     //프로필 사진 업로드
     const saveFileImage = async (e) => {
@@ -124,7 +126,6 @@ const SignUp = (props) => {
     return (
         <div>
             <div className={open ? 'openModal modal' : 'modal'}>
-
                 {open ? (
                     <section>
                         <header>
@@ -135,79 +136,86 @@ const SignUp = (props) => {
                         </header>
                         <main>
                             <div onSubmit={onSubmitUserHandler} style={{ marginTop: "30px" }}>
-                                아이디 :
-                                <input
+                         <Wrap>
+                                <Inputbox
                                     type="text"
-                                    placeholder="아이디를 입력하세요"
+                                    placeholder="Email"
                                     value={Email}
                                     onChange={(event) => {
                                         setEmail(event.target.value);
                                     }}
+                                    style={{marginRight:"10px"}}
                                 />
-                                <button onClick={dupEmail}
+                                <DupliButton onClick={dupEmail}
                                 >
                                     중복확인
-                                </button>
-                                <h6>E-mail주소를 입력해 주세요</h6>
+                                </DupliButton>
+                                </Wrap>
+                                <Condition>E-mail주소를 입력해 주세요</Condition>
                                 <br />
-                                닉네임 :
-                                <input
+                                <Wrap>
+                                <Inputbox
                                     type="text"
-                                    placeholder="예전 느낌 살려서! 큰거온다!!!"
+                                    placeholder="Nickname"
                                     value={Nickname}
                                     onChange={(event) => {
                                         setNickname(event.target.value);
                                     }}
+                                    style={{marginRight:"10px"}}
                                 />
-                                <button onClick={dupNick}
+                                <DupliButton onClick={dupNick}
                                 >
                                     중복확인
-                                </button>
-                                <h6>닉네임은 당신의 멋대로에요</h6>
+                                </DupliButton>
+                                </Wrap>
+                                <Condition>당신이 불리고 싶은 이름을 입력해주세요</Condition>
                                 <br />
-                                비밀번호 :
-                                <input
+                               
+                                <Inputbox
                                     type="password"
-                                    placeholder="비밀번호를 입력하세요"
+                                    placeholder="Password"
                                     value={Password}
                                     onChange={(event) => {
                                         setPassword(event.target.value);
                                     }}
                                     ref={password}
+                                    style={{marginRight:"110px"}}
                                 />
-                                <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요</h6>
+                                <Condition>비밀번호는 8자 이상 영문과 숫자로만 만들어 주세요</Condition>
                                 <br />
-                                비밀번호 재확인 :
-                                <input
+                              
+                                <Inputbox
                                     type="password"
-                                    placeholder="비밀번호를 재입력하세요"
+                                    placeholder="Password check"
                                     value={Password2}
                                     onChange={(event) => {
                                         setPassword2(event.target.value);
                                     }}
                                     ref={password2}
+                                    style={{marginRight:"110px"}}
                                 />
-                                <p ref={check} />
-                                <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요</h6>
+                      
+                                <Condition>비밀번호를 다시 입력해주세요</Condition>
                                 <br />
-                                프로필 사진
+                                <h5 style={{marginLeft:"70px"}}>프로필 사진</h5>
                                 {fileImage && (
                                     <img
                                         alt="sample"
                                         src={fileImage}
-                                        style={{ margin: "auto", maxWidth: "300px", maxHeight: "250px" }}
+                                        style={{ margin: "10px auto 7px 80px" ,maxWidth: "300px", maxHeight: "250px" }}
                                     />)}
-                                <input
+                                    {fileImage? (null):(<Inputbox
                                     name="imgUpload"
                                     type="file"
                                     accept="image/*"
                                     ref={fileInputRef}
                                     onChange={saveFileImage}
-                                />
-                                <div style={{ fontSize: "10px", color: "tomato" }}>
-                                    사진변경하지 말아주세요 오류생겨요...:울음:
-                                </div>
-                                <button>가입하기</button>
+                                />)}
+                                
+                                {/* <div style={{ fontSize: "10px", color: "tomato" ,marginLeft:"74px", marginTop:"10px" }}>
+                                    사진변경하지 말아주세요 오류생겨요...ㅠAㅠ
+                                </div> */}
+                                <LoginButton onClick={onSubmitUserHandler}>가입하기</LoginButton>
                             </div>
 
                         </main>
@@ -224,5 +232,47 @@ const SignUp = (props) => {
     );
 };
 
+const Inputbox =styled.input`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 55%;
+    margin: auto;
+    height: 35px;
+    border: none;
+    border-bottom: solid rgb(74,21,75) 1px ;
+    color: rgb(74,21,75);
+`
 
+const DupliButton = styled.button`
+    background-color: rgb(74,21,75);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin: 0 30px 0 0;
+`
+
+const Wrap = styled.div`
+    display: flex;
+`
+const LoginButton = styled.button`
+  padding: 7px 10px;
+  display: flex;
+  margin: 20px  auto 8px auto;
+  width: 80px;
+  justify-content: center;
+  background-color: rgb(74,21,75);
+  
+  color: white;
+  border-radius: 5px;
+
+`
+
+const Condition = styled.h6`
+    margin: 6px 0 10px 78px;
+    text-align: left;
+
+`
 export default SignUp;

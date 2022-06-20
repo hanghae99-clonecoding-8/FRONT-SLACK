@@ -1,51 +1,52 @@
 {
   "posts": [
     {
-      "comment": "나는 한다 등록을",
-      "id": 9
+      "comment": "sadsdads",
+      "id": 1
     },
     {
-      "comment": "나는한다 새로",
-      "id": 10
+      "comment": "sadsdadsasdasd",
+      "id": 2
     },
     {
-      "comment": "나는한다 새로",
-      "id": 11
+      "comment": "sadsdadsasdasdasdasd",
+      "id": 3
     },
     {
-      "comment": "나는한다 다시한번",
-      "id": 12
+      "comment": "sadsdadsasdasdasdasdasd",
+      "id": 4
     },
     {
-      "comment": "혼나나나",
-      "id": 13
+      "username": "",
+      "password": "",
+      "id": 5
     },
     {
-      "comment": "추가해",
-      "id": 14
-    },
-    {
-      "comment": "ㄹㅇㅁㄴㅁㄴㅇ",
-      "id": 15
-    },
-    {
-      "comment": "쿠리에이트",
-      "id": 16
-    },
-    {
-      "comment": "왜?",
-      "id": 17
+      "username": "",
+      "password": "",
+      "id": 6
     }
   ],
   "comments": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "contents": "[개발일지 회고 제출] @channel\n매주 일요일은, “혼자만의 시간을 가지며, 한 주를 회고하는 날입니다.”\n이번 WIL의 키워드 : 첫 협업을 진행하며 느낀 아쉬운 점, 뿌듯한 점\n양식과 분량은 자유롭게 하되, 키워드를 꼭 넣어서 작성해주세요!",
+      "id": 1
     },
     {
-      "contents": "내용이용",
+      "contents": "[클론코딩주차 발제 안내] @channel\n좋은 아침입니다 :미소짓는_얼굴:\n잠시 후, 9시 정각에 아래 링크에서 클론코딩주차의 발제를 시작하겠습니다!\n시간 맞춰 참여 부탁드립니다!",
       "id": 2
+    },
+    {
+      "contents": "줌 링크 : https://us02web.zoom.us/j/85737821077?pwd=WjB6emVPNjhPTVZxeDYzSnpzc25pdz09",
+      "id": 3
+    },
+    {
+      "contents": "[스프링 게더 순회 공지] (21:00~)\n금일 박은진 기술매니저님이 9시에 게더 순회를 하실 예정입니다.\n스프링분들은 9시까지 발표방에 모여주세요! (편집됨) ",
+      "id": 4
+    },
+    {
+      "contents": "[스프링 게더 순회 공지] (21:00~)\n금일 박은진 기술매니저님이 9시에 게더 순회를 하실 예정입니다.\n스프링분들은 9시까지 발표방에 모여주세요! (편집됨) ",
+      "id": 5
     }
   ],
   "profile": {

@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import Main from './pages/Main';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
-
+import Comments from './components/Comments';
 
 function App() {
 //npx json-server ./data.json --port 4000
@@ -16,7 +16,8 @@ function App() {
       <Route path='/main' element={<Main />} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<SignUp />} />
-      <Route path='/detail' element={<Detail />} />
+      <Route path='/detail/:id' element={<Detail />} />
+      <Route path='/detail/comments' element={<Comments/>}/>
     </Routes>
   );
 }

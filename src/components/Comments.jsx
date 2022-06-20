@@ -1,36 +1,34 @@
 import React from 'react'
-import { useQuery } from 'react-query'
-import axios from 'axios'
 import apis from '../api/api'
-import { createCommentJson, loadCommentJson } from '../redux/modules/comments'
+import { createCommentJson, deleteCommentJson, loadCommentJson } from '../redux/modules/comments'
 import styled from 'styled-components'
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 
 const Comments = () => {
-    let res = useQuery(['posts'],apis.getPosts)
+    // let res = useQuery(['posts'],apis.getComments)
+    //그래서이거왜쓰는데 ㅡㅡ
+    const CommentReducer = useSelector((state) => state.comment.list);
     const [text,setText] = React.useState('')
     const dispatch = useDispatch()
 
+    React.useEffect(() => {
+        dispatch(loadCommentJson());
+      }, [dispatch]);
+
 const comment = () => {
-    console.log(res.data)
-  // 로딩 중일 경우
-          if(res.isLoading) {
-              return (
-                  <div>Loading...</div>
-              )
-          }
-          // 결과값이 전달되었을 경우
-          if(res.data) {
-              const comments= res.data.data;
-              console.log(comments)
-              dispatch(loadCommentJson(comments))
               return (
                   <div>
-                      {comments.map((comments) => {
+                      {CommentReducer.map((comments) => {
                           return (
                               <div key={comments.id}>
                                   <h2>{comments.id}.</h2>
                                   <span>{comments.comment}</span>
+                                  <button onClick={()=>{
+                                    const result = window.confirm("정말 삭제할까요?");
+                                    if(result){
+                                        dispatch(deleteCommentJson)
+                                    }
+                                  }}>삭제하기</button>
                               </div>
                           )
                       })}
@@ -38,14 +36,13 @@ const comment = () => {
               )
           }
       
-  }
+  
 //  const res2 = useQuery(['posts'],apis.addComment(
 //   {comment : text}))
 
 const plusComment = (e)=>{
   e.preventDefault();
-   dispatch(createCommentJson({comment:text}))
-          
+   dispatch(createCommentJson(text))
   console.log(text)
 }
 

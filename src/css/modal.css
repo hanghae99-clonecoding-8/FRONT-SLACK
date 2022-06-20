@@ -1,12 +1,19 @@
+@font-face {
+  font-family: 'bombaram';
+  src: url('../css/font/NanumGothic-Regular.ttf') format('truetype');
+}
 
-  @font-face {
-    font-family: 'bombaram';
-    src: url('../css/font/Lato-Black.ttf') format('truetype');
-  }
 
-  *{
-    font-family: 'bombaram';
-  }
+@font-face{
+    font-family: 'NotoSansKR';
+  src: url("../css/font/Lato-Black.ttf") format("truetype");
+  unicode-range: U+AC00-D7A3;
+}
+
+*{
+  font-family: 'bombaram', 'NotoSansKR', 굴림;
+}
+
 
 .modal {
   display: none;
@@ -22,12 +29,13 @@
   outline: none;
   cursor: pointer;
   border: 0;
+  background-color: rgb(74,21,75);
+  color: white;
 }
 .modal > section {
   width: 90%;
   max-width: 450px;
   margin: 0 auto;
-  border-radius: 0.3rem;
   background-color: #fff;
   /* 팝업이 열릴때 스르륵 열리는 효과 */
   animation: modal-show 0.3s;
@@ -36,7 +44,8 @@
 .modal > section > header {
   position: relative;
   padding: 16px 64px 16px 16px;
-  background-color: #f1f1f1;
+  background-color: rgb(74,21,75);
+  color: white;
   font-weight: 700;
 }
 .modal > section > header button {

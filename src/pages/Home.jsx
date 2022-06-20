@@ -25,15 +25,16 @@ const Home = () => {
   };
   return (
     <Background>
-
+      {/* 로그인 모달 */}
        <Topbar src="https://ifh.cc/g/FN87rg.png"/>
        <Mainbutton onClick={openModal}><div>이메일로 로그인해 보세요</div></Mainbutton>
        <Login open={modalOpen} close={closeModal} header="로그인"/>
         
+
       <Bottom>
       <span>팀이 sleep을 처음 사용하나요?</span>
       <span onClick={openModal2}><span style={{textDecoration:"underline", marginLeft:"5px",  cursor: "pointer"}}>새 계정 개설</span></span>
-     
+     {/* 회원가입 모달 */}
       </Bottom>
        <SignUp open={modalOpen2} close={closeModal2} header="회원가입"
       />
@@ -83,8 +84,8 @@ const Undertext = styled.div`
   position: fixed;
   font-size: 14px;
   bottom: 37%;
-  right: 55%;
-  width: 24%;
+  right: 53%;
+  width: 26%;
 `
 
 const Bottom =styled.div`
@@ -115,7 +116,7 @@ const Img2 = styled.img`
   
 `
 const Title = styled.div`
-  font-size: 45px;
+  font-size: 2.7em;
   color: white;
   font-weight: 600;
   width: 410px;
@@ -125,6 +126,7 @@ const Title = styled.div`
   bottom: 50%;
   left: 20.9%;
   text-align: left;
+  font-family: "NotosansKR";
 `
 
 export default Home

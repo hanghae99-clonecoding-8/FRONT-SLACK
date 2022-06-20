@@ -21,7 +21,7 @@ const Login = (props) => {
   //ref
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
-
+// console.log(emailRef)
   //로그인 onclick
   const loginClick = async () => {
     try {
@@ -32,11 +32,14 @@ const Login = (props) => {
         password: passwordRef.current.value
       }
     )
+
+  console.log(response)
       setCookie("token", response.headers.authorization.split(" ")[1])  
-
-
+      //setCookie("nickname",response.headers.nickname)
+      //setCookie("userUrl",response.headers.profileUrl)
+console.log(response)
       alert("환영합니다")
-      navigate("/")
+      navigate("/main")
     }
     catch (err) {
       alert("아이디와 비밀번호를 확인해주세요")
@@ -56,22 +59,23 @@ const Login = (props) => {
             </button>
       </header>
       <main>
-      <input
+      <Inputbox
         type="email"
         placeholder="Email"
         ref={emailRef}
       />
-      <input
+      <Inputbox
         type="password"
         placeholder="Password"
         ref={passwordRef}
+        style={{marginBottom:"20px"}}
       />
-      <button onClick={loginClick}>로그인</button>
-      <div>소셜 로그인</div>
-      <div>카카오톡</div>
+      <LoginButton onClick={loginClick}>로그인</LoginButton>
+      {/* <div>소셜 로그인</div>
+      <div>카카오톡</div> */}
       </main>
       <footer>
-            <button className="close" onClick={close}>
+            <button className="close" onClick={close} style={{backgroundColor:"rgb(74,21,75)"}}>
               close
             </button>
           </footer>
@@ -83,4 +87,28 @@ const Login = (props) => {
   )
 }
 
+
+const Inputbox = styled.input`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin:15px auto;
+  width: 55%;
+  height: 40px;
+  border: none;
+  border-bottom: solid black 1px;
+`
+
+const LoginButton = styled.button`
+  padding: 10px;
+  display: flex;
+  margin: 0  auto 8px auto;
+  width: 80px;
+  justify-content: center;
+  background-color: rgb(74,21,75);
+  font-size: 15px;
+  color: white;
+  border-radius: 5px;
+
+`
 export default Login
