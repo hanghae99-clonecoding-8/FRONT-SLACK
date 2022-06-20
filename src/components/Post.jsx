@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createPostJson, loadPostJson } from "../redux/modules/Post";
 import styled from "styled-components";
-import { VscBold, VscItalic, VscListOrdered, VscMention } from "react-icons/vsc";
+import { VscBold, VscItalic, VscListOrdered, VscMention, VscSmiley } from "react-icons/vsc";
 import { RiStrikethrough, RiFileCodeLine, RiSendPlane2Fill, RiArrowDownSLine } from "react-icons/ri";
 import { IoIosLink } from "react-icons/io";
 import { TbList, TbCode, TbVideo } from "react-icons/tb";
@@ -43,25 +43,25 @@ const Post = ({ scrollRef }) => {
 
     const postNew = async (e) => {
         e.preventDefault();
-      const res = await apis
+        const res = await apis
             .addPost({
                 contents: content,
             })
-            .then((res) => {   
-             
+            .then((res) => {
+
                 //res의 타이틀 이런식으로바꿔줘야함
                 dispatch(
-              
+
                     createPostJson({
                         contents: res.data.contents,
                         createdAt: (res.data.createdAt).split("T")[0],
-                        profileUrl : res.data.profileUrl,
+                        profileUrl: res.data.profileUrl,
                         username: res.data.username
                     })
                 );
                 console.log(text.current.value)
 
-                 console.log(res)
+                console.log(res)
 
                 // console.log(res);
                 // dispatch(createPostJson(res.data)); 서버오픈시 시도
@@ -87,24 +87,36 @@ const Post = ({ scrollRef }) => {
                 <MessageForm>
                     <div className='m_format'>
                         <button>
-                            <VscBold className="icon1" color="#000000" size="20px" />
+                            <VscBold size="20px" />
                         </button>
                         <button>
-                            <VscItalic className="icon2" color="#000" size="20px" />
+                            <VscItalic size="20px" />
                         </button>
                         <button>
-                            <RiStrikethrough className="icon2" color="#000" size="20px" />
+                            <RiStrikethrough size="20px" />
                         </button>
                         <span></span>
-                        <button>L</button>
+                        <button>
+                            <IoIosLink size="20px" />
+                        </button>
                         <span></span>
-                        <button>N</button>
-                        <button>D</button>
+                        <button>
+                            <VscListOrdered size="20px" />
+                        </button>
+                        <button>
+                            <TbList size="20px" />
+                        </button>
                         <span></span>
-                        <button>Q</button>
+                        <button>
+                            <BsBarChartSteps size="20px" />
+                        </button>
                         <span></span>
-                        <button>C</button>
-                        <button>C</button>
+                        <button>
+                            <TbCode size="20px" />
+                        </button>
+                        <button>
+                            <RiFileCodeLine size="20px" />
+                        </button>
                     </div>
                     <div className='m_text'>
                         <textarea
@@ -122,21 +134,32 @@ const Post = ({ scrollRef }) => {
                         <button>+</button>
                         <div className='buttons'>
                             <span></span>
-                            <button>C</button>
-                            <button>A</button>
+                            <button>
+                                <TbVideo color="#ccc" size="20px" />
+                            </button>
+                            <button>
+                                <CgMic color="#ccc" size="20px" />
+                            </button>
                             <span></span>
-                            <button>E</button>
-                            <button>@</button>
-                            <button>F</button>
+                            <button>
+                                <VscSmiley color="#525252" size="20px" />
+                            </button>
+                            <button>
+                                <VscMention color="#525252" size="20px" />
+                            </button>
+                            <button>
+                                <BsType color="#525252" size="20px" />
+                            </button>
                         </div>
                         <div className='submit'>
                             <UnderBar>
 
-                                <button onClick={
-                                    postNew
-
-                                } type="submit">
-                                    보내기
+                                <button onClick={postNew} type="submit">
+                                    <RiSendPlane2Fill size="20px" />
+                                </button>
+                                <span></span>
+                                <button>
+                                    <RiArrowDownSLine size="20px" />
                                 </button>
 
                             </UnderBar>
@@ -150,13 +173,7 @@ const Post = ({ scrollRef }) => {
 };
 
 const Wrap = styled.div`
-      /* display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      color: black;
-      margin: 15% auto;
-      border: 1px white solid; */
+      
       width: 95%;
       margin: auto;
       margin-top: 25px;
@@ -186,6 +203,7 @@ const MessageForm = styled.div`
       width: 28px;
       padding: 2px;
       margin: 2px;
+      color: #ccc;
       border-radius: 4px;
       border: none;
       background-color: transparent;
@@ -260,12 +278,19 @@ const MessageForm = styled.div`
         height: 28px;
         border-radius: 4px;
         padding: 2px 8px;
-        width: 100px;
+        width: 40px;
         font-size: 13px;
-        background-color: #007a5a;
-        color: #fff;
+        background-color: #fff;
+        color: #ccc;
         align-items: center;
         justify-content: center;
+      }
+      span {
+        width: 1px;
+        height: 20px;
+        margin: 2px 4px;
+        background-color: #ccc;
+        align-self: center;
       }
     }
   }
