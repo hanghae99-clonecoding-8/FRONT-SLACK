@@ -5,83 +5,119 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createPostJson, loadPostJson } from "../redux/modules/Post";
 import styled from "styled-components";
+import { VscBold, VscItalic, VscListOrdered, VscMention, VscSmiley } from "react-icons/vsc";
+import { RiStrikethrough, RiFileCodeLine, RiSendPlane2Fill, RiArrowDownSLine } from "react-icons/ri";
+import { IoIosLink } from "react-icons/io";
+import { TbList, TbCode, TbVideo } from "react-icons/tb";
+import { BsBarChartSteps, BsType } from "react-icons/bs";
+import { CgMic } from "react-icons/cg";
 
 
 const Post2 = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const [content, setContent] = React.useState("");
-    const [text,setText] = React.useState('')
-    const CommentReducer = useSelector((state) => state.comment.list);
-
-    
-    React.useEffect(() => {
-        
-      dispatch(loadCommentJson());
-    }, [dispatch]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [content, setContent] = React.useState("");
+  const [text, setText] = React.useState('')
+  const CommentReducer = useSelector((state) => state.comment.list);
 
 
-    const plusComment = (e)=>{
-      e.preventDefault();
-       dispatch(createCommentJson(text))
-      console.log(text)
-    }
+  React.useEffect(() => {
 
-    return (
-        <>
-            <Wrap>
-                <MessageForm>
-                    <div className='m_format'>
-                        <button>B</button>
-                        <button>I</button>
-                        <button>S</button>
-                        <span></span>
-                        <button>L</button>
-                        <span></span>
-                        <button>N</button>
-                        <button>D</button>
-                        <span></span>
-                        <button>Q</button>
-                        <span></span>
-                        <button>C</button>
-                        <button>C</button>
-                    </div>
-                    <div className='m_text'>
-                        <textarea
-                          type="text"
-                          placeholder='댓글자리'
-                          value={text}
-                          onChange={(e)=>{
-                            setText(e.target.value)
-                          }}
-                        />
-                    </div>
-                    <div className='m_toolbar'>
-                        <button>+</button>
-                        <div className='buttons'>
-                            <span></span>
-                            <button>C</button>
-                            <button>A</button>
-                            <span></span>
-                            <button>E</button>
-                            <button>@</button>
-                            <button>F</button>
-                        </div>
-                        <div className='submit'>
-                            <UnderBar>
+    dispatch(loadCommentJson());
+  }, [dispatch]);
 
-                                <button onClick={plusComment} type="submit">
-                                    보내기
-                                </button>
 
-                            </UnderBar>
-                        </div>
-                    </div>
-                </MessageForm>
+  const plusComment = (e) => {
+    e.preventDefault();
+    dispatch(createCommentJson(text))
+    console.log(text)
+  }
 
-            </Wrap>
-        </>
-    );
+  return (
+    <>
+      <Wrap>
+        <MessageForm>
+          <div className='m_format'>
+            <button>
+              <VscBold size="20px" />
+            </button>
+            <button>
+              <VscItalic size="20px" />
+            </button>
+            <button>
+              <RiStrikethrough size="20px" />
+            </button>
+            <span></span>
+            <button>
+              <IoIosLink size="20px" />
+            </button>
+            <span></span>
+            <button>
+              <VscListOrdered size="20px" />
+            </button>
+            <button>
+              <TbList size="20px" />
+            </button>
+            <span></span>
+            <button>
+              <BsBarChartSteps size="20px" />
+            </button>
+            <span></span>
+            <button>
+              <TbCode size="20px" />
+            </button>
+            <button>
+              <RiFileCodeLine size="20px" />
+            </button>
+          </div>
+          <div className='m_text'>
+            <textarea
+              type="text"
+              placeholder='댓글자리'
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value)
+              }}
+            />
+          </div>
+          <div className='m_toolbar'>
+            <button>+</button>
+            <div className='buttons'>
+              <button>
+                <TbVideo color="#ccc" size="20px" />
+              </button>
+              <button>
+                <CgMic color="#ccc" size="20px" />
+              </button>
+              <span></span>
+              <button>
+                <VscSmiley color="#525252" size="20px" />
+              </button>
+              <button>
+                <VscMention color="#525252" size="20px" />
+              </button>
+              <button>
+                <BsType color="#525252" size="20px" />
+              </button>
+            </div>
+            <div className='submit'>
+              <UnderBar>
+
+                <button onClick={plusComment} type="submit">
+                  <RiSendPlane2Fill size="20px" />
+                </button>
+                <button>
+                  <RiArrowDownSLine size="20px" />
+                </button>
+
+              </UnderBar>
+            </div>
+          </div>
+        </MessageForm>
+
+      </Wrap>
+    </>
+  );
 };
 
 const Wrap = styled.div`
@@ -120,6 +156,7 @@ const MessageForm = styled.div`
       width: 28px;
       padding: 2px;
       margin: 2px;
+      color: #ccc;
       border-radius: 4px;
       border: none;
       background-color: transparent;
@@ -191,15 +228,22 @@ const MessageForm = styled.div`
     }
     .submit {
       button {
-        heigth: 28px;
+        height: 28px;
         border-radius: 4px;
         padding: 2px 8px;
-        width: 100px;
+        width: 40px;
         font-size: 13px;
-        background-color: #007a5a;
-        color: #fff;
+        background-color: #fff;
+        color: #ccc;
         align-items: center;
         justify-content: center;
+      }
+      span {
+        width: 1px;
+        height: 20px;
+        margin: 2px 4px;
+        background-color: #ccc;
+        align-self: center;
       }
     }
   }
