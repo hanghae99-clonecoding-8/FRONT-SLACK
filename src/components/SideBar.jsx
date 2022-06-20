@@ -62,10 +62,11 @@ const SideBar = () => {
 }
 
 const ListBox = styled.div`
-    overflow: hidden;
 
+    overflow: hidden;
+   
     width: 260px;
-    height: 100vh;
+    height: calc(100vh - 40px);
 
     background: #3F0E40;
     

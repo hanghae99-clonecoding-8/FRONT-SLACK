@@ -6,8 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createPostJson, loadPostJson } from "../redux/modules/post";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const Post = () => {
     const dispatch = useDispatch();
@@ -52,8 +51,6 @@ const Post = () => {
     return (
         <>
             <Wrap>
-
-
                 <Inputbox
                     type="text"
                     placeholder="내용을 입력하세용"
@@ -65,7 +62,7 @@ const Post = () => {
                 />
 
                 <UnderBar>
-                    <FontAwesomeIcon icon="fa-duotone fa-circle-plus" />
+                    <AiOutlinePlusCircle  />
                     <Button2 onClick={postNew} type="submit">
                         등록하기
                     </Button2>
@@ -76,14 +73,16 @@ const Post = () => {
 };
 
 const Wrap = styled.div`
-      display: flex;
+      /* display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       color: black;
       margin: 15% auto;
-      border: 1px white solid;
+      border: 1px white solid; */
       width: 50%;
+      position: fixed;
+      bottom: 0
     `;
 const Inputbox = styled.textarea`
       display: flex;
@@ -104,7 +103,7 @@ const Button2 = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
 `
     
 export default Post;

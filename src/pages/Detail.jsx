@@ -10,12 +10,15 @@ import DelPost from '../components/DelPost';
 
 
 
+
 const Detail = () => {
     let {id} =useParams();
 
     const [Detail, setDetail] = useState(null);
     const [Comment,setComment] = useState(null)
     const [modalOpen, setModalOpen] = React.useState(false);
+    const [showBanner, setshowBanner] = useState(true);
+    const onClick = () => setshowBanner(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -39,18 +42,28 @@ const Detail = () => {
 
 
   return (
-    <>
-    {/* <div>{Detail.nickname}</div>
-    <img src={Detail.profileUrl}/>
-    <div>{Detail.contents}</div>
-    <div>{Detail?.contents}</div> */}
-     <div>왜못읽지</div>
-    <button onClick={openModal}>삭제하기</button>
-    <DelPost open={modalOpen} close={closeModal} id={id} header="메세지 삭제"/>
-    <div><Comments id={Detail?.id}/></div>
-   
-    </>
+   <>
+   {showBanner ? (
+     <Wrap>
+     {/* <div>{Detail.nickname}</div>
+     <img src={Detail.profileUrl}/>
+     <div>{Detail.contents}</div>
+     <div>{Detail?.contents}</div> */}
+      <div>왜못읽지</div>
+      <button onClick={onClick}>X</button>
+     <button onClick={openModal}>삭제하기</button>
+     <DelPost open={modalOpen} close={closeModal} id={id} header="메세지 삭제"/>
+     <div><Comments id={Detail?.id}/></div>
+     
+     </Wrap>
+   ):null}
+   </>
   )
 }
+
+const Wrap = styled.div`
+display: flex;
+flex-direction: column;
+`
 
 export default Detail
