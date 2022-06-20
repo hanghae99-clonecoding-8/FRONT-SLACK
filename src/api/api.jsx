@@ -38,16 +38,17 @@ const apis = {
   addPost: (contents) => api.post("/api/posts", contents),
   delPost: (postId) => api.delete(`/api/post/${postId}`),
   getPosts: () => api.get("/api/posts"),
+  // getDetail: (postId) => api.get(`/api/posts/${postId}`),
   getDetail: (postId) => api.get(`/api/posts/${postId}`),
 
   //comment
-  addComment: ( comment, postId) =>
+  addComment: (comment, postId) =>
     api.post(`/api/posts/${postId}/comments`, comment),
   editComment: (id, commentId, comments) =>
     api.post(`/api/board/${id}/comment/${commentId}`, comments),
   delComment: (id, commentId) =>
     api.delete(`/posts/${id}`),
-  getComments: () => api.get(`/posts`),
+  getComments: (postId) => api.get(`/api/posts/${postId}/comments`),
 
   //heart
   addheart: (id) => api.post(`/api/board/${id}/like`),

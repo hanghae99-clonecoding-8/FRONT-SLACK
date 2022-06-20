@@ -13,7 +13,7 @@ const Post = ({scrollRef}) => {
     const [content, setContent] = React.useState("");
     const [textareaHeight, setTextareaHeight] = useState(0);
     const text = React.useRef(null)
-console.log(scrollRef)
+// console.log(scrollRef)
 
 const scollToMyRef = () => {
   const scroll =

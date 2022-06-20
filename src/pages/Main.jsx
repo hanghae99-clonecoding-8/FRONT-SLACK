@@ -24,6 +24,7 @@ const Main = () => {
 
   const [postId,setPostId] = React.useState()
 
+  console.log(postId)
   const scrollRef = React.useRef();
   const scollToMyRef = () => {
     const scroll =
@@ -31,13 +32,13 @@ const Main = () => {
       scrollRef.current.scrollTo(0, scroll);
     console.log(scrollRef.current.clientHeight)
   };
-  
+  const [modalOpen3, setModalOpen3] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
-  const openModal = () => {
-    setModalOpen(true);
-  };
+  // const openModal = () => {
+  //   modalOpen3(true);
+  // };
   const closeModal = () => {
-    setModalOpen(false);
+    setModalOpen3(false);
   };
   
 console.log(PostReducer.postId)
@@ -58,19 +59,18 @@ console.log(PostReducer.postId)
                      {PostReducer?.map((item, index) => {
                     //console.log(PostReducer);
                     return (
-                      <>
+                     
                       <Cardbox key={index}  >
-                          <Card  item={item} setPostId={setPostId}/>
+                          <Card  item={item} setPostId={setPostId} setModalOpen3={setModalOpen3}/>
                       </Cardbox>
-                      
-                        </>
+                    
                     ); } )} 
                        {/* <Detail open={modalOpen} close={closeModal} id={item.postId}/> */}
                 </Cardbar>
                        <Post  scrollRef={scrollRef} />    
               </CardList>
              {/* <DetailBox> */}
-            <Detail close={closeModal} open={modalOpen} id={postId}/>
+            <Detail close={closeModal} open={modalOpen3} postId={postId}/>
               {/* </DetailBox> */}
           </Wrap>
      

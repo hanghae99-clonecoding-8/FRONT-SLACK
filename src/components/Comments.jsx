@@ -36,7 +36,7 @@ const Comments = (props) => {
         {/*  <Nickname>{comment?.nickname}</Nickname> */}
         {/* <CreateAt>{comment?.createAt}</CreateAt> */}
         </Toptext>
-      <Title>{comments?.comment}</Title>
+      {/* <Title>{comments?.comment}</Title> */}
       </TextArea>
       </Wrap>
                             //   <div key={comments.id}>
