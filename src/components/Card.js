@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -6,7 +6,7 @@ import apis from "../api/api";
 import '../css/modal.css';
 
 
-const Card = ({ item, id }) => {
+const Card = ({ item} ) => {
   // const PostReducer = useSelector((state) => state.Post_reducer.list);
   // console.log(PostReducer);
   // const [heart, setHeart] = React.useState(false);
@@ -17,6 +17,7 @@ const Card = ({ item, id }) => {
   //   // dispatch(AddHeartJson(heartData.data))
   //   setHeart(heartData.data);
   // };
+
   return (
     <div>
       {/* <span>{item?.nickname}</span>

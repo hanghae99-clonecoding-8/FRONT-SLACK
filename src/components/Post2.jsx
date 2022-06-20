@@ -1,65 +1,30 @@
 import React, { useState, useEffect } from "react";
 import apis from "../api/api";
-import { storage } from "../shared/Firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { createCommentJson, deleteCommentJson, loadCommentJson } from '../redux/modules/comments'
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPostJson, loadPostJson } from "../redux/modules/post";
 import styled from "styled-components";
 
-const Post = ({scrollRef}) => {
+
+const Post2 = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [content, setContent] = React.useState("");
-    const [textareaHeight, setTextareaHeight] = useState(0);
-    const text = React.useRef(null)
-console.log(scrollRef)
+    const [text,setText] = React.useState('')
+    const CommentReducer = useSelector((state) => state.comment.list);
 
-const scollToMyRef = () => {
-  const scroll =
-    scrollRef.current.scrollHeight - scrollRef.current.clientHeight
-    scrollRef.current.scrollTo(0, scroll);
-  console.log(scrollRef.current.clientHeight)
-};
-
-    useEffect(() => {  
-        scollToMyRef();
     
-        dispatch(loadPostJson());
+    React.useEffect(() => {
+        
+      dispatch(loadCommentJson());
     }, [dispatch]);
 
-    const postNew = async (e) => {
-        e.preventDefault();
-        await apis
-            .addPost({
-                contents: content,
-            })
-            .then((res) => {
-                //res의 타이틀 이런식으로바꿔줘야함
-                dispatch(
-                    createPostJson({
-                        contents: res.data.contents,
-                        id: res.data.id,
-                    })
-                );
-                console.log(text.current.value)
-               
-                // console.log(res);
-                // dispatch(createPostJson(res.data)); 서버오픈시 시도
-                //window.alert("등록성공");
-                
-              
-                navigate("/main");
-            })
-            .catch((err) => {
-                alert("로그인 후 작성해주세요");
-                navigate("/");
-            });
-    };
 
-    const textareaChange = (e) => {
-        setContent(e.target.value.replaceAll("<br>", "\r\n"));
-        setTextareaHeight(e.target.value.split('\n').length - 1);
+    const plusComment = (e)=>{
+      e.preventDefault();
+       dispatch(createCommentJson(text))
+      console.log(text)
     }
 
     return (
@@ -83,14 +48,12 @@ const scollToMyRef = () => {
                     </div>
                     <div className='m_text'>
                         <textarea
-                            type="text"
-                            placeholder="내용을 입력하세용"
-                            value={content}
-                            onChange={textareaChange}
-                            style={{ height: "100px" }}
-                            ref={text}
-                            wrap="hard"
-                            cols="20"
+                          type="text"
+                          placeholder='댓글자리'
+                          value={text}
+                          onChange={(e)=>{
+                            setText(e.target.value)
+                          }}
                         />
                     </div>
                     <div className='m_toolbar'>
@@ -107,7 +70,7 @@ const scollToMyRef = () => {
                         <div className='submit'>
                             <UnderBar>
 
-                                <button onClick={postNew} type="submit">
+                                <button onClick={plusComment} type="submit">
                                     보내기
                                 </button>
 
@@ -267,4 +230,4 @@ const UnderBar = styled.div`
     flex-direction: row;
 `
 
-export default Post;
+export default Post2;
