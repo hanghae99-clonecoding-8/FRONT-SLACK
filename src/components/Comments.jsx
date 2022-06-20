@@ -24,10 +24,27 @@ const Comments = (props) => {
                   <CommentWrap>
                       {CommentReducer.map((comments) => {
                           return (
-                              <div key={comments.id}>
-                                  <h2>{comments.id}.</h2>
-                                  <span>{comments.comment}</span>
-                              </div>
+                            <Wrap>
+      <Imgbox>
+      <Image className="text_photo" src='https://ca.slack-edge.com/T01L2TNGW3T-U03DL8GEU0G-dc38fbbc5656-512' />
+      {/* <Image className="text_photo" src={`${item?.profileUrl}`} /> */}
+      </Imgbox>
+      <TextArea>
+        <Toptext>
+        <Nickname>최경식(항해99 매니저)</Nickname>
+        <CreateAt> 오전 8:30 </CreateAt>
+        {/*  <Nickname>{comment?.nickname}</Nickname> */}
+        {/* <CreateAt>{comment?.createAt}</CreateAt> */}
+        </Toptext>
+      <Title>{comments?.comment}</Title>
+      </TextArea>
+      </Wrap>
+                            //   <div key={comments.id}>
+                                
+                            //     <div>{comments.nickname}</div>
+                            //       <div>{comments.id}</div>
+                            //       <span>{comments.comment}</span>
+                            //   </div>
                           )
                       })}
                   </CommentWrap>
@@ -48,5 +65,42 @@ const CommentWrap = styled.div`
 height: 46vh;
 overflow-y: scroll;
 `
-
+const Wrap = styled.div`
+display: flex;
+border-bottom: 1px solid grey;
+padding-top: 10px;
+`
+const Nickname =styled.div`
+  font-weight: bolder;
+  font-size: 1em;
+  
+`
+const CreateAt =styled.span`
+  font-size: 0.7em;
+  margin: 0 0 0 13px;
+`
+const Toptext =styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 7px;
+`
+const Title = styled.pre`
+  font-weight: 400;
+  font-size: 1em;
+`;
+const Imgbox =styled.span`
+  flex: 1;
+  
+`
+const Image = styled.img`
+  flex: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+`;
+const TextArea = styled.span`
+flex: 10;
+text-align: left;
+`
 export default Comments
