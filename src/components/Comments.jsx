@@ -17,22 +17,16 @@ const Comments = () => {
 
 const comment = () => {
               return (
-                  <div>
+                  <CommentWrap>
                       {CommentReducer.map((comments) => {
                           return (
                               <div key={comments.id}>
                                   <h2>{comments.id}.</h2>
                                   <span>{comments.comment}</span>
-                                  <button onClick={()=>{
-                                    const result = window.confirm("정말 삭제할까요?");
-                                    if(result){
-                                        dispatch(deleteCommentJson)
-                                    }
-                                  }}>삭제하기</button>
                               </div>
                           )
                       })}
-                  </div>
+                  </CommentWrap>
               )
           }
       
@@ -64,5 +58,8 @@ const plusComment = (e)=>{
     )
 }
 
+const CommentWrap = styled.div`
+width: 10vw;
+`
 
 export default Comments

@@ -73,7 +73,7 @@ const Toptext =styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-
+  padding-top: 7px;
 `
 const Title = styled.pre`
   font-weight: 400;
@@ -90,7 +90,7 @@ const Image = styled.img`
   border-radius: 9px;
 `;
 const TextArea = styled.span`
-flex: 18;
+flex: 11;
 text-align: left;
 `
 // const PostBox = styled.div`

@@ -19,11 +19,22 @@ const Main = () => {
   getCookie("token");
   const PostReducer = useSelector((state) => state.post.list);
   console.log(PostReducer);
+
+  const scrollRef = React.useRef();
+  const scollToMyRef = () => {
+    const scroll =
+      scrollRef.current.scrollHeight - scrollRef.current.clientHeight
+      scrollRef.current.scrollTo(0, scroll);
+    console.log(scrollRef.current.clientHeight)
+  };
+  
+
   useEffect(() => {
+    scollToMyRef();
     dispatch(loadPostJson());
   }, [dispatch]);
 
-  
+
   return (
 
       <Box>
@@ -31,7 +42,7 @@ const Main = () => {
           <Wrap>
             <div ><SideBar /></div>
               <CardList>
-                <Cardbar>
+                <Cardbar ref={scrollRef}>
                      {PostReducer?.map((item, index) => {
                     //console.log(PostReducer);
                     return (
@@ -42,7 +53,9 @@ const Main = () => {
                 </Cardbar>
                        <Post />    
               </CardList>
+             <DetailBox>
               <Detail/>
+              </DetailBox>
           </Wrap>
      
      
@@ -82,6 +95,9 @@ width: 100vw;
 `
 const Wrap = styled.div`
   display: flex;  
+`
+const DetailBox = styled.div`
+  /* flex: 9; */
 `
 
 

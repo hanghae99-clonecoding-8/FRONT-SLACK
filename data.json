@@ -33,11 +33,8 @@
     {
       "comment": "언블리",
       "id": 8
-    },
-    {
-      "comment": "",
-      "id": 9
     }
+   
   ],
   "comments": [
     {
@@ -75,11 +72,8 @@
     {
       "contents": "한번더\n나엣게",
       "id": 9
-    },
-    {
-      "contents": "123",
-      "id": 10
     }
+    
   ],
   "profile": {
     "name": "typicode"
