@@ -41,49 +41,22 @@ export const getChatRoomDB = () => {
 };
 
 // 채팅방 추가하기
-export const addChatRoomDB = (roomName) => {
+export const addChatRoomDB = (room) => {
     return async function (dispatch) {
-        const res = await apis.addChatRoom()
-        dispatch(addChatRoom())
-
-        const room = {
-            chatRoomName: roomName,
-        }
-        // console.log(room);
-        ChatAPI.addChatRoom(room)
-            .then((response) => {
-                console.log("addChatRoomDB : response", response.data);
-                const roomdata = {
-                    roomName: roomName,
-                    roomId: response.data.id
-                }
-                dispatch(getChatRoomDB());
-            }).catch((error) => {
-                console.log("addChatRoomDB : ERROR", error.response)
-            })
-    }
-}
+        const res = await apis.addChatRoom({room:room})
+        dispatch(addChatRoom(res.data))
+    };
+};
+        
 
 
 // 방 입장하기
-export const enterRoomDB = (roomId) => {
-    return async function (dispatch, getState, { history }) {
-        // console.log("enterRoomDB : roomId", roomId);
-
-        ChatAPI.enterRoom(roomId)
-            .then((response) => {
-                // console.log("enterRoomDB : response", response);
-                const room_data = {
-                    roomId: response.data.id,
-                    roomName: response.data.chatRoomName,
-                }
-                dispatch(enterRoom(room_data))
-                history.push(`/chat/` + response.data.id);
-            }).catch((error) => {
-                console.log("enterRoomDB : error.response", error.response);
-            })
-    }
-}
+export const enterChatRoomDB = (roomId) => {
+    return async function (dispatch) {
+        const res = await apis.enterRoom({roomId:roomId})
+        dispatch(enterRoom(res.data))
+    };
+};
 
 
 // 유저 초대하기
