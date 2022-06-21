@@ -67,7 +67,7 @@ const scollToMyRef = () => {
     }
 
     return (
-        <>
+        <> 
             <Wrap>
                 <MessageForm>
                     <div className='m_format'>
