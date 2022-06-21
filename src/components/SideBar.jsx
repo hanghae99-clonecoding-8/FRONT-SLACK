@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FiEdit } from "react-icons/fi";
-import Grid from "../elements/Grid2";
+import Grid2 from "../elements/Grid2";
 import Button from "../elements/Button";
 import Text from "../elements/Text";
 
@@ -18,12 +18,12 @@ const SideBar = () => {
         <>
             <ListBox>
                 <ListElement height="50px" border="#522653">
-                    <Grid is_flex>
+                    <Grid2 is_flex>
                         <Text margin="0 10px" bold size="1.2em" color="#fff">HangHae99<GoChevronDown size="15px" /> </Text>
                         <Button writeBtn>
                             <FiEdit size="18px" color="#3F0E40" />
                         </Button>
-                    </Grid>
+                    </Grid2>
                 </ListElement >
 
                 <PBList border="#522653">
@@ -49,10 +49,10 @@ const SideBar = () => {
                 </ListElement>
 
                 <ListElement height="30px" bg="#350D36" >
-                    <Grid is_flex margin="0 20px" >
+                    <Grid2 is_flex margin="0 20px" >
                         <Text margin=" 40px" size="1em" color="#A6A6BC">
                             <Button addBtn >+</Button>_7기_a반_공지방</Text>
-                    </Grid>
+                    </Grid2>
                 </ListElement>
 
                 <ListElement height="30px">
@@ -60,10 +60,10 @@ const SideBar = () => {
                 </ListElement>
 
                 <ListElement height="30px" bg="#350D36" >
-                    <Grid is_flex margin="0 20px" >
+                    <Grid2 is_flex margin="0 20px" >
                         <Text margin=" 40px" size="1em" color="#A6A6BC">
                             <Button addBtn >+</Button>채널 추가</Text>
-                    </Grid>
+                    </Grid2>
                 </ListElement>
 
             </ListBox>

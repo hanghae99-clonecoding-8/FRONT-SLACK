@@ -30,6 +30,7 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
+    "sockjs-client": "^1.6.1",
     "styled-components": "^5.3.5",
     "switch": "^0.0.0",
     "universal-cookie": "^4.0.4",
