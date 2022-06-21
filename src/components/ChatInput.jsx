@@ -4,14 +4,15 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
-import { Button, Grid } from "../elements";
+import Button from "../elements/Button";
+import Grid2 from "../elements/Grid2";
 import { HiPaperAirplane } from "react-icons/hi";
 
-// import SockJS from 'sockjs-client';
-// import Stomp from 'stompjs';
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
 
-// let sock = new SockJS('http://52.79.226.242:8080/ws-stomp');
-// let ws = Stomp.over(sock);
+let sock = new SockJS('');
+let ws = Stomp.over(sock);
 
 const ChatInput = (props) => {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ const ChatInput = (props) => {
 
   return (
     <>
-      <Grid width="100%">
+      <Grid2 width="100%">
         <Center>
           <Box>
             <Box2 bg="#fafafa" br="6px 6px 0 0" />
@@ -81,7 +82,7 @@ const ChatInput = (props) => {
 
           </Box>
         </Center>
-      </Grid>
+      </Grid2>
     </>
   );
 }

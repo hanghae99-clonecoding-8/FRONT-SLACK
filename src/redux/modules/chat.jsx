@@ -2,6 +2,11 @@ import apis from "../../api/api";
 /* ----------------- 모듈의 초기 상태 ------------------ */
 let intialstate = {
     list: [],
+    username: '',
+    nickname: '',
+    user_profile: '',
+    is_loaded: false,
+    is_login: false,
 };
 /* ----------------- 액션 타입 ------------------ */
 
@@ -10,6 +15,7 @@ const ADD_CHAT_ROOM = "chat_reducer/CREATE_ROOM";
 const GET_MESSAGE = "chat_reducer/LOAD_MESSAGE";
 const ENTER_ROOM = "chat_reducer/ENTER";
 const SEND_MESSAGE = "chat_reducer/SEND";
+const GET_ALL_USER = "user_reducer/ALLUSER"
 
 /* ----------------- 액션 생성 함수 ------------------ */
 //채팅방
@@ -30,6 +36,10 @@ export function getChatMessage(message) {
 export function sendChatMessage(message) {
     return { type: SEND_MESSAGE, message };
 }
+export function getAllUser(payload) {
+    return { type: GET_ALL_USER, payload };
+  }
+
 
 /* ----------------- 미들웨어 ------------------ */
 // 방 목록 가져오기
