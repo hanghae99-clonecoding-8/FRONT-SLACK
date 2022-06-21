@@ -11,11 +11,25 @@ import { BsSliders } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 import { getCookie } from "../shared/Cookie";
 
+import Profile from "./Profile";
 
 
 const Header = () => {
-  const userUrl = getCookie("useUrl")
+  const profileUrl = getCookie("profileUrl")
   const nickname = getCookie("nickname")
+  const [modalOpen, setModalOpen] = React.useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+
+
+  const profileImg = profileUrl.split("profileimages/")[0]+"profileimages%2F"+profileUrl.split("profileimages/")[1]
+
 
     return (
         <>
@@ -32,7 +46,8 @@ const Header = () => {
                        
                         <AiOutlineSearch className="icon7" color="#fff" size="20px" />
                     </OuterBox>
-                     <ImageBox2 />
+                     <ImageBox2 src={profileImg} onClick={openModal}/>
+                    <Profile open={modalOpen} close={closeModal} header="프로필" profileImg={profileImg} nickname={nickname}  />
                     <ImageBox />
                     
                     
@@ -126,7 +141,7 @@ const InputBox = styled.input`
   }
 `
 
-const ImageBox2 = styled.div`
+const ImageBox2 = styled.img`
   position: absolute;
   right: 80px;
 
@@ -135,8 +150,8 @@ const ImageBox2 = styled.div`
 
   border-radius: 4px;
 
-  background-image: url('userUrl');
-  background-size: cover;
+
+
   ${'' /* background: #ddd; */}
 `
 

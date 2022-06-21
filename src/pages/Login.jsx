@@ -36,7 +36,7 @@ const Login = (props) => {
   console.log(response)
       setCookie("token", response.headers.authorization.split(" ")[1])  
       setCookie("nickname",response.headers.nickname)
-      setCookie("userUrl",response.headers.profileUrl)
+      setCookie("profileUrl",response.headers.profileurl)
 console.log(response)
       alert("환영합니다")
       navigate("/main")

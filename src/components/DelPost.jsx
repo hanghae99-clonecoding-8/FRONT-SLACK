@@ -6,7 +6,7 @@ import { deletePostJson, loadPosts } from "../redux/modules/post";
 import { useNavigate } from 'react-router-dom';
 
 const DelPost = (props) => {
-  const { open, close, header, id } = props;
+  const { open, close, close2 , header, id } = props;
   const dispatch = useDispatch()
  const navigate = useNavigate()
 
@@ -30,11 +30,7 @@ const DelPost = (props) => {
             >
               취소
             </button>
-            <button onClick={()=>{
-              dispatch(deletePostJson(id))
-              // dispatch(loadPosts())
-             
-            }}> 삭제</button>
+            <button onClick={close2}> 삭제</button>
           </footer>
       </section>
       ):null}

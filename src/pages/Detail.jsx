@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import DelPost from '../components/DelPost';
 import { FiLock } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
-
+import { deletePostJson } from '../redux/modules/post';
 
 
 const Detail = (props) => {
@@ -77,6 +77,13 @@ useEffect(()=>{
     const closeModal = () => {
       setModalOpen(false);
     };
+    const closeModal2 = () =>{
+      setModalOpen(false);
+      console.log(modalOpen)
+      dispatch(deletePostJson(postId))
+      dispatch(loadPostJson())
+      close()
+    }
 
    
 
@@ -119,7 +126,9 @@ useEffect(()=>{
       </InnerWrap>
       </DetailWarp>
     
-     <DelPost open={modalOpen} close={closeModal} id={Number(postId)} header="메세지 삭제"/>
+     <DelPost open={modalOpen} close={closeModal} id={Number(postId)} 
+     close2={closeModal2}
+     header="메세지 삭제"/>
      <CommentWrap2><Comments id={Detail?.postId}/></CommentWrap2>
     
      </Wrap>

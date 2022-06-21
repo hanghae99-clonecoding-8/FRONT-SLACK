@@ -65,8 +65,9 @@ export const deletePostJson = (id) => {
       await apis.delPost(id)
     // console.log(id)
     dispatch(removePost(id))
-    dispatch(loadPostJson())
-    window.location.replace("/main")
+    alert("삭제되었습니다.")
+    // dispatch(loadPostJson())
+    // window.location.replace("/main")
     }catch(e){
       alert(e.response.data.message)
       // alert(e.data)
