@@ -44,13 +44,13 @@ export function removePost(post_index) {
 export const loadPostJson = () => {
   return async function (dispatch) {
     const loadData = await apis.getPosts();
-    console.log(loadData)
+    // console.log(loadData)
     dispatch(loadPosts(loadData.data));
   };
 };
 
 export const createPostJson = (post) => {
-  console.log(post);
+  // console.log(post);
   return async function (dispatch) {
     dispatch(createPost(post));
 
@@ -63,7 +63,7 @@ export const deletePostJson = (id) => {
   return async function (dispatch) {
     try{
       await apis.delPost(id)
-    console.log(id)
+    // console.log(id)
     dispatch(removePost(id))
     dispatch(loadPostJson())
     window.location.replace("/main")

@@ -11,6 +11,7 @@ import { IoChatbubblesOutline } from "react-icons/io5";
 import { IoAtOutline } from "react-icons/io5";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import { FiLock } from "react-icons/fi";
 
 const SideBar = () => {
     return (
@@ -44,7 +45,18 @@ const SideBar = () => {
                 </PBList>
 
                 <ListElement height="30px">
-                    <Text margin="0 15px" size="1em" color="#A6A6BC"><GoTriangleDown size="13px" />　채널</Text>
+                    <Text margin="0 15px" size="1em" color="#A6A6BC"><FiLock size="13px" />　채널</Text>
+                </ListElement>
+
+                <ListElement height="30px" bg="#350D36" >
+                    <Grid is_flex margin="0 20px" >
+                        <Text margin=" 40px" size="1em" color="#A6A6BC">
+                            <Button addBtn >+</Button>_7기_a반_공지방</Text>
+                    </Grid>
+                </ListElement>
+
+                <ListElement height="30px">
+                    <Text margin="0 15px" size="1em" color="#A6A6BC"><GoTriangleDown size="13px" />　다이렉트 메세지</Text>
                 </ListElement>
 
                 <ListElement height="30px" bg="#350D36" >

@@ -35,8 +35,8 @@ const Login = (props) => {
 
   console.log(response)
       setCookie("token", response.headers.authorization.split(" ")[1])  
-      //setCookie("nickname",response.headers.nickname)
-      //setCookie("userUrl",response.headers.profileUrl)
+      setCookie("nickname",response.headers.nickname)
+      setCookie("userUrl",response.headers.profileUrl)
 console.log(response)
       alert("환영합니다")
       navigate("/main")
@@ -96,7 +96,7 @@ const Inputbox = styled.input`
   width: 55%;
   height: 40px;
   border: none;
-  border-bottom: solid black 1px;
+  border-bottom: solid #bdbfc4 1px;
 `
 
 const LoginButton = styled.button`

@@ -15,12 +15,6 @@ import { CgMic } from "react-icons/cg";
 
 
 
-
-
-
-
-
-
 const Post = ({ scrollRef }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -33,7 +27,7 @@ const Post = ({ scrollRef }) => {
         const scroll =
             scrollRef.current.scrollHeight - scrollRef.current.clientHeight
         scrollRef.current.scrollTo(0, scroll);
-        console.log(scrollRef.current.clientHeight)
+        // console.log(scrollRef.current.clientHeight)
     };
 
         // useEffect(() => {
@@ -62,9 +56,9 @@ const Post = ({ scrollRef }) => {
                         nickname: res.data.nickname
                     })
                 );
-                console.log(text.current.value)
-
-                console.log(res)
+                // console.log(text.current.value)
+                    
+                // console.log(res)
 
                 // console.log(res);
                 // dispatch(createPostJson(res.data)); 서버오픈시 시도
@@ -82,8 +76,9 @@ const Post = ({ scrollRef }) => {
     const textareaChange = (e) => {
         setContent(e.target.value.replaceAll("<br>", "\r\n"));
         setTextareaHeight(e.target.value.split('\n').length - 1);
-    }
 
+    }
+   
     return (
         <> 
         
@@ -125,7 +120,7 @@ const Post = ({ scrollRef }) => {
                     <div className='m_text'>
                         <textarea
                             type="text"
-                            placeholder="내용을 입력하세용"
+                            placeholder="내용을 입력하세요"
                             value={content}
                             onChange={textareaChange}
                             style={{ height: "100px" }}

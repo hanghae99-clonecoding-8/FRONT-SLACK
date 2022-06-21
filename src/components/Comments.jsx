@@ -8,23 +8,26 @@ import Post2 from './Post2'
 const Comments = ({id}) => {
     // let res = useQuery(['posts'],apis.getComments)
     //그래서이거왜쓰는데 ㅡㅡ
-    console.log(id)
+    // console.log(id)
     const CommentReducer = useSelector((state) => state.comment.list);
     const [text,setText] = React.useState('')
     const dispatch = useDispatch()
-
+    
     
     React.useEffect(() => {
         dispatch(loadCommentJson(Number(id)));
+        return()=>{
+
+        }
       }, [dispatch]);
 
 
               return (
                 <>
                   <CommentWrap>
-                      {CommentReducer.map((comments) => {
+                      {CommentReducer.map((comments,index) => {
                           return (
-                            <Wrap>
+                            <Wrap key={index}>
       <Imgbox>
       {/* <Image className="text_photo" src='https://ca.slack-edge.com/T01L2TNGW3T-U03DL8GEU0G-dc38fbbc5656-512' /> */}
       <Image className="text_photo" src={`${comments?.profileUrl}`} />
