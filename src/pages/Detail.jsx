@@ -46,7 +46,7 @@ console.log(postId)
     }
 
  const getCommentdata = async () => {
-      const commentData = await apis.getComments(Number(4));
+      const commentData = await apis.getComments(Number(postId));
       dispatch(loadCommentJson(commentData.data.body));
       // console.log(commentData.data.body);
       setComment(commentData.data.body);
@@ -101,16 +101,17 @@ useEffect(()=>{
         <CreateAt> 오전 8:30 </CreateAt> */}
          <Nickname>{Detail?.nickname}</Nickname>
          <Nickname>({Detail?.username})</Nickname>
-        <CreateAt>{Detail?.createdAt}</CreateAt>
-        <div>{Detail?.contents}</div>
+        <CreateAt>{Detail?.createdAt.split("T")[0]}</CreateAt>
+        
         </Toptext>
+        <Title>{Detail?.contents}</Title>
       {/* <Title>{Detail?.comment}</Title> */}
       </TextArea>
       </InnerWrap>
       </DetailWarp>
       
      <button onClick={openModal}>삭제하기</button>
-     <DelPost open={modalOpen} close={closeModal} id={postId} header="메세지 삭제"/>
+     <DelPost open={modalOpen} close={closeModal} id={Number(postId)} header="메세지 삭제"/>
      <CommentWrap2><Comments id={Detail?.id}/></CommentWrap2>
     
      </Wrap>

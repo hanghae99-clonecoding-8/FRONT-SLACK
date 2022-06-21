@@ -20,7 +20,7 @@ const DelPost = (props) => {
             </button>
       </header>
       <main>
-        <div>이 메세지를 삭제하시겠습니까? 이 작업은 실행 취소할 수 없습니다.</div>
+        <div>이 게시글을 삭제하시겠습니까? 이 작업은 실행 취소할 수 없습니다.</div>
       </main>
       <footer>
             <button className="close" onClick={close}>
