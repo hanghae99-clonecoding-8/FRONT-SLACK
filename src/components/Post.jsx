@@ -63,9 +63,9 @@ const Post = ({ scrollRef }) => {
                 // console.log(res);
                 // dispatch(createPostJson(res.data)); 서버오픈시 시도
                 //window.alert("등록성공");
-
-
-                navigate("/main");
+                 dispatch(loadPostJson())
+                 console.log("여기까지왔어")
+                
             })
             .catch((err) => {
                 alert("로그인 후 작성해주세요");
@@ -73,10 +73,10 @@ const Post = ({ scrollRef }) => {
             });
     };
 
+    //여러줄 줄글 보여주기
     const textareaChange = (e) => {
         setContent(e.target.value.replaceAll("<br>", "\r\n"));
         setTextareaHeight(e.target.value.split('\n').length - 1);
-
     }
    
     return (
