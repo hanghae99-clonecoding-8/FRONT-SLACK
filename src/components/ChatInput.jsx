@@ -2,25 +2,43 @@ import React from 'react'
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 
 import { Button, Grid } from "../elements";
 import { HiPaperAirplane } from "react-icons/hi";
 
-// import SockJS from 'sockjs-client';
-// import Stomp from 'stompjs';
+import { sendChatMessage } from '../redux/modules/chat';
 
-// let sock = new SockJS('http://52.79.226.242:8080/ws-stomp');
-// let ws = Stomp.over(sock);
+import {getCookie} from "../shared/Cookie"
+
+import SockJS from 'sockjs-client';
+import StompJs from '@stomp/stompjs';
+
+let sock = new SockJS('http://52.79.226.242:8080/ws-stomp');
+let ws = StompJs.over(sock);
 
 const ChatInput = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
+  //보내는 사람
   const sender = useSelector((state) => state.user?.user?.username)
+  //보낼 메세지
   const [text, setText] = React.useState('');
-  const roomId = useParams();
+  //방
+const roomId = useParams();
+
+const token = getCookie("token");//베어러 붙여야되는지 확인
 
   const onSend = async () => {
     try {
+
+      if (!token) {
+        alert('문제가 발생했습니다. 다시 로그인 해주세요.');
+        navigate('/main');
+      }
+
       const message = {
         roomId: roomId.roomId,
         message: text.target.value,
@@ -39,7 +57,7 @@ const ChatInput = (props) => {
           JSON.stringify(message)
         );
         console.log(ws.ws.readyState);
-        dispatch(ChatCreators.sendMessage(message));
+        dispatch(sendChatMessage(message));
         setText("");
       });
     } catch (error) {
