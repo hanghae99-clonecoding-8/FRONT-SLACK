@@ -18,6 +18,7 @@ api.interceptors.request.use(
   }
 );
 
+
 export const ChatAPI = {
 
   // 방 목록 가져오기

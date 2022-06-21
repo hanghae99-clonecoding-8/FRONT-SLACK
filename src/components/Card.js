@@ -38,6 +38,7 @@ console.log(item)
       <span>{item?.createAt}</span> */}
     
       
+      
       <Wrap>
       <Imgbox>
       {/* <Image className="text_photo" src='https://ca.slack-edge.com/T01L2TNGW3T-U03DL8GEU0G-dc38fbbc5656-512' /> */}
