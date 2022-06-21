@@ -54,7 +54,7 @@ export const addChatRoomDB = (room) => {
 export const enterChatRoomDB = (roomId) => {
     return async function (dispatch) {
         const res = await apis.enterRoom({roomId:roomId})
-        dispatch(enterRoom(res.data))
+        dispatch(enterChatRoom(res.data))
     };
 };
 
@@ -63,8 +63,8 @@ export const enterChatRoomDB = (roomId) => {
 export const inviteUserDB = (roomId, username) => {
     return async function (dispatch) {
         //console.log("inviteUserDB : username", roomid, username);
-        const res = await apis.inviteUser({roomId: roomId, username: username})
-        dispatch(inviteUser(res.data))
+        // const res = await apis.inviteUser({roomId: roomId, username: username})
+        // dispatch(inviteUser(res.data))
     };
 };
 
@@ -73,7 +73,7 @@ export const getMessageDB = (roomId) => {
     return async function (dispatch) {
         //console.log("getMessage : roomId ", roomId)
         const res = await apis.getMessage({roomId: roomId})
-        dispatch(getMessage(res.data))
+        dispatch(getChatMessage(res.data))
     };
 };
 
