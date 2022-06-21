@@ -15,7 +15,7 @@ function App() {
       <Route path='/main' element={<Main />} />
       <Route path='/detail/:id' element={<Detail />} />
       <Route path='/detail/comments' element={<Comments />} />
-      <Route path='/chatroom' element={<ChatRoom />} />
+      <Route path='/chatroom/:rooid' element={<ChatRoom />} />
     </Routes>
   );
 }
