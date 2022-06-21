@@ -2,11 +2,13 @@ import React from 'react'
 import "../css/modal.css"
 
 import { useDispatch, useSelector } from "react-redux";
-import { deletePostJson } from "../redux/modules/post";
+import { deletePostJson, loadPosts } from "../redux/modules/post";
+import { useNavigate } from 'react-router-dom';
 
 const DelPost = (props) => {
   const { open, close, header, id } = props;
   const dispatch = useDispatch()
+ const navigate = useNavigate()
 
   return (
     <>
@@ -23,11 +25,15 @@ const DelPost = (props) => {
         <div>이 게시글을 삭제하시겠습니까? 이 작업은 실행 취소할 수 없습니다.</div>
       </main>
       <footer>
-            <button className="close" onClick={close}>
+            <button className="close" onClick={close}
+              style={{marginRight:"10px"}}
+            >
               취소
             </button>
             <button onClick={()=>{
               dispatch(deletePostJson(id))
+              // dispatch(loadPosts())
+             
             }}> 삭제</button>
           </footer>
       </section>

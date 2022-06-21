@@ -44,14 +44,16 @@ export function removePost(post_index) {
 export const loadPostJson = () => {
   return async function (dispatch) {
     const loadData = await apis.getPosts();
+    // console.log(loadData)
     dispatch(loadPosts(loadData.data));
   };
 };
 
 export const createPostJson = (post) => {
-  console.log(post);
+  // console.log(post);
   return async function (dispatch) {
     dispatch(createPost(post));
+
   };
 };
 export const updatePostJson = () => {
@@ -59,8 +61,17 @@ export const updatePostJson = () => {
 };
 export const deletePostJson = (id) => {
   return async function (dispatch) {
-    await apis.delPost(id)
+    try{
+      await apis.delPost(id)
+    // console.log(id)
     dispatch(removePost(id))
+    dispatch(loadPostJson())
+    window.location.replace("/main")
+    }catch(e){
+      alert(e.response.data.message)
+      // alert(e.data)
+    }
+    
   };
 };
 // export const deletePostJson = (id) =>{
@@ -84,7 +95,7 @@ const Post_reducer = (state = intialstate, action) => {
       return { ...state, detail_list: action.loadDetailData };
 
     case REMOVE_POST:
-      return state.list.filter((state) => state.id !== action.id);
+      return state.list.filter((state) => state.postId !== action.id);
       
       default:
       return state;

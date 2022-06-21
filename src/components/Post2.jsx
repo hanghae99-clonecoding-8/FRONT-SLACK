@@ -13,7 +13,8 @@ import { BsBarChartSteps, BsType } from "react-icons/bs";
 import { CgMic } from "react-icons/cg";
 
 
-const Post2 = () => {
+const Post2 = ({id}) => {
+    // console.log(id)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [content, setContent] = React.useState("");
@@ -22,15 +23,21 @@ const Post2 = () => {
 
     
     React.useEffect(() => {
-        
-      dispatch(loadCommentJson());
+      apis.getDetail(id)
+          dispatch(loadCommentJson(Number(id)));    
+          return()=>{
+
+          }
     }, [dispatch]);
 
 
     const plusComment = (e)=>{
       e.preventDefault();
-       dispatch(createCommentJson(text))
-      console.log(text)
+      
+        dispatch(createCommentJson(id, text))
+  
+       
+      //  console.log(text)
     }
 
 
@@ -75,7 +82,7 @@ const Post2 = () => {
           <div className='m_text'>
             <textarea
               type="text"
-              placeholder='댓글자리'
+              placeholder='댓글을 입력해 주세요'
               value={text}
               onChange={(e) => {
                 setText(e.target.value)
@@ -132,7 +139,7 @@ const Wrap = styled.div`
       border: 1px white solid; */
       width: 95%;
       margin: auto;
-      margin-top: 57px;
+      /* margin-top: 57px; */
       position: relative;
       overflow-x: hidden;
       margin-right: 9%;

@@ -37,11 +37,15 @@ export function removecomment(comment_index) {
 
 
 /* ----------------- 미들웨어 ------------------ */
-export const loadCommentJson = () => {
+export const loadCommentJson = (payload) => {
   return async function (dispatch) {
-    const res = await apis.getComments()
-    dispatch(loadcomments(res.data))
-    console.log(res)
+    try{const res = await apis.getComments(payload)
+    // console.log(res)
+    dispatch(loadcomments(res.data))}
+    catch{
+      console.log("없어")
+    }
+    
   };
 };
 
@@ -51,11 +55,14 @@ export const AddHeartJson = () => {
   };
 };
 
-export const createCommentJson = (comment) => {
+export const createCommentJson = (id, text) => {
   return async function (dispatch) {
-   const res = await apis.addComment({comment:comment})
-    dispatch(createcomment(res.data))
-    console.log(res.data)
+   try{const res = await apis.addComment(Number(id) ,{comment:text})
+      console.log(res.data)
+     dispatch(createcomment(res.data))}
+     catch{
+      console.log("없어")
+     }
   };
 };
 export const updateCOMMENTJson = () => {
