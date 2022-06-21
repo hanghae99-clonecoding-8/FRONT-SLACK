@@ -9,6 +9,7 @@ import Card from '../components/Card';
 import Header from '../components/Header';
 import SideBar from '../components/SideBar';
 import Detail from './Detail';
+// import ScrollToBottom from 'react-scroll-to-bottom';
 
 
 
@@ -27,16 +28,20 @@ const Main = () => {
   console.log(postId)
   const scrollRef = React.useRef();
   const scollToMyRef = () => {
-    const scroll =
+      const scroll =
+      // window.scrollTo(0, scrollRef.current.offsetBottom)
       scrollRef.current.scrollHeight - scrollRef.current.clientHeight
       scrollRef.current.scrollTo(0, scroll);
-    console.log(scrollRef.current.clientHeight)
+    console.log(scrollRef.current.offsetBottom)
   };
+  console.log(scollToMyRef)
   const [modalOpen3, setModalOpen3] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
   // const openModal = () => {
   //   modalOpen3(true);
   // };
+  const [scroll, setScroll]=React.useState()
+
   const closeModal = () => {
     setModalOpen3(false);
   };

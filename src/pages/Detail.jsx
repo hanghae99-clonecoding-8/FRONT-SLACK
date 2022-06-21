@@ -54,6 +54,7 @@ console.log(postId)
     // const navigate = useNavigate();
 useEffect(()=>{
     getDetailData()
+    getCommentdata()
     return()=>{
       console.log("청소중")
     }

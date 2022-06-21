@@ -84,7 +84,7 @@ const Post_reducer = (state = intialstate, action) => {
       return { ...state, detail_list: action.loadDetailData };
 
     case REMOVE_POST:
-      return state.list.filter((state) => state.id !== action.id);
+      return state.list.filter((state) => state.postId !== action.id);
       
       default:
       return state;
