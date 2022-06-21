@@ -3,7 +3,6 @@ import apis from "../api/api";
 import { createCommentJson, deleteCommentJson, loadCommentJson } from '../redux/modules/comments'
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createPostJson, loadPostJson } from "../redux/modules/post";
 import styled from "styled-components";
 import { VscBold, VscItalic, VscListOrdered, VscMention, VscSmiley } from "react-icons/vsc";
 import { RiStrikethrough, RiFileCodeLine, RiSendPlane2Fill, RiArrowDownSLine } from "react-icons/ri";

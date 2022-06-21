@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
-import { Grid2, Text } from "../elements";
+import Text from "../elements/Text";
+import Grid2 from "../elements/Grid2";
 
 
 

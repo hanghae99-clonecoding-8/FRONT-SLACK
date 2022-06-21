@@ -1,21 +1,24 @@
 import React from 'react'
 import styled from "styled-components";
+
 import ChatInput from "./ChatInput";
 import ChatMessage from "./ChatMessage";
 
 import { useDispatch, useSelector } from "react-redux";
-import {useParams} from "react-router";
+import { useParams } from "react-router";
+import { getMessageDB } from '../redux/modules/chat';
 
 import SockJS from 'sockjs-client';
-import StompJs from '@stomp/stompjs';
+import Stomp from 'stompjs';
+
 import { getCookie } from '../shared/Cookie';
-import { getMessageDB } from '../redux/modules/chat';
+
 
 const token = getCookie("token");
 
 function ChatMessageBox() {
   let sock = new SockJS('http://52.79.226.242:8080/ws-stomp');
-  let ws = StompJs.over(sock);
+  let ws = Stomp.over(sock);
 
   const dispatch = useDispatch();
   // 방 번호
@@ -78,6 +81,7 @@ function ChatMessageBox() {
     dispatch(getMessageDB(roomId.roomid));
   }, [roomId.roomid])
 
+
   return (
     <Wrapper>
       <MessageWrapper>
@@ -122,6 +126,7 @@ const InputWrpper = styled.div`
   height: 20%;
 
   backgroud: #fff;
+
 `
 
 export default ChatMessageBox
