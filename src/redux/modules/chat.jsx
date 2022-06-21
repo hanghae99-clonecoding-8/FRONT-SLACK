@@ -42,6 +42,25 @@ export function getAllUser(payload) {
 
 
 /* ----------------- 미들웨어 ------------------ */
+//유저가져와
+export const getAllUserDB = () => {
+    return function (dispatch, getState, { history }) {
+      apis.getAllUser()
+        .then((response) => {
+          // console.log("getAllUserDB : response", response.data)
+          dispatch(getAllUser(response.data));
+        }).catch((error) => {
+          console.log(error.response);
+        })
+    }
+  }
+
+
+
+
+
+
+
 // 방 목록 가져오기
 export const getChatRoomDB = () => {
     return async function (dispatch) {
@@ -109,6 +128,9 @@ export default function Chat_reducer(state = intialstate, action) {
         }
         case SEND_MESSAGE: {
             return state.filter((list) => list.id !== action.id);
+        }
+        case  GET_ALL_USER:{
+            return { list: action.payload };
         }
         default:
             return state;

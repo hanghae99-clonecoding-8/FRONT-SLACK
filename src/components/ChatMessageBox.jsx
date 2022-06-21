@@ -10,49 +10,54 @@ import { getMessageDB } from '../redux/modules/chat';
 
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
+
 import { getCookie } from '../shared/Cookie';
 
-const ChatMessageBox = () => {
-  let sock = new SockJS('');
+
+const token = getCookie("token");
+
+function ChatMessageBox() {
+  let sock = new SockJS('http://52.79.226.242:8080/ws-stomp');
   let ws = Stomp.over(sock);
 
   const dispatch = useDispatch();
+  // 방 번호
   const roomId = useParams();
+  
+  let headers = {Authorization: token}
 
-  let headers = getCookie("token");
-
-  //연결이랑 구독
+  // 연결하고 구독하기
   function ConnectSub(token) {
     try {
       ws.connect({
         token: token
       }, () => {
-        ws.subscribe(
-          `/sub/api/chat/rooms/${roomId.roomid}`,
-          (response) => {
-            // console.log("받은 메세지", response);
-            const newMessage = JSON.parse(response.body);
-            console.log("받은 메세지", newMessage);
-            // dispatch(ChatCreators.getMessage(newMessage));
-          },
-          {
-            token: token
-          }
-        );
-      }
+          ws.subscribe(
+            `/sub/api/chat/rooms/${roomId.roomid}`,
+            (response) => {
+              // console.log("받은 메세지", response);
+              const newMessage = JSON.parse(response.body);
+              console.log("받은 메세지", newMessage);
+              // dispatch(ChatCreators.getMessage(newMessage));
+            },
+            {
+                token: token 
+            }
+          );
+        }
       );
     } catch (error) {
       console.log("fdfdfdfdf", error.response);
     }
   }
 
+  //구독해제
   function DisConnectUnsub() {
     try {
-      ws.disconnect({
+      ws.disconnect( {
         Headers: {
-          Authorization: `${token}`,
-        }
-      },
+        Authorization: `${token}`,
+      }},
         () => {
           ws.unsubscribe('sub-0');
         },
@@ -76,20 +81,21 @@ const ChatMessageBox = () => {
     dispatch(getMessageDB(roomId.roomid));
   }, [roomId.roomid])
 
+
   return (
     <Wrapper>
       <MessageWrapper>
 
         {message?.map((message, idx) => {
           return (
-            <ChatMessage
-              key={idx}
-              message={message?.message}
-              nickName={message?.nickName}
+            <ChatMessage 
+              key={idx} 
+              message={message?.message} 
+              nickName={message?.nickName} 
               createdAt={message?.createdAt} />
           );
         })}
-
+  //프로필사진넣는거 고민해야됨
 
       </MessageWrapper>
       <InputWrpper>
@@ -119,7 +125,8 @@ const InputWrpper = styled.div`
 
   height: 20%;
 
-  background: #fff;
+  backgroud: #fff;
+
 `
 
 export default ChatMessageBox

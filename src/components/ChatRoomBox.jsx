@@ -9,9 +9,9 @@ import Text from "../elements/Text";
 import ChatMessageBox from "./ChatMessageBox";
 import Modal from "react-modal";
 
+import { getAllUserDB} from "../redux/modules/chat";
 import { useDispatch, useSelector } from "react-redux";
 import { inviteUserDB } from "../redux/modules/chat";
-import { actionCreators as userActions } from "../redux/modules/user";
 import { useParams } from "react-router-dom";
 
 
