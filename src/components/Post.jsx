@@ -82,7 +82,7 @@ const Post = ({ scrollRef }) => {
     }
 
     return (
-        <>
+        <> 
             <Wrap>
                 <MessageForm>
                     <div className='m_format'>
