@@ -35,6 +35,7 @@ const Post2 = () => {
 
   return (
     <>
+    
       <Wrap>
         <MessageForm>
           <div className='m_format'>
