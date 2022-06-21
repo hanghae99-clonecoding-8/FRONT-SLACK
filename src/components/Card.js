@@ -7,14 +7,15 @@ import '../css/modal.css';
 import Detail from "../pages/Detail";
 
 
-const Card = ({item, setPostId} ) => {
+const Card = ({item, setPostId,setModalOpen3} ) => {
   const [modalOpen2, setModalOpen2] = React.useState(false);
  
 
   const openModal2 = () => {
-    setModalOpen2(true);
+    setModalOpen3(true);
     setPostId(item.postId)
   };
+  // console.log(item)
   const closeModal2= () => {
     setModalOpen2(false);
   };
@@ -31,7 +32,7 @@ const Card = ({item, setPostId} ) => {
   //   // dispatch(AddHeartJson(heartData.data))
   //   setHeart(heartData.data);
   // };
-console.log(item)
+//  
   return (
     <div>
       {/* <span>{item?.nickname}</span>

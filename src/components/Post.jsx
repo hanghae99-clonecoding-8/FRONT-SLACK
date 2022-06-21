@@ -4,7 +4,7 @@ import { storage } from "../shared/Firebase";
 import { ref, uploadBytes } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createPostJson, loadPostJson } from "../redux/modules/Post";
+import { createPostJson, loadPostJson } from "../redux/modules/post";
 import styled from "styled-components";
 import { VscBold, VscItalic, VscListOrdered, VscMention, VscSmiley } from "react-icons/vsc";
 import { RiStrikethrough, RiFileCodeLine, RiSendPlane2Fill, RiArrowDownSLine } from "react-icons/ri";
@@ -12,6 +12,7 @@ import { IoIosLink } from "react-icons/io";
 import { TbList, TbCode, TbVideo } from "react-icons/tb";
 import { BsBarChartSteps, BsType } from "react-icons/bs";
 import { CgMic } from "react-icons/cg";
+
 
 
 
@@ -181,12 +182,10 @@ const Wrap = styled.div`
       position: relative;
       bottom: px;
       overflow-x: hidden;
-
     `;
 
 
 const MessageForm = styled.div`
-
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: white;
@@ -271,7 +270,6 @@ const MessageForm = styled.div`
         border-radius: 4px;
         border: none;
         background-color: transparent;
-
       }
     }
     .submit {

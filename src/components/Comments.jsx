@@ -1,6 +1,6 @@
 import React from 'react'
 import apis from '../api/api'
-import { createCommentJson, deleteCommentJson, loadCommentJson } from '../redux/modules/Comments'
+import { createCommentJson, deleteCommentJson, loadCommentJson } from '../redux/modules/comments'
 import styled from 'styled-components'
 import {useDispatch,useSelector} from 'react-redux'
 import Post2 from './Post2'
@@ -36,7 +36,7 @@ const Comments = (props) => {
         {/*  <Nickname>{comment?.nickname}</Nickname> */}
         {/* <CreateAt>{comment?.createAt}</CreateAt> */}
         </Toptext>
-      <Title>{comments?.comment}</Title>
+      {/* <Title>{comments?.comment}</Title> */}
       </TextArea>
       </Wrap>
                             //   <div key={comments.id}>

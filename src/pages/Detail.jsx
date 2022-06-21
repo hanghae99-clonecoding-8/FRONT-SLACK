@@ -3,8 +3,8 @@ import Comments from '../components/Comments';
 import apis from '../api/api'
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { loadCommentJson } from '../redux/modules/Comments';
-import { deletePostJson } from '../redux/modules/Post';
+import { loadCommentJson } from '../redux/modules/comments';
+import { deletePostJson } from '../redux/modules/post';
 import { useDispatch } from 'react-redux';
 import DelPost from '../components/DelPost';
 
@@ -12,29 +12,56 @@ import DelPost from '../components/DelPost';
 
 
 const Detail = (props) => {
-  const { open, close, id } = props;
+  const { open, close, postId } = props;
+console.log(postId)
 
     const [Detail, setDetail] = useState(null);
     const [Comment,setComment] = useState(null)
     const [modalOpen, setModalOpen] = React.useState(false);
-    const [showBanner, setshowBanner] = useState(true);
-    const onClick = () => setshowBanner(false);
+    // const [showBanner, setshowBanner] = useState(true);
+    // const onClick = () => setshowBanner(false);
+    // const [postId,setPostId] = React.useState(0)
+
+      // useEffect((id)=>{
+      //   setPostId(id)
+      // },[])
+console.log(postId)
+
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+//  useEffect(()=>{
+//   if(postId!=0){getDetailData()}
+//   else{
+//     setPostId(id)
+//   } 
+//     },[postId])
+  
 
-    const getDetailData = async() =>{
-      const detailData =  await apis.getDetail(id)
+    
+   const getDetailData = async() =>{
+      const detailData =  await apis.getDetail(Number(postId))
+      // setPostId(id)
       setDetail(detailData.data)
       console.log(Detail)
     }
 
-    const getCommentdata = async () => {
-      const commentData = await apis.getComments(id);
+ const getCommentdata = async () => {
+      const commentData = await apis.getComments(Number(postId));
       dispatch(loadCommentJson(commentData.data.body));
       // console.log(commentData.data.body);
       setComment(commentData.data.body);
     };
+    // const navigate = useNavigate();
+useEffect(()=>{
+    getDetailData()
+    return()=>{
+      console.log("청소중")
+    }
+  },[close])
+ 
+
+
+   
 
     const openModal = () => {
       setModalOpen(true);
@@ -43,9 +70,7 @@ const Detail = (props) => {
       setModalOpen(false);
     };
 
-    useEffect(()=>{
-      getDetailData();
-    },[dispatch])
+   
 
 
   return (
@@ -75,16 +100,18 @@ const Detail = (props) => {
         {/* <Nickname>최경식(항해99 매니저)</Nickname>
         <CreateAt> 오전 8:30 </CreateAt> */}
          <Nickname>{Detail?.nickname}</Nickname>
-        <CreateAt>{Detail?.createdAt}</CreateAt>
-        <div>{Detail.contents}</div>
+         <Nickname>({Detail?.username})</Nickname>
+        <CreateAt>{Detail?.createdAt.split("T")[0]}</CreateAt>
+        
         </Toptext>
+        <Title>{Detail?.contents}</Title>
       {/* <Title>{Detail?.comment}</Title> */}
       </TextArea>
       </InnerWrap>
       </DetailWarp>
       
      <button onClick={openModal}>삭제하기</button>
-     <DelPost open={modalOpen} close={closeModal} id={id} header="메세지 삭제"/>
+     <DelPost open={modalOpen} close={closeModal} id={Number(postId)} header="메세지 삭제"/>
      <CommentWrap2><Comments id={Detail?.id}/></CommentWrap2>
     
      </Wrap>

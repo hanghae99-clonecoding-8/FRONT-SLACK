@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import apis from "../api/api";
-import { createCommentJson, deleteCommentJson, loadCommentJson } from '../redux/modules/Comments'
+import { createCommentJson, deleteCommentJson, loadCommentJson } from '../redux/modules/comments'
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createPostJson, loadPostJson } from "../redux/modules/Post";
+import { createPostJson, loadPostJson } from "../redux/modules/post";
 import styled from "styled-components";
 import { VscBold, VscItalic, VscListOrdered, VscMention, VscSmiley } from "react-icons/vsc";
 import { RiStrikethrough, RiFileCodeLine, RiSendPlane2Fill, RiArrowDownSLine } from "react-icons/ri";
@@ -14,24 +14,25 @@ import { CgMic } from "react-icons/cg";
 
 
 const Post2 = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [content, setContent] = React.useState("");
-  const [text, setText] = React.useState('')
-  const CommentReducer = useSelector((state) => state.comment.list);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [content, setContent] = React.useState("");
+    const [text,setText] = React.useState('')
+    const CommentReducer = useSelector((state) => state.comment.list);
+
+    
+    React.useEffect(() => {
+        
+      dispatch(loadCommentJson());
+    }, [dispatch]);
 
 
-  React.useEffect(() => {
+    const plusComment = (e)=>{
+      e.preventDefault();
+       dispatch(createCommentJson(text))
+      console.log(text)
+    }
 
-    dispatch(loadCommentJson());
-  }, [dispatch]);
-
-
-  const plusComment = (e) => {
-    e.preventDefault();
-    dispatch(createCommentJson(text))
-    console.log(text)
-  }
 
   return (
     <>
@@ -157,7 +158,6 @@ const MessageForm = styled.div`
       width: 28px;
       padding: 2px;
       margin: 2px;
-      color: #ccc;
       border-radius: 4px;
       border: none;
       background-color: transparent;
@@ -229,22 +229,15 @@ const MessageForm = styled.div`
     }
     .submit {
       button {
-        height: 28px;
+        heigth: 28px;
         border-radius: 4px;
         padding: 2px 8px;
-        width: 40px;
+        width: 100px;
         font-size: 13px;
-        background-color: #fff;
-        color: #ccc;
+        background-color: #007a5a;
+        color: #fff;
         align-items: center;
         justify-content: center;
-      }
-      span {
-        width: 1px;
-        height: 20px;
-        margin: 2px 4px;
-        background-color: #ccc;
-        align-self: center;
       }
     }
   }

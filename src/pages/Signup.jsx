@@ -119,9 +119,9 @@ const SignUp = (props) => {
             ref(storage, `profileimages/${e.target.files[0].name}`),
             e.target.files[0]
         );
-        // console.log(uploaded_file);
+        console.log(uploaded_file);
         const file_url = await getDownloadURL(uploaded_file.ref);
-        // console.log(file_url);
+        console.log(file_url);
         fileInputRef.current = { url: file_url };
     };
 

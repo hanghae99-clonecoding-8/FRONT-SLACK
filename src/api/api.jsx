@@ -19,45 +19,25 @@ api.interceptors.request.use(
 );
 
 
+
 export const ChatAPI = {
 
   // 방 목록 가져오기
-  getChatRoom: () => api.get('/api/chat/rooms', {
-    headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`
-    }
-  }),
+  getChatRoom: () => api.get('/api/chat/rooms'),
 
-  // 방 추가하기
-  addChatRoom: (room) => api.post('/api/chat/rooms', room, {
-    headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
-    }
-  }),
-
+  // 방 추가하
+  addChatRoom: (room) => api.post('/api/chat/rooms', room),
   // 방 접속하기
-  enterRoom: (roomId) => api.get(`/api/chat/rooms/${roomId}`, {
-    headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`
-    }
-  }),
+  enterRoom: (roomId) => api.get(`/api/chat/rooms/${roomId}`),
 
   // 유저 초대하기
-  inviteUser: (roomid, username) => api.post(`/api/chat/invite`, { username: username, roomId: roomid }, {
-    headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`
-    }
-  }),
+  inviteUser: (roomid, username) => api.post(`/api/chat/invite`, { username: username, roomId: roomid }),
 
   // 이전 메세지 가져오기
-  getMessage: (roomId) => api.get(`/api/chat/rooms/${roomId}/messages`, {
-    headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`
-    }
-  }),
-
+  getMessage: (roomId) => api.get(`/api/chat/rooms/${roomId}/messages`),
 
 }
+
 
 const apis = {
   //user
@@ -79,16 +59,17 @@ const apis = {
   addPost: (contents) => api.post("/api/posts", contents),
   delPost: (postId) => api.delete(`/api/post/${postId}`),
   getPosts: () => api.get("/api/posts"),
+  // getDetail: (postId) => api.get(`/api/posts/${postId}`),
   getDetail: (postId) => api.get(`/api/posts/${postId}`),
 
   //comment
-  addComment: ( comment, postId) =>
+  addComment: (comment, postId) =>
     api.post(`/api/posts/${postId}/comments`, comment),
   editComment: (id, commentId, comments) =>
     api.post(`/api/board/${id}/comment/${commentId}`, comments),
   delComment: (id, commentId) =>
     api.delete(`/posts/${id}`),
-  getComments: () => api.get(`/posts`),
+  getComments: (postId) => api.get(`/api/posts/${postId}/comments`),
 
   //heart
   addheart: (id) => api.post(`/api/board/${id}/like`),
