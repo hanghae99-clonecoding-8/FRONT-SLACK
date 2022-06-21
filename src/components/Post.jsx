@@ -6,53 +6,69 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createPostJson, loadPostJson } from "../redux/modules/post";
 import styled from "styled-components";
+import { VscBold, VscItalic, VscListOrdered, VscMention, VscSmiley } from "react-icons/vsc";
+import { RiStrikethrough, RiFileCodeLine, RiSendPlane2Fill, RiArrowDownSLine } from "react-icons/ri";
+import { IoIosLink } from "react-icons/io";
+import { TbList, TbCode, TbVideo } from "react-icons/tb";
+import { BsBarChartSteps, BsType } from "react-icons/bs";
+import { CgMic } from "react-icons/cg";
 
-const Post = ({scrollRef}) => {
+
+
+
+
+
+
+
+
+const Post = ({ scrollRef }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [content, setContent] = React.useState("");
     const [textareaHeight, setTextareaHeight] = useState(0);
     const text = React.useRef(null)
-// console.log(scrollRef)
+    console.log(scrollRef)
 
-const scollToMyRef = () => {
-  const scroll =
-    scrollRef.current.scrollHeight - scrollRef.current.clientHeight
-    scrollRef.current.scrollTo(0, scroll);
-  console.log(scrollRef.current.clientHeight)
-};
+    const scollToMyRef = () => {
+        const scroll =
+            scrollRef.current.scrollHeight - scrollRef.current.clientHeight
+        scrollRef.current.scrollTo(0, scroll);
+        console.log(scrollRef.current.clientHeight)
+    };
 
-    useEffect(() => {  
+    useEffect(() => {
         scollToMyRef();
-    
+
         dispatch(loadPostJson());
     }, [dispatch]);
 
     const postNew = async (e) => {
         e.preventDefault();
-      const res = await apis
+        const res = await apis
             .addPost({
                 contents: content,
             })
-            .then((res) => {   
-             
+            .then((res) => {
+
                 //res의 타이틀 이런식으로바꿔줘야함
                 dispatch(
-              
+
                     createPostJson({
                         contents: res.data.contents,
                         createdAt: (res.data.createdAt).split("T")[0],
-                        profileUrl : res.data.profileUrl,
+                        profileUrl: res.data.profileUrl,
                         username: res.data.username
                     })
                 );
                 console.log(text.current.value)
-                 console.log(res)
+
+                console.log(res)
+
                 // console.log(res);
                 // dispatch(createPostJson(res.data)); 서버오픈시 시도
                 //window.alert("등록성공");
-                
-              
+
+
                 navigate("/main");
             })
             .catch((err) => {
@@ -68,22 +84,41 @@ const scollToMyRef = () => {
 
     return (
         <> 
+        
             <Wrap>
                 <MessageForm>
                     <div className='m_format'>
-                        <button>B</button>
-                        <button>I</button>
-                        <button>S</button>
+                        <button>
+                            <VscBold size="20px" />
+                        </button>
+                        <button>
+                            <VscItalic size="20px" />
+                        </button>
+                        <button>
+                            <RiStrikethrough size="20px" />
+                        </button>
                         <span></span>
-                        <button>L</button>
+                        <button>
+                            <IoIosLink size="20px" />
+                        </button>
                         <span></span>
-                        <button>N</button>
-                        <button>D</button>
+                        <button>
+                            <VscListOrdered size="20px" />
+                        </button>
+                        <button>
+                            <TbList size="20px" />
+                        </button>
                         <span></span>
-                        <button>Q</button>
+                        <button>
+                            <BsBarChartSteps size="20px" />
+                        </button>
                         <span></span>
-                        <button>C</button>
-                        <button>C</button>
+                        <button>
+                            <TbCode size="20px" />
+                        </button>
+                        <button>
+                            <RiFileCodeLine size="20px" />
+                        </button>
                     </div>
                     <div className='m_text'>
                         <textarea
@@ -101,18 +136,32 @@ const scollToMyRef = () => {
                         <button>+</button>
                         <div className='buttons'>
                             <span></span>
-                            <button>C</button>
-                            <button>A</button>
+                            <button>
+                                <TbVideo color="#ccc" size="20px" />
+                            </button>
+                            <button>
+                                <CgMic color="#ccc" size="20px" />
+                            </button>
                             <span></span>
-                            <button>E</button>
-                            <button>@</button>
-                            <button>F</button>
+                            <button>
+                                <VscSmiley color="#525252" size="20px" />
+                            </button>
+                            <button>
+                                <VscMention color="#525252" size="20px" />
+                            </button>
+                            <button>
+                                <BsType color="#525252" size="20px" />
+                            </button>
                         </div>
                         <div className='submit'>
                             <UnderBar>
 
                                 <button onClick={postNew} type="submit">
-                                    보내기
+                                    <RiSendPlane2Fill size="20px" />
+                                </button>
+                                <span></span>
+                                <button>
+                                    <RiArrowDownSLine size="20px" />
                                 </button>
 
                             </UnderBar>
@@ -126,25 +175,17 @@ const scollToMyRef = () => {
 };
 
 const Wrap = styled.div`
-      /* display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      color: black;
-      margin: 15% auto;
-      border: 1px white solid; */
+      
       width: 95%;
       margin: auto;
       margin-top: 25px;
       position: relative;
       bottom: px;
       overflow-x: hidden;
-
     `;
 
 
 const MessageForm = styled.div`
-
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: white;
@@ -162,6 +203,7 @@ const MessageForm = styled.div`
       width: 28px;
       padding: 2px;
       margin: 2px;
+      color: #ccc;
       border-radius: 4px;
       border: none;
       background-color: transparent;
@@ -228,20 +270,26 @@ const MessageForm = styled.div`
         border-radius: 4px;
         border: none;
         background-color: transparent;
-
       }
     }
     .submit {
       button {
-        heigth: 28px;
+        height: 28px;
         border-radius: 4px;
         padding: 2px 8px;
-        width: 100px;
+        width: 40px;
         font-size: 13px;
-        background-color: #007a5a;
-        color: #fff;
+        background-color: #fff;
+        color: #ccc;
         align-items: center;
         justify-content: center;
+      }
+      span {
+        width: 1px;
+        height: 20px;
+        margin: 2px 4px;
+        background-color: #ccc;
+        align-self: center;
       }
     }
   }
