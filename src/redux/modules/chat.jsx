@@ -42,8 +42,9 @@ export const getChatRoomDB = () => {
 
 // 채팅방 추가하기
 export const addChatRoomDB = (roomName) => {
-    return async function (dispatch, getState, { history }) {
-        //console.log("addChatRoomDB : roomName", roomName)
+    return async function (dispatch) {
+        const res = await apis.addChatRoom()
+        dispatch(addChatRoom())
 
         const room = {
             chatRoomName: roomName,
