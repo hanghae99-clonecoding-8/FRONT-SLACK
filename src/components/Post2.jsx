@@ -13,7 +13,8 @@ import { BsBarChartSteps, BsType } from "react-icons/bs";
 import { CgMic } from "react-icons/cg";
 
 
-const Post2 = () => {
+const Post2 = ({id}) => {
+    console.log(id)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [content, setContent] = React.useState("");
@@ -22,15 +23,21 @@ const Post2 = () => {
 
     
     React.useEffect(() => {
-        
-      dispatch(loadCommentJson());
+      apis.getDetail(id)
+      setTimeout(() => {
+          dispatch(loadCommentJson(id));
+      }, 2000);
+    
     }, [dispatch]);
 
 
     const plusComment = (e)=>{
       e.preventDefault();
-       dispatch(createCommentJson(text))
-      console.log(text)
+      setTimeout(() => {
+        dispatch(createCommentJson(id, text))
+      }, 2000);
+       
+       console.log(text)
     }
 
 

@@ -4,7 +4,7 @@ import apis from '../api/api'
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { loadCommentJson } from '../redux/modules/comments';
-import { deletePostJson } from '../redux/modules/post';
+import {loadPostJson} from '../redux/modules/post';
 import { useDispatch } from 'react-redux';
 import DelPost from '../components/DelPost';
 
@@ -51,8 +51,14 @@ console.log(postId)
       // console.log(commentData.data.body);
       setComment(commentData.data.body);
     };
+    // const loadposts = async() =>{
+    //   const postData = await apis.getPosts()
+    //   dispatch(loadPostJson())
+    // }
     // const navigate = useNavigate();
 useEffect(()=>{
+    //  dispatch(loadPostJson());
+    // loadposts()
     getDetailData()
     getCommentdata()
     return()=>{
@@ -103,17 +109,16 @@ useEffect(()=>{
          <Nickname>{Detail?.nickname}</Nickname>
          <Nickname>({Detail?.username})</Nickname>
         <CreateAt>{Detail?.createdAt.split("T")[0]}</CreateAt>
-        
+         <DelButton onClick={openModal}>...</DelButton>
         </Toptext>
         <Title>{Detail?.contents}</Title>
       {/* <Title>{Detail?.comment}</Title> */}
       </TextArea>
       </InnerWrap>
       </DetailWarp>
-      
-     <button onClick={openModal}>삭제하기</button>
+    
      <DelPost open={modalOpen} close={closeModal} id={Number(postId)} header="메세지 삭제"/>
-     <CommentWrap2><Comments id={Detail?.id}/></CommentWrap2>
+     <CommentWrap2><Comments id={Detail?.postId}/></CommentWrap2>
     
      </Wrap>
    ):null}
@@ -132,6 +137,14 @@ const Headbar = styled.div`
   flex-direction: row;
   border-bottom: 1px solid grey;
   padding:0px 10px ;
+`
+
+const DelButton = styled.div`
+  cursor: pointer;
+font-size: 20px;
+font-weight: bold;
+margin-left: 10.5vw;
+
 `
 
 const DetailWarp = styled.div`
@@ -184,7 +197,7 @@ text-align: left;
 `
 
 const CommentWrap2 = styled.div`
-
+border-top: 1px solid grey;
 `
 
 export default Detail

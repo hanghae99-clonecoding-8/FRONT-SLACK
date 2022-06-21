@@ -27,7 +27,7 @@ const Post = ({ scrollRef }) => {
     const [content, setContent] = React.useState("");
     const [textareaHeight, setTextareaHeight] = useState(0);
     const text = React.useRef(null)
-    console.log(scrollRef)
+    // console.log(scrollRef)
 
     const scollToMyRef = () => {
         const scroll =
@@ -36,11 +36,12 @@ const Post = ({ scrollRef }) => {
         console.log(scrollRef.current.clientHeight)
     };
 
-    useEffect(() => {
-        scollToMyRef();
-
-        dispatch(loadPostJson());
-    }, [dispatch]);
+        // useEffect(() => {
+        //     dispatch(loadPostJson());
+        //     return()=>{
+        //         console.log("청소중2")
+        //     }
+        // }, [dispatch]);
 
     const postNew = async (e) => {
         e.preventDefault();
@@ -57,7 +58,8 @@ const Post = ({ scrollRef }) => {
                         contents: res.data.contents,
                         createdAt: (res.data.createdAt).split("T")[0],
                         profileUrl: res.data.profileUrl,
-                        username: res.data.username
+                        username: res.data.username,
+                        nickname: res.data.nickname
                     })
                 );
                 console.log(text.current.value)

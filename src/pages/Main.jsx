@@ -24,23 +24,29 @@ const Main = () => {
   console.log(PostReducer);
 
   const [postId,setPostId] = React.useState()
+  const [scroll, setScroll]=React.useState()
 
   console.log(postId)
   const scrollRef = React.useRef();
-  const scollToMyRef = () => {
-      const scroll =
-      // window.scrollTo(0, scrollRef.current.offsetBottom)
-      scrollRef.current.scrollHeight - scrollRef.current.clientHeight
-      scrollRef.current.scrollTo(0, scroll);
-    console.log(scrollRef.current.offsetBottom)
-  };
-  console.log(scollToMyRef)
-  const [modalOpen3, setModalOpen3] = React.useState(false);
-  const [modalOpen, setModalOpen] = React.useState(false);
-  // const openModal = () => {
-  //   modalOpen3(true);
+  // const scollToMyRef = () => {
+  //     const scroll =
+  //     scrollRef.current.scrollHeight - scrollRef.current.clientHeight
+  //     scrollRef.current.scrollTo(0, scroll);
+  //   console.log(scrollRef.current.offsetBottom)
   // };
-  const [scroll, setScroll]=React.useState()
+ React.useCallback(() => {
+    if (PostReducer) {
+      // 스크롤 내리기
+      scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+    }
+  }, [PostReducer]);
+
+  const [modalOpen3, setModalOpen3] = React.useState(false);
+  // const [modalOpen, setModalOpen] = React.useState(false);
+  // // const openModal = () => {
+  // //   modalOpen3(true);
+  // // };
+
 
   const closeModal = () => {
     setModalOpen3(false);
@@ -48,13 +54,12 @@ const Main = () => {
   
 console.log(PostReducer.postId)
   useEffect(() => {
-    scollToMyRef();
+    // scollToMyRef();
     dispatch(loadPostJson());
-  }, [dispatch]);
+  }, [dispatch , modalOpen3]);
 
   // console.log(scrollRef)
   return (
-
       <Box>
         <Header />
           <Wrap>
@@ -70,16 +75,16 @@ console.log(PostReducer.postId)
                       </Cardbox>
                     
                     ); } )} 
+          
                        {/* <Detail open={modalOpen} close={closeModal} id={item.postId}/> */}
                 </Cardbar>
-                       <Post  scrollRef={scrollRef} />    
+                       <Post/>    
               </CardList>
              {/* <DetailBox> */}
             <Detail close={closeModal} open={modalOpen3} postId={postId}/>
               {/* </DetailBox> */}
           </Wrap>
-     
-     
+
       </Box>
   )
 }
@@ -99,7 +104,7 @@ const Cardbar = styled.div`
   height: 750px;
 `
 const CardList = styled.div`
-    flex: 13;
+    flex: 15;
     display: block;
     flex-direction: column;
     padding: 0 0.5%;

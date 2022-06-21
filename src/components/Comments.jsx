@@ -5,17 +5,17 @@ import styled from 'styled-components'
 import {useDispatch,useSelector} from 'react-redux'
 import Post2 from './Post2'
 
-const Comments = (props) => {
+const Comments = ({id}) => {
     // let res = useQuery(['posts'],apis.getComments)
     //그래서이거왜쓰는데 ㅡㅡ
+    console.log(id)
     const CommentReducer = useSelector((state) => state.comment.list);
     const [text,setText] = React.useState('')
     const dispatch = useDispatch()
 
     
     React.useEffect(() => {
-        
-        dispatch(loadCommentJson());
+        dispatch(loadCommentJson(Number(id)));
       }, [dispatch]);
 
 
@@ -26,17 +26,18 @@ const Comments = (props) => {
                           return (
                             <Wrap>
       <Imgbox>
-      <Image className="text_photo" src='https://ca.slack-edge.com/T01L2TNGW3T-U03DL8GEU0G-dc38fbbc5656-512' />
-      {/* <Image className="text_photo" src={`${item?.profileUrl}`} /> */}
+      {/* <Image className="text_photo" src='https://ca.slack-edge.com/T01L2TNGW3T-U03DL8GEU0G-dc38fbbc5656-512' /> */}
+      <Image className="text_photo" src={`${comments?.profileUrl}`} />
       </Imgbox>
       <TextArea>
         <Toptext>
-        <Nickname>최경식(항해99 매니저)</Nickname>
-        <CreateAt> 오전 8:30 </CreateAt>
-        {/*  <Nickname>{comment?.nickname}</Nickname> */}
-        {/* <CreateAt>{comment?.createAt}</CreateAt> */}
+        {/* <Nickname>최경식(항해99 매니저)</Nickname>
+        <CreateAt> 오전 8:30 </CreateAt> */}
+         <Nickname>{comments?.nickname}</Nickname>
+         <Nickname>({comments?.username})</Nickname>
+        <CreateAt>{comments?.createdAt.split("T")[0]}</CreateAt>
         </Toptext>
-      {/* <Title>{comments?.comment}</Title> */}
+      <Title>{comments?.comment}</Title>
       </TextArea>
       </Wrap>
                             //   <div key={comments.id}>
@@ -48,7 +49,7 @@ const Comments = (props) => {
                           )
                       })}
                   </CommentWrap>
-                    <Post2/>
+                    <Post2 id={id}/>
                     </>
               )
           
@@ -67,7 +68,6 @@ overflow-y: scroll;
 `
 const Wrap = styled.div`
 display: flex;
-border-bottom: 1px solid grey;
 padding-top: 10px;
 `
 const Nickname =styled.div`

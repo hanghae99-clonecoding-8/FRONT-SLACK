@@ -5,11 +5,12 @@ import styled from "styled-components";
 import apis from "../api/api";
 import '../css/modal.css';
 import Detail from "../pages/Detail";
-
+import { useDispatch } from "react-redux";
+import { deletePostJson } from "../redux/modules/post";
 
 const Card = ({item, setPostId,setModalOpen3} ) => {
   const [modalOpen2, setModalOpen2] = React.useState(false);
- 
+ const dispatch = useDispatch()
 
   const openModal2 = () => {
     setModalOpen3(true);
@@ -56,7 +57,6 @@ const Card = ({item, setPostId,setModalOpen3} ) => {
       <Title>{item?.contents}</Title>
       </TextArea>
       <Heart>🤍</Heart>
-
           <Dat onClick={openModal2}>💬</Dat>
           
 
@@ -109,7 +109,7 @@ const Image = styled.img`
   border-radius: 9px;
 `;
 const TextArea = styled.span`
-flex: 11;
+flex: 15;
 text-align: left;
 `
 // const PostBox = styled.div`
