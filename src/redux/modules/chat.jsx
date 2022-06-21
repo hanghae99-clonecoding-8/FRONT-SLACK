@@ -68,17 +68,15 @@ export const inviteUserDB = (roomId, username) => {
     };
 };
 
-
 // 이전 메세지 가져오기
 export const getMessageDB = (roomId) => {
     return async function (dispatch) {
         //console.log("getMessage : roomId ", roomId)
         const res = await apis.getMessage({roomId: roomId})
         dispatch(getMessage(res.data))
-
-        
     };
 };
+
 
 
 /* ----------------- 리듀서 ------------------ */

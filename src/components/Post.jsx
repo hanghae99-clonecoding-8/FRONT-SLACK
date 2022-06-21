@@ -15,32 +15,27 @@ import { CgMic } from "react-icons/cg";
 
 
 
-
-
-
-
-
-
 const Post = ({ scrollRef }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [content, setContent] = React.useState("");
     const [textareaHeight, setTextareaHeight] = useState(0);
     const text = React.useRef(null)
-    console.log(scrollRef)
+    // console.log(scrollRef)
 
     const scollToMyRef = () => {
         const scroll =
             scrollRef.current.scrollHeight - scrollRef.current.clientHeight
         scrollRef.current.scrollTo(0, scroll);
-        console.log(scrollRef.current.clientHeight)
+        // console.log(scrollRef.current.clientHeight)
     };
 
-    useEffect(() => {
-        scollToMyRef();
-
-        dispatch(loadPostJson());
-    }, [dispatch]);
+        // useEffect(() => {
+        //     dispatch(loadPostJson());
+        //     return()=>{
+        //         console.log("청소중2")
+        //     }
+        // }, [dispatch]);
 
     const postNew = async (e) => {
         e.preventDefault();
@@ -57,12 +52,13 @@ const Post = ({ scrollRef }) => {
                         contents: res.data.contents,
                         createdAt: (res.data.createdAt).split("T")[0],
                         profileUrl: res.data.profileUrl,
-                        username: res.data.username
+                        username: res.data.username,
+                        nickname: res.data.nickname
                     })
                 );
-                console.log(text.current.value)
-
-                console.log(res)
+                // console.log(text.current.value)
+                    
+                // console.log(res)
 
                 // console.log(res);
                 // dispatch(createPostJson(res.data)); 서버오픈시 시도
@@ -80,8 +76,9 @@ const Post = ({ scrollRef }) => {
     const textareaChange = (e) => {
         setContent(e.target.value.replaceAll("<br>", "\r\n"));
         setTextareaHeight(e.target.value.split('\n').length - 1);
-    }
 
+    }
+   
     return (
         <> 
         
@@ -123,7 +120,7 @@ const Post = ({ scrollRef }) => {
                     <div className='m_text'>
                         <textarea
                             type="text"
-                            placeholder="내용을 입력하세용"
+                            placeholder="내용을 입력하세요"
                             value={content}
                             onChange={textareaChange}
                             style={{ height: "100px" }}

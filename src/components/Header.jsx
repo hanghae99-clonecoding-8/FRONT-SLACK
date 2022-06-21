@@ -9,11 +9,14 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { AiOutlineMenu } from "react-icons/ai";
 import { BsSliders } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
-
+import { getCookie } from "../shared/Cookie";
 
 
 
 const Header = () => {
+  const userUrl = getCookie("useUrl")
+  const nickname = getCookie("nickname")
+
     return (
         <>
             <HeaderBox>
@@ -26,9 +29,13 @@ const Header = () => {
                         <IoSearch className="icon2" color="#fff" size="20px" />
                         <InputBox placeholder="새 워크스페이스 검색"></InputBox>
                         <BsSliders className="icon6" color="#fff" size="20px" />
+                       
                         <AiOutlineSearch className="icon7" color="#fff" size="20px" />
                     </OuterBox>
+                     <ImageBox2 />
                     <ImageBox />
+                    
+                    
                 </Grid>
 
             </HeaderBox>
@@ -117,6 +124,20 @@ const InputBox = styled.input`
   &:focus {
     outline: none;
   }
+`
+
+const ImageBox2 = styled.div`
+  position: absolute;
+  right: 80px;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 4px;
+
+  background-image: url('userUrl');
+  background-size: cover;
+  ${'' /* background: #ddd; */}
 `
 
 const ImageBox = styled.div`

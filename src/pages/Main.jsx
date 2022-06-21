@@ -9,6 +9,12 @@ import Card from '../components/Card';
 import Header from '../components/Header';
 import SideBar from '../components/SideBar';
 import Detail from './Detail';
+import { FaLock } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
+import{FiLink} from "react-icons/fi";
+import{GiGrapes} from "react-icons/gi";
+
+// import ScrollToBottom from 'react-scroll-to-bottom';
 
 
 
@@ -20,41 +26,68 @@ const Main = () => {
   const dispatch = useDispatch();
   getCookie("token");
   const PostReducer = useSelector((state) => state.post.list);
-  console.log(PostReducer);
+  // console.log(PostReducer);
 
   const [postId,setPostId] = React.useState()
+  const [scroll, setScroll]=React.useState()
 
-  console.log(postId)
+  // console.log(postId)
   const scrollRef = React.useRef();
-  const scollToMyRef = () => {
-    const scroll =
-      scrollRef.current.scrollHeight - scrollRef.current.clientHeight
-      scrollRef.current.scrollTo(0, scroll);
-    console.log(scrollRef.current.clientHeight)
-  };
-  const [modalOpen3, setModalOpen3] = React.useState(false);
-  const [modalOpen, setModalOpen] = React.useState(false);
-  // const openModal = () => {
-  //   modalOpen3(true);
+  // const scollToMyRef = () => {
+  //     const scroll =
+  //     scrollRef.current.scrollHeight - scrollRef.current.clientHeight
+  //     scrollRef.current.scrollTo(0, scroll);
+  //   console.log(scrollRef.current.offsetBottom)
   // };
+  const [modalOpen3, setModalOpen3] = React.useState(false);
+  // const [modalOpen, setModalOpen] = React.useState(false);
+  // // const openModal = () => {
+  // //   modalOpen3(true);
+  // // };
+
+
   const closeModal = () => {
     setModalOpen3(false);
   };
   
-console.log(PostReducer.postId)
+// console.log(PostReducer.postId)
   useEffect(() => {
-    scollToMyRef();
     dispatch(loadPostJson());
-  }, [dispatch]);
+    return()=>{
+      console.log("메인청소중")
+    }
+  }, [dispatch , modalOpen3]);
 
   // console.log(scrollRef)
   return (
-
       <Box>
         <Header />
+        
           <Wrap>
-            <div ><SideBar /></div>
+             <div ><SideBar /></div>
+               
               <CardList>
+                <div style={{display:"flex",      alignItems:"center",borderBottom:"0.5px solid #bdbfc4"}}>
+                        <Topbox><FaLock
+                        style={{marginRight:"8px"}}
+                        />_7기_a반_공지방
+                        <IoIosArrowDown style={{marginLeft:"4px"}}/>
+                        </Topbox>
+                          <img
+                            style={{ marginLeft:"37vw",
+                            right:"0px",marginTop:"14px", height:"36px"}} 
+                          src='https://ifh.cc/g/9VhVVh.png'/>
+                  </div>
+                  <Topbar2 >
+                      <FiLink style={{margin:"0 5px 0 15px"}}/>
+                     <span> 항해99기 7기 A반 - Docs</span>
+                      <GiGrapes
+                          style={{backgroundColor:"blue", color:"white", borderRadius:"3px", padding:"3px",margin:"0 5px 0 15px"}}/>
+                        <span >A반 게더</span>   
+                       <FiLink style={{margin:"0 5px 0 15px"}}/>
+                       <span style={{margin:"0 20px 0 0"}}> 체크인 페이지</span>
+                       +
+                    </Topbar2>
                 <Cardbar ref={scrollRef}>
                      {PostReducer?.map((item, index) => {
                     //console.log(PostReducer);
@@ -65,24 +98,38 @@ console.log(PostReducer.postId)
                       </Cardbox>
                     
                     ); } )} 
+          
                        {/* <Detail open={modalOpen} close={closeModal} id={item.postId}/> */}
                 </Cardbar>
-                       <Post  scrollRef={scrollRef} />    
+                       <Post/>    
               </CardList>
              {/* <DetailBox> */}
             <Detail close={closeModal} open={modalOpen3} postId={postId}/>
               {/* </DetailBox> */}
           </Wrap>
-     
-     
+
       </Box>
   )
 }
 
+const Topbox =styled.h3`
+  width: 200px;
+  height: 40px;
+  background-color: white;
+  margin: 20px 0 0 20px;
+`
+const Topbar2 = styled.div`
+display:flex   ;
+flex-direction: row ;
+align-items:center;
+border-bottom:0.5px solid #bdbfc4;
+ height:30px;
+font-size: 12px;
+`
 const Cardbox = styled.div`
   background-color: white;
-  width: calc(100% - 32px);
-  border-bottom: 0.5px solid grey;
+  width: calc(100% - 112px);
+  border-bottom: 0.5px solid #bdbfc4;
   /* margin: 3px; */
   padding: 16px;
   display: block;
@@ -91,10 +138,11 @@ const Cardbox = styled.div`
 
 const Cardbar = styled.div`
   overflow-y: scroll ;
-  height: 750px;
+  -ms-overflow-style:none;
+  height: 700px;
 `
 const CardList = styled.div`
-    flex: 13;
+    flex: 15;
     display: block;
     flex-direction: column;
     padding: 0 0.5%;
