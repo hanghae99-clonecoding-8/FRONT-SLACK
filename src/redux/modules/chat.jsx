@@ -49,7 +49,7 @@ export const addChatRoomDB = (roomName) => {
             chatRoomName: roomName,
         }
         // console.log(room);
-        ChatAPI.addChatRoom(room)
+        apis.addChatRoom(room)
             .then((response) => {
                 console.log("addChatRoomDB : response", response.data);
                 const roomdata = {
@@ -69,14 +69,14 @@ export const enterRoomDB = (roomId) => {
     return async function (dispatch, getState, { history }) {
         // console.log("enterRoomDB : roomId", roomId);
 
-        ChatAPI.enterRoom(roomId)
+        apis.enterRoom(roomId)
             .then((response) => {
                 // console.log("enterRoomDB : response", response);
                 const room_data = {
                     roomId: response.data.id,
                     roomName: response.data.chatRoomName,
                 }
-                dispatch(enterRoom(room_data))
+                dispatch(enterChatRoom(room_data))
                 history.push(`/chat/` + response.data.id);
             }).catch((error) => {
                 console.log("enterRoomDB : error.response", error.response);
@@ -90,7 +90,7 @@ export const inviteUserDB = (roomid, username) => {
     return async function (dispatch, getState, { history }) {
         console.log("inviteUserDB : username", roomid, username);
 
-        ChatAPI.inviteUser(roomid, username)
+        apis.inviteUser(roomid, username)
             .then((response) => {
                 console.log("inviteUserDB : response", response);
             }).catch((error) => {
@@ -106,10 +106,10 @@ export const getMessageDB = (roomId) => {
     return async function (dispatch, getState, { history }) {
         console.log("getMessage : roomId ", roomId)
 
-        ChatAPI.getMessage(roomId)
+        apis.getMessage(roomId)
             .then((response) => {
                 console.log("getMessageDB : response", response);
-                dispatch(getMessage(response.data));
+                dispatch(getChatMessage(response.data));
             }).catch((error) => {
                 console.log("getMessageDB : ERROR", error.response);
             })
@@ -126,13 +126,13 @@ export const getMessageDB = (roomId) => {
 export default function Chat_reducer(state = intialstate, action) {
     // 새로운 액션 타입 추가시 case 추가한다.
     switch (action.type) {
-        case LOAD_COMMENTS: {
+        case GET_CHAT_ROOM: {
             return { list: [...action.comments] };
         }
-        case CREATE_COMMENT: {
+        case ADD_CHAT_ROOM: {
             return { ...state, list: [...state.list, action.payload] };
         }
-        case REMOVE_COMMENT: {
+        case GET_MESSAGE: {
             return state.filter((list) => list.id !== action.id);
         }
         default:
