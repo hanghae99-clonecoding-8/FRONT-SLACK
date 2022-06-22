@@ -7,17 +7,18 @@ import Grid2 from "../elements/Grid2";
 
 const ChatMessage = (props) => {
 
-    const {message, nickName, createdAt} = props;
+    const {message, nickName, createdAt, sender, profileUrl} = props;
   
     return (
       <React.Fragment>
         <OuterBox>
           <InnerBox>
             <Grid2 is_flex width="70vw" height="fit-content">
-              <ImageBox />
+              <ImageBox  src={profileUrl}/>
               <MessageBox>
                 <Grid2 is_flex width="fit-content" height="30px">
                   <Text bold margin="0">{nickName}</Text>
+                  <Text bold margin="0">({sender})</Text>
                   <Text margin="0 10px" size="0.8em">{createdAt}</Text>
                 </Grid2>
                 <Grid2 width="fit-content" margin="0">
@@ -44,11 +45,11 @@ const ChatMessage = (props) => {
     height: 70px;
   `
   
-  const ImageBox = styled.div`
+  const ImageBox = styled.img`
     width: 40px;
     height: 40px;
   
-    background-image: url('https://ifh.cc/g/hvhy7n.png');
+
     background-size: cover;
     border-radius: 4px;
   `
