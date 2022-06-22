@@ -18,13 +18,18 @@ const SignUp = (props) => {
     const password = React.useRef();
     const password2 = React.useRef();
     const check = React.useRef();
+    const [okid, setOkid] = React.useState('false');
+    const [oknickname, setokNickname] = React.useState('false');
+
+
 
     // 이메일 중복 체크
     // console.log(Nickname)
     const dupEmail = async () => {
         await apis.checkEmail({ username: Email })
-            .then(() => {
-                window.alert("사용 가능한 아이디입니다.");
+            .then((res) => {
+                window.alert("사용가능한 아이디 입니다.");
+                setOkid(true);
             })
             .catch((error) => {
                 window.alert("이미 사용중인 아이디입니다.");
@@ -35,8 +40,9 @@ const SignUp = (props) => {
     // 닉네임 중복 체크
     const dupNick = async () => {
         await apis.checkNickName({ nickname: Nickname })
-            .then(() => {
-                window.alert("사용 가능한 닉네임입니다.");
+            .then((res) => {
+                window.alert("사용가능한 닉네임 입니다.");
+                setokNickname(true);
             })
             .catch((error) => {
                 window.alert("이미 사용중인 닉네임입니다.");
@@ -215,7 +221,10 @@ const SignUp = (props) => {
                                     ref={fileInputRef}
                                     onChange={saveFileImage}
                                 />)}
-                                <LoginButton onClick={onSubmitUserHandler}>가입하기</LoginButton>
+                                {okid === true && oknickname === true ? (<LoginButton onClick={onSubmitUserHandler}>가입하기</LoginButton>) : null}
+
+
+
                             </div>
 
                         </main>
