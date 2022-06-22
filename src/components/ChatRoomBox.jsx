@@ -9,7 +9,7 @@ import Text from "../elements/Text";
 import ChatMessageBox from "./ChatMessageBox";
 import Modal from "react-modal";
 
-import { getAllUserDB} from "../redux/modules/chat";
+import { getAllUserDB } from "../redux/modules/chat";
 import { useDispatch, useSelector } from "react-redux";
 import { inviteUserDB } from "../redux/modules/chat";
 import { useParams } from "react-router-dom";
@@ -18,6 +18,7 @@ import { useParams } from "react-router-dom";
 const ChatRoomBox = () => {
   const dispatch = useDispatch();
 
+  //
   const [isOpen, setIsOpen] = React.useState(false);
   const openModal = () => {
     SettingsPowerRounded(true);
@@ -27,8 +28,9 @@ const ChatRoomBox = () => {
 
   const user_list = useSelector((state) => state.user?.user_list)
   const roomName = useSelector((state) => state.chat?.room?.roomName);
-  const roomId = useParams();
   const username = useSelector((state) => state.user?.user?.username);
+  //쿠키로받아오자 아라찌?
+  const roomId = useParams();
 
   console.log(username)
 
@@ -37,6 +39,8 @@ const ChatRoomBox = () => {
 
   const email = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
+
+  //유저초대 조건
   const inviteUser = () => {
     // console.log("ChatRoom : userName", userName.current.value);
     if (userName.current.value === "") {
