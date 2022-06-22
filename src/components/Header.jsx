@@ -24,19 +24,12 @@ const Header = () => {
   const username = getCookie("username")
   const nickname = getCookie("nickname")
   const [modalOpen, setModalOpen] = React.useState(false);
-
-
-  
-
-
   const openModal = () => {
     setModalOpen(true);
   };
   const closeModal = () => {
     setModalOpen(false);
   };
-
-
 
   const profileImg = profileUrl.split("profileimages/")[0]+"profileimages%2F"+profileUrl.split("profileimages/")[1]
 

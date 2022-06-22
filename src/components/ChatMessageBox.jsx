@@ -6,7 +6,9 @@ import ChatMessage from "./ChatMessage";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getMessageDB } from '../redux/modules/chat';
+import { enterChatRoomDB, getMessageDB } from '../redux/modules/chat';
+import { useQuery } from 'react-query';
+
 
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
@@ -27,23 +29,24 @@ function ChatMessageBox() {
   let headers = {Authorization: token}
 
   // 연결하고 구독하기
-  function ConnectSub(token) {
+  // function 
+ const ConnectSub=(token)=> {
     console.log(roomId.roomid)
     try {
       ws.connect({
         token: token
-        //messagingTemplate.convertAndSend("/sub/api/chat/rooms/" + chatMessage.getRoomId(), chatMessage);
       }, () => {
+        console.log("여까진 왔거든")
           ws.subscribe(
-            `/sub/api/chat/rooms/${roomId.roomid}`,
+            `/sub/api/chat/rooms/${Number(roomId.roomid)}`  ,
             (response) => {
-              // console.log("받은 메세지", response);
+              console.log("받은 메세지", response);
               const newMessage = JSON.parse(response.body);
               console.log("받은 메세지", newMessage);
               // dispatch(ChatCreators.getMessage(newMessage));
             },
             {
-                token: token 
+              token: token
             }
           );
         }
@@ -54,16 +57,14 @@ function ChatMessageBox() {
   }
 
   //구독해제
-  function DisConnectUnsub() {
+ const DisConnectUnsub=(token)=> {
     try {
-      ws.disconnect( {
-        headers: {
-        Authorization: `${token}`,
-      }},
+      ws.disconnect( 
         () => {
           ws.unsubscribe('sub-0');
+          console.log("디스커넥트..")
         },
-        { token: token }
+        { token:token  }
       );
     } catch (error) {
       console.log(error);
@@ -71,17 +72,21 @@ function ChatMessageBox() {
   }
 
   React.useEffect(() => {
+    dispatch(getMessageDB(Number(roomId.roomid)))
     ConnectSub(token);
+    dispatch(enterChatRoomDB(Number(roomId.roomid)))
     return () => {
       DisConnectUnsub();
     };
-  }, []);
+  }, [dispatch,roomId]);
 
   // 이전 메세지 가져오기
   const message = useSelector((state) => state.chat?.message)
-  React.useEffect(() => {
-    dispatch(getMessageDB(Number(roomId.roomid)));
-  }, [roomId.roomid])
+  
+  // React.useEffect(() => {
+
+  //   dispatch(getMessageDB(Number(roomId.roomid)));
+  // }, [roomId.roomid])
 
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,7 @@ import Button from "../elements/Button";
 import Grid2 from "../elements/Grid2";
 import { HiPaperAirplane } from "react-icons/hi";
 
-import { sendChatMessage } from '../redux/modules/chat';
+import { getMessageDB, sendChatMessage } from '../redux/modules/chat';
 
 import {getCookie} from "../shared/Cookie"
 
@@ -53,6 +53,9 @@ const ChatInput = (props) => {
       if (text === '') {
         return;
       }
+
+    
+
       // 로딩 중
       waitForConnection(ws, function () {
         ws.send(
@@ -60,8 +63,9 @@ const ChatInput = (props) => {
           { token: token },
           JSON.stringify(message)
         );
-        console.log(ws.ws.readyState);
-        // dispatch(sendChatMessage(message)); //몰루
+        console.log(JSON.stringify(message));
+        
+        // dispatch(sendChatMessage(JSON.stringify(message))); //몰루
         setText("");
       });
     } catch (error) {
@@ -75,6 +79,8 @@ const ChatInput = (props) => {
     // enter입력시 메세지 전송
     if (e.key === "Enter") {
       onSend();
+      dispatch(getMessageDB(String(roomId.roomid)))
+      setText("")
     }
   };
 

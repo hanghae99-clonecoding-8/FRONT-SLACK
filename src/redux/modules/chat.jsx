@@ -161,6 +161,7 @@ export default function Chat_reducer(state = intialstate, action) {
         }
         
         case SEND_MESSAGE: {
+            console.log("SEND_MESSAGE : message", action.payload);
             return { ...state, message: [ ...state, action.payload]};
         }
         
