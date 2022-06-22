@@ -15,16 +15,18 @@ import {getCookie} from "../shared/Cookie"
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 
-let sock = new SockJS('http://3.38.165.46/ws-stomp'); // 
+let sock = new SockJS('http://3.38.165.46:8080/ws-stomp'); // 
 let ws = Stomp.over(sock);//client
 
-const ChatInput = (props) => {
+const ChatInput = (props) => {  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
 
   //보내는 사람((쿠키한글로보이게해주세요 제발))
-  const sender = getCookie("username")
+  const nickname = getCookie("nickname")
+  const username = getCookie("username")
+  
   //보낼 메세지
   const [text, setText] = React.useState('');
   //방
@@ -41,10 +43,11 @@ const ChatInput = (props) => {
       }
 
       const message = {
-        roomId: Number(roomId) ,
+        roomId: String(roomId.roomid) ,
         message: text.target.value,
-        sender: sender,
-        type: 'TALK',
+        // nickname: nickname,
+        sender: username,
+        type: 'TALK'
       }
       // 빈문자열이면 리턴
       if (text === '') {
@@ -53,12 +56,12 @@ const ChatInput = (props) => {
       // 로딩 중
       waitForConnection(ws, function () {
         ws.send(
-          '/api/chat/message',
+          '/pub/api/chat/message',
           { token: token },
           JSON.stringify(message)
         );
         console.log(ws.ws.readyState);
-        dispatch(sendChatMessage(message)); //몰루
+        // dispatch(sendChatMessage(message)); //몰루
         setText("");
       });
     } catch (error) {
@@ -89,7 +92,7 @@ const ChatInput = (props) => {
           waitForConnection(ws, callback);
         }
       },
-      100 // 밀리초 간격으로 실행
+      1 // 밀리초 간격으로 실행
     );
   }
 
@@ -112,7 +115,7 @@ const ChatInput = (props) => {
   );
 }
 
-const InputBox = styled.textarea`
+const InputBox = styled.input`
     position: absolute;
     top: 40px;
 
