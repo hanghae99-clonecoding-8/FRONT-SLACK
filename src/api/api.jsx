@@ -18,27 +18,6 @@ api.interceptors.request.use(
   }
 );
 
-
-
-export const ChatAPI = {
-
-  // 방 목록 가져오기
-  getChatRoom: () => api.get('/api/chat/rooms'),
-
-  // 방 추가하
-  addChatRoom: (room) => api.post('/api/chat/rooms', room),
-  // 방 접속하기
-  enterRoom: (roomId) => api.get(`/api/chat/rooms/${roomId}`),
-
-  // 유저 초대하기
-  inviteUser: (roomid, username) => api.post(`/api/chat/invite`, { username: username, roomId: roomid }),
-
-  // 이전 메세지 가져오기
-  getMessage: (roomId) => api.get(`/api/chat/rooms/${roomId}/messages`),
-
-}
-
-
 const apis = {
   //user
 
@@ -73,6 +52,24 @@ const apis = {
 
   //heart
   addheart: (id) => api.post(`/api/board/${id}/like`),
+
+
+
+  //채팅 관련 
+  // 유저정보 들고오기
+  getAllUserChat: () => api.get('/api/chat/users'),
+  // 방 목록 가져오기
+  getChatRoom: () => api.get('/api/chat/rooms'),
+  // 방 추가하기
+  addChatRoom: (room) => api.post('/api/chat/rooms', room),
+  // 방 접속하기
+  enterRoom: (roomId) => api.get(`/api/chat/rooms/${roomId}`),
+
+  // 유저 초대하기
+  inviteUser: (roomid, username) => api.post(`/api/chat/invite`, { username: username, roomId: roomid }),
+
+  // 이전 메세지 가져오기
+  getMessage: (roomId) => api.get(`/api/chat/rooms/${roomId}/messages`),
 };
 
 export default apis;
