@@ -93,8 +93,11 @@ function ChatMessageBox() {
             <ChatMessage 
               key={idx} 
               message={message?.message} 
-              nickName={message?.nickName} ////보내는값과 같아야함
-              createdAt={message?.createdAt} />
+              nickName={message?.nickname} ////보내는값과 같아야함
+              createdAt={message?.createdAt}
+              sender = {message?.sender}
+              profileUrl = {message?.user?.profileUrl}
+              />
           );
         })}
 
