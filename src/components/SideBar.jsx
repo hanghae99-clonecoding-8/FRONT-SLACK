@@ -4,7 +4,7 @@ import { FiEdit } from "react-icons/fi";
 import Grid2 from "../elements/Grid2";
 import Button from "../elements/Button";
 import Text from "../elements/Text";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { GoChevronDown, GoTriangleDown } from "react-icons/go";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { IoChatbubblesOutline } from "react-icons/io5";
@@ -23,6 +23,7 @@ const SideBar = () => {
     const dispatch = useDispatch()
     console.log("ChatList : roomId", roomId)
     const [isOpen, setIsOpen] = React.useState(false);
+    const navigate = useNavigate()
 
     //챗방생성
   const roomCreate = () => {
@@ -78,8 +79,9 @@ const SideBar = () => {
 
                 <ListElement height="30px" bg="#350D36" >
                     <Grid2 is_flex margin="0 20px" >
-                        <Text margin=" 40px" size="1em" color="#A6A6BC">
-                            <Button addBtn >+</Button>_7기_a반_공지방</Text>
+                     <Link to = "/main">  
+                      <Text margin=" 40px" size="1em" color="#A6A6BC" >
+                            <Button addBtn >+</Button>_7기_a반_공지방</Text></Link>
                     </Grid2>
                 </ListElement>
 
