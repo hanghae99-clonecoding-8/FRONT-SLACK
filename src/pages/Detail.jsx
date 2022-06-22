@@ -81,8 +81,8 @@ useEffect(()=>{
       setModalOpen(false);
       console.log(modalOpen)
       dispatch(deletePostJson(postId))
-      dispatch(loadPostJson())
-      close()
+       dispatch(loadPostJson())
+       close()
     }
 
    
