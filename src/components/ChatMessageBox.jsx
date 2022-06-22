@@ -28,6 +28,7 @@ function ChatMessageBox() {
 
   // 연결하고 구독하기
   function ConnectSub(token) {
+    console.log(roomId.roomid)
     try {
       ws.connect({
         token: token
