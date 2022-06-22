@@ -87,11 +87,21 @@ function ChatMessageBox() {
 
   //   dispatch(getMessageDB(Number(roomId.roomid)));
   // }, [roomId.roomid])
+  const [pressEnter, setPressEnter] = React.useState(false);
 
+  const scrollRef = React.useRef();
+  const scollToMyRef = () => {
+    const scroll =
+      scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
+    scrollRef.current.scrollTo(0, scroll);
+  };
 
+  React.useEffect(()=>{
+    scollToMyRef()
+  })
   return (
     <Wrapper>
-      <MessageWrapper>
+      <MessageWrapper ref={scrollRef}>
 
         {message?.map((message, idx) => {
           return (
