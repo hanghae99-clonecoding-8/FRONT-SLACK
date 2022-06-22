@@ -127,7 +127,7 @@ export default function Chat_reducer(state = intialstate, action) {
             return state.filter((list) => list.id !== action.id);
         }
         case SEND_MESSAGE: {
-            return state.filter((list) => list.id !== action.id);
+            return {message: [action.paylodad.message]};
         }
         case  GET_ALL_USER:{
             return { list: action.payload };
