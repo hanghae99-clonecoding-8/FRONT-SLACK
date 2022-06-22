@@ -19,16 +19,6 @@ const Detail = (props) => {
     const [Detail, setDetail] = useState(null);
     const [Comment,setComment] = useState(null)
     const [modalOpen, setModalOpen] = React.useState(false);
-    // const [showBanner, setshowBanner] = useState(true);
-    // const onClick = () => setshowBanner(false);
-    // const [postId,setPostId] = React.useState(0)
-
-      // useEffect((id)=>{
-      //   setPostId(id)
-      // },[])
-// console.log(postId)
-
-
     const dispatch = useDispatch();
 //  useEffect(()=>{
 //   if(postId!=0){getDetailData()}
@@ -41,6 +31,13 @@ const Detail = (props) => {
     
    const getDetailData = async() =>{
       const detailData =  await apis.getDetail(Number(postId))
+                                     .catch(function(error){
+                                      if(error.response){
+                                        console.log("스읍기다려")
+                                      }else if (error.request) {
+                                        console.log("왜또도니");
+                                      }
+                                     })
       // setPostId(id)
       setDetail(detailData?.data)
       // console.log(Detail)
@@ -62,6 +59,7 @@ useEffect(()=>{
     // loadposts()
     getDetailData()
     getCommentdata()
+    console.log("디테일페이지도는중")
     return()=>{
       console.log("청소중")
     }

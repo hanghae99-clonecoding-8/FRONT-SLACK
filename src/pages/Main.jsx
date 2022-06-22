@@ -28,7 +28,7 @@ const Main = () => {
   const PostReducer = useSelector((state) => state.post.list);
   // console.log(PostReducer);
 
-  const [postId,setPostId] = React.useState()
+  const [postId,setPostId] = React.useState(null)
   const [scroll, setScroll]=React.useState()
 
   // console.log(postId)
