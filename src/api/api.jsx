@@ -66,7 +66,7 @@ const apis = {
   enterRoom: (roomId) => api.get(`/api/chat/rooms/${Number(roomId)}`),
 
   // 유저 초대하기
-  inviteUser: (username, roomId) => api.post(`/api/chat/invite`, { roomId: roomId, username: username }),
+  inviteUser: (roomId, username ) => api.post(`/api/chat/invite`, { roomId: roomId, username: username }),
 
   // 이전 메세지 가져오기
   getMessage: (roomId) => api.get(`/api/chat/rooms/${roomId}/messages`),

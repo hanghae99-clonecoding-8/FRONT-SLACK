@@ -115,7 +115,7 @@ export const enterChatRoomDB = (response) => {
 export const inviteUserDB = (roomId, username) => {
     return async function (dispatch) {
         //console.log("inviteUserDB : username", roomid, username);
-        const res = await apis.inviteUser({roomId: roomId, username: username})
+        const res = await apis.inviteUser(roomId, username)
         // dispatch(inviteUser(res.data))
     };
 };
