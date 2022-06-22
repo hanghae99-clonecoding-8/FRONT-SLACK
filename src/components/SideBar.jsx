@@ -12,21 +12,23 @@ import { IoAtOutline } from "react-icons/io5";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiLock } from "react-icons/fi";
-import { useDispatch } from "react-redux";
-import { addChatRoomDB, enterChatRoomDB, getChatRoomDB } from "../redux/modules/chat";
+import { useDispatch, useSelector } from "react-redux";
+import { addChatRoomDB, enterChatRoom, enterChatRoomDB, getChatRoomDB } from "../redux/modules/chat";
 import Modal from "react-modal";
+import apis from "../api/api";
 
 const SideBar = () => {
-    const roomId = useParams();
+    const id = useParams();
     // const ChatRoom = React.useSelector((state) => state.chat?.list);
     const roomNameRef = React.useRef(null);
-    const dispatch = useDispatch()
-    console.log("ChatList : roomId", roomId)
+    const dispatch = useDispatch();
+    const ChatRoom = useSelector((state) => state.chat?.list);
+    console.log("ChatList : id", id)
     const [isOpen, setIsOpen] = React.useState(false);
     const navigate = useNavigate()
 
     //챗방생성
-  const roomCreate = () => {
+  const roomCreate = async() => {
     const roomName = roomNameRef.current.value;
     if(roomName==="") {
       window.alert("채널 이름을 입력해주세요!")
@@ -34,8 +36,7 @@ const SideBar = () => {
     }
     // if()
     console.log("AddChatModal : roomCreate : roomName", roomName);
-    dispatch(addChatRoomDB(roomName));
-    setIsOpen(false);
+    dispatch(addChatRoomDB(roomName)); 
   }
 
   React.useEffect(() => {
@@ -96,16 +97,25 @@ const SideBar = () => {
                             addBtn >+</Button>채널 추가</Text>
                     </Grid2>
                 </ListElement>
-                {/* {ChatRoom?.map((room) => {
+                {ChatRoom?.map((room) => {
                     return (
                         <ListElement key={room.id} height="30px" onClick={() => { 
-                        dispatch(enterChatRoomDB(room.id) )}}>
+                          console.log(room.id)
+                          apis.enterRoom(room.id)
+                          .then((response) => {
+                            dispatch(enterChatRoomDB(response) )
+                            // console.log("enterRoomDB : response", response);
+                              navigate(`/chat/${Number(room.id)}`)
+                          //   history.push(`/chat/`+response.data.id); 
+                          }).catch((error) => {
+                            console.log("enterRoomDB : error.response", error.response);
+                          })}}>
                         <Grid2 margin="0 20px">
                             <Text margin="0 15px" size="1em" color="#A6A6BC">#　{room.chatRoomName}</Text>
                         </Grid2>
                         </ListElement>
                     );
-                    })} */}
+                    })}
                     {isOpen? <Modal
           isOpen={isOpen} ariaHideApp={false} onRequestClose={() => setIsOpen(false)}
           style={{

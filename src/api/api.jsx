@@ -57,16 +57,16 @@ const apis = {
 
   //채팅 관련 
   // 유저정보 들고오기
-  getAllUserChat: () => api.get('/api/chat/users'),
+  getAllUser: () => api.get('/api/users'),
   // 방 목록 가져오기
   getChatRoom: () => api.get('/api/chat/rooms'),
   // 방 추가하기
   addChatRoom: (room) => api.post('/api/chat/rooms', room),
   // 방 접속하기
-  enterRoom: (roomId) => api.get(`/api/chat/rooms/${roomId}`),
+  enterRoom: (roomId) => api.get(`/api/chat/rooms/${Number(roomId)}`),
 
   // 유저 초대하기
-  inviteUser: (roomid, username) => api.post(`/api/chat/invite`, { username: username, roomId: roomid }),
+  inviteUser: (username, roomId) => api.post(`/api/chat/invite`, { roomId: roomId, username: username }),
 
   // 이전 메세지 가져오기
   getMessage: (roomId) => api.get(`/api/chat/rooms/${roomId}/messages`),

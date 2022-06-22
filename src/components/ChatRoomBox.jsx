@@ -13,6 +13,7 @@ import { getAllUserDB } from "../redux/modules/chat";
 import { useDispatch, useSelector } from "react-redux";
 import { inviteUserDB } from "../redux/modules/chat";
 import { useParams } from "react-router-dom";
+import { getCookie } from '../shared/Cookie';
 
 
 const ChatRoomBox = () => {
@@ -21,17 +22,20 @@ const ChatRoomBox = () => {
   //
   const [isOpen, setIsOpen] = React.useState(false);
   const openModal = () => {
-    SettingsPowerRounded(true);
+    setIsOpen(true);    
   }
 
+  //초대할 때 넣는 유저 이메일
   const userName = React.useRef(null);
 //getAllUserDb로 가져옴
   const user_list = useSelector((state) => state.chat?.user_list)
 
+  //엔터룸할때 저장했던거 받아오는거
   const roomName = useSelector((state) => state.chat?.room?.roomName);
-  
-  const username = useSelector((state) => state.user?.user?.username);
+
   //쿠키로받아오자 아라찌?
+  const username = getCookie("username")
+  
   const roomId = useParams();
 
   console.log(username)
@@ -47,7 +51,7 @@ const ChatRoomBox = () => {
     // console.log("ChatRoom : userName", userName.current.value);
     if (userName.current.value === "") {
       userName.current.value = "";
-      return window.alert("사용자 아이디를 입력해주세요!")
+      return window.alert("사용자 메일을 입력해주세요!")
     }
     if (!email.test(userName.current.value)) {
       userName.current.value = "";
@@ -59,14 +63,15 @@ const ChatRoomBox = () => {
     }
 
     // console.log(roomId.roomid)
-
-    dispatch(inviteUserDB(roomId.roomid, userName.current.value));
+    dispatch(inviteUserDB(Number(roomId.roomid), userName.current.value));
     setIsOpen(false);
   }
 
+  //맨처음
   React.useEffect(() => {
     dispatch(getAllUserDB())
-  }, [])
+  }, [setIsOpen])
+  //잘몰라 아마도야
 
 
 
@@ -107,8 +112,8 @@ const ChatRoomBox = () => {
             <Text bold size="1.2em"># 사용자 목록</Text>
             {user_list?.map((user, idx) => {
               return (
-                <Text key={user.id}>- {user?.nickname} ({user?.username})</Text>
-              );
+                <Text key={idx}>- {user?.nickname} ({user?.username})</Text>
+              );//유저프로필사진
             })}
           </ModalBox>
 
