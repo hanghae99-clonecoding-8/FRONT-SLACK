@@ -20,7 +20,8 @@ import { useDispatch } from "react-redux";
 
 const Header = () => {
   const profileUrl = getCookie("profileUrl")
-  const nickname = getCookie("nickname")
+  // const nickname = getCookie("nickname")
+  const username = getCookie("username")
  
   const [modalOpen, setModalOpen] = React.useState(false);
 
@@ -56,7 +57,7 @@ const Header = () => {
                         <AiOutlineSearch className="icon7" color="#fff" size="20px" />
                     </OuterBox>
                      <ImageBox2 src={profileImg} onClick={openModal}/>
-                    <Profile open={modalOpen} close={closeModal} header="프로필" profileImg={profileImg} nickname={nickname}  />
+                    <Profile open={modalOpen} close={closeModal} header="프로필" profileImg={profileImg} username={username} />
                     <ImageBox />
                     
                     

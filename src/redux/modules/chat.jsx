@@ -2,6 +2,7 @@ import apis from "../../api/api";
 /* ----------------- 모듈의 초기 상태 ------------------ */
 let intialstate = {
     list: [],
+    user_list: [],
     username: '',
     nickname: '',
     user_profile: '',

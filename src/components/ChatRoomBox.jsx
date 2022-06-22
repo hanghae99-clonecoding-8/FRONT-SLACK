@@ -25,9 +25,11 @@ const ChatRoomBox = () => {
   }
 
   const userName = React.useRef(null);
+//getAllUserDb로 가져옴
+  const user_list = useSelector((state) => state.chat?.user_list)
 
-  const user_list = useSelector((state) => state.user?.user_list)
   const roomName = useSelector((state) => state.chat?.room?.roomName);
+  
   const username = useSelector((state) => state.user?.user?.username);
   //쿠키로받아오자 아라찌?
   const roomId = useParams();
