@@ -15,33 +15,33 @@ import {getCookie} from "../shared/Cookie"
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 
-let sock = new SockJS('http://52.79.226.242:8080/ws-stomp');
-let ws = Stomp.over(sock);
+let sock = new SockJS('http://3.38.165.46/ws-stomp'); // 
+let ws = Stomp.over(sock);//client
 
 const ChatInput = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
 
-  //보내는 사람
-  const sender = useSelector((state) => state.user?.user?.username)
+  //보내는 사람((쿠키한글로보이게해주세요 제발))
+  const sender = getCookie("username")
   //보낼 메세지
   const [text, setText] = React.useState('');
   //방
-const roomId = useParams();
+  const roomId = useParams();
 
-const token = getCookie("token");//베어러 붙여야되는지 확인
+  const token = getCookie("token");//베어러 붙여야되는지 확인
 
   const onSend = async () => {
     try {
 
       if (!token) {
         alert('문제가 발생했습니다. 다시 로그인 해주세요.');
-        navigate('/main');
+        navigate('/');
       }
 
       const message = {
-        roomId: roomId.roomId,
+        roomId: Number(roomId) ,
         message: text.target.value,
         sender: sender,
         type: 'TALK',
@@ -53,12 +53,12 @@ const token = getCookie("token");//베어러 붙여야되는지 확인
       // 로딩 중
       waitForConnection(ws, function () {
         ws.send(
-          '/pub/api/chat/message',
+          '/api/chat/message',
           { token: token },
           JSON.stringify(message)
         );
         console.log(ws.ws.readyState);
-        dispatch(sendChatMessage(message));
+        dispatch(sendChatMessage(message)); //몰루
         setText("");
       });
     } catch (error) {
@@ -67,6 +67,15 @@ const token = getCookie("token");//베어러 붙여야되는지 확인
     }
 
   }
+  //엔터로 전송
+  const MessageEnter = (e) => {
+    // enter입력시 메세지 전송
+    if (e.key === "Enter") {
+      onSend();
+    }
+  };
+
+
 
   // 웹소켓이 연결될 때 까지 실행
   function waitForConnection(ws, callback) {
@@ -80,7 +89,7 @@ const token = getCookie("token");//베어러 붙여야되는지 확인
           waitForConnection(ws, callback);
         }
       },
-      1 // 밀리초 간격으로 실행
+      100 // 밀리초 간격으로 실행
     );
   }
 
@@ -91,11 +100,9 @@ const token = getCookie("token");//베어러 붙여야되는지 확인
         <Center>
           <Box>
             <Box2 bg="#fafafa" br="6px 6px 0 0" />
-            <InputBox onChange={setText} />
-            <Button sendBtn _onClick={onSend} value={text}>
-
+            <InputBox onChange={setText} onKeyPress={MessageEnter} />
+            <Button sendBtn onClick={onSend} value={text}>
               <HiPaperAirplane color="#aaa" size="18px" transform="rotate(90)" />
-
             </Button>
 
           </Box>

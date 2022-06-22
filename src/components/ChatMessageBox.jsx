@@ -17,13 +17,13 @@ import { getCookie } from '../shared/Cookie';
 const token = getCookie("token");
 
 function ChatMessageBox() {
-  let sock = new SockJS('http://52.79.226.242:8080/ws-stomp');
+  let sock = new SockJS('http://3.38.165.46/ws-stomp');
   let ws = Stomp.over(sock);
 
   const dispatch = useDispatch();
   // 방 번호
   const roomId = useParams();
-  
+  console.log(roomId)
   let headers = {Authorization: token}
 
   // 연결하고 구독하기
@@ -33,7 +33,7 @@ function ChatMessageBox() {
         token: token
       }, () => {
           ws.subscribe(
-            `/sub/api/chat/rooms/${roomId.roomid}`,
+            `/sub/api/chat/rooms/${Number(roomId.roomid)}`,
             (response) => {
               // console.log("받은 메세지", response);
               const newMessage = JSON.parse(response.body);
@@ -55,7 +55,7 @@ function ChatMessageBox() {
   function DisConnectUnsub() {
     try {
       ws.disconnect( {
-        Headers: {
+        headers: {
         Authorization: `${token}`,
       }},
         () => {
@@ -76,9 +76,9 @@ function ChatMessageBox() {
   }, []);
 
   // 이전 메세지 가져오기
-  const message = useSelector((state) => state.chat?.message?.content)
+  const message = useSelector((state) => state.chat?.message)
   React.useEffect(() => {
-    dispatch(getMessageDB(roomId.roomid));
+    dispatch(getMessageDB(Number(roomId.roomid)));
   }, [roomId.roomid])
 
 
@@ -91,11 +91,11 @@ function ChatMessageBox() {
             <ChatMessage 
               key={idx} 
               message={message?.message} 
-              nickName={message?.nickName} 
+              nickName={message?.nickName} ////보내는값과 같아야함
               createdAt={message?.createdAt} />
           );
         })}
-  //프로필사진넣는거 고민해야됨
+
 
       </MessageWrapper>
       <InputWrpper>
