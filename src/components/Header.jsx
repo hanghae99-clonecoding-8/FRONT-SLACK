@@ -22,7 +22,7 @@ const Header = () => {
   const profileUrl = getCookie("profileUrl")
   // const nickname = getCookie("nickname")
   const username = getCookie("username")
- 
+  const nickname = getCookie("nickname")
   const [modalOpen, setModalOpen] = React.useState(false);
 
 
@@ -57,7 +57,7 @@ const Header = () => {
                         <AiOutlineSearch className="icon7" color="#fff" size="20px" />
                     </OuterBox>
                      <ImageBox2 src={profileImg} onClick={openModal}/>
-                    <Profile open={modalOpen} close={closeModal} header="프로필" profileImg={profileImg} username={username} />
+                    <Profile open={modalOpen} close={closeModal} header="프로필" profileImg={profileImg} username={username} nickname={nickname} />
                     <ImageBox />
                     
                     

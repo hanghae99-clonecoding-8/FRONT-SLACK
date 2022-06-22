@@ -7,13 +7,14 @@ import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const Profile = (props) => {
-  const { open, close, header, profileImg ,username} = props;
+  const { open, close, header, profileImg ,username,nickname} = props;
   const navigate = useNavigate()
 
   const onLogout = (e) => {
     deleteCookie("token");
     deleteCookie("profileUrl");
     deleteCookie("username");
+    deleteCookie("nickname")
     navigate("/")
   };
 
@@ -30,7 +31,7 @@ const Profile = (props) => {
       </header>
       <main>
           <ProfileImg src={profileImg}/>
-          <Nick style={{fontWeight:"bolder", marginBottom:"10px"}}>EMAIL</Nick>
+          <Nick style={{fontWeight:"bolder", marginBottom:"10px"}}>{nickname}</Nick>
           <Nick>{username}</Nick>
       </main>
       <footer>

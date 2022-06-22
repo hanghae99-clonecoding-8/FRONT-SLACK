@@ -17,13 +17,13 @@ import { getCookie } from '../shared/Cookie';
 const token = getCookie("token");
 
 function ChatMessageBox() {
-  let sock = new SockJS('http://3.38.165.46/ws-stomp');
+  let sock = new SockJS('http://3.38.165.46:8080/ws-stomp');
   let ws = Stomp.over(sock);
-
+ 
   const dispatch = useDispatch();
   // 방 번호
   const roomId = useParams();
-  console.log(roomId)
+ 
   let headers = {Authorization: token}
 
   // 연결하고 구독하기
@@ -32,9 +32,10 @@ function ChatMessageBox() {
     try {
       ws.connect({
         token: token
+        //messagingTemplate.convertAndSend("/sub/api/chat/rooms/" + chatMessage.getRoomId(), chatMessage);
       }, () => {
           ws.subscribe(
-            `/sub/api/chat/rooms/${Number(roomId.roomid)}`,
+            `/sub/api/chat/rooms/${roomId.roomid}`,
             (response) => {
               // console.log("받은 메세지", response);
               const newMessage = JSON.parse(response.body);

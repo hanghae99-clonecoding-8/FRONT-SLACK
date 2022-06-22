@@ -161,7 +161,7 @@ export default function Chat_reducer(state = intialstate, action) {
         }
         
         case SEND_MESSAGE: {
-            return { ...state, message: [ ...state.massage, action.payload]};
+            return { ...state, message: [ ...state, action.payload]};
         }
         
         default:
