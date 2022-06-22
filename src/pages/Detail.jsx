@@ -42,7 +42,7 @@ const Detail = (props) => {
    const getDetailData = async() =>{
       const detailData =  await apis.getDetail(Number(postId))
       // setPostId(id)
-      setDetail(detailData.data)
+      setDetail(detailData?.data)
       // console.log(Detail)
     }
 
@@ -50,7 +50,7 @@ const Detail = (props) => {
       const commentData = await apis.getComments(Number(postId));
         // console.log(commentData);
       dispatch(loadCommentJson(Number(postId)));
-      setComment(commentData.data);
+      setComment(commentData?.data);
     };
     // const loadposts = async() =>{
     //   const postData = await apis.getPosts()

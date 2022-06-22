@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import { useParams } from "react-router-dom";
 import Grid from "../elements/Grid2";
 import { IoSearch } from "react-icons/io5";
 import { BiTime } from "react-icons/bi";
@@ -11,13 +12,21 @@ import { BsSliders } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 import { getCookie } from "../shared/Cookie";
 
+import { addChatRoomDB } from "../redux/modules/chat";
+
 import Profile from "./Profile";
+import { useDispatch } from "react-redux";
 
 
 const Header = () => {
   const profileUrl = getCookie("profileUrl")
   const nickname = getCookie("nickname")
+ 
   const [modalOpen, setModalOpen] = React.useState(false);
+
+
+  
+
 
   const openModal = () => {
     setModalOpen(true);
