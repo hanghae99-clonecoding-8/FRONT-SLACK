@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# 💤Sleep💤
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 개발기간
 
-## Available Scripts
+2022.06.17 - 2022.06.23
 
-In the project directory, you can run:
 
-### `yarn start`
+## 내용
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🎉Slack Clone Coding
+🎉잠이 필요한 개발자들의 Slack Clone Coding
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `yarn test`
+## 😎 잠이 필요한 사람들
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+👉 FE : 임운철, 최서현
 
-### `yarn build`
+👉 BE : 곽동관, 양승훈, 문준호
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<div><h1>🛠STACKS🛠</h1></div>   
+<div align=center> 
+   <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
+  <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
+  <br>
+  <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">   
+  <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=purple">   
+  <br>
+  <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=pink">   
+  <img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazons3&logoColor=green">     
+</div>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## API 명세서
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![1](https://ifh.cc/g/N0b7WS.png)
+![2](https://ifh.cc/g/G2hm3o.png)
+![3](https://ifh.cc/g/4AqS07.png)
+![4](https://ifh.cc/g/VnyLOQ.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## 기능
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [x] 1. 게시글
+  - [x] 목록 가져오기
+  - [x] 추가하기
+  - [x] 삭제하기
+  - [x] 댓글작성하기
+- [x] 2. 회원가입하기
+- [x] 3. 로그인하기
+- [x] 4. S3로 배포
+- [x] 5. modal창 열기
+- [x] 6. soket 실시간채팅
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## 페이지별 상세페이지별 상세
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. 회원가입 페이지
 
-### Analyzing the Bundle Size
+   - [x] 이메일 형식 체크
+   - [x] 비밀번호 체크
+   - [x] 공란시 가입불가
+   - [x] 이메일 중복 체크
+   - [x] 닉네임 중복 체크
+   - [x] 중복 체크 완료후 가입 버튼 생성
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. 로그인 페이지
 
-### Making a Progressive Web App
+   - [x] 가입된 아이디/비번 일치시 로그인
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. 메인 페이지(게시글 목록 페이지)
 
-### Advanced Configuration
+   - [x] 게시글 목록 노출
+   - [x] 게시글 하나는 작성자 이메일, 닉네임, 유저 프로필 이미지, 작성 날자 텍스트 내용으로 구성
+   - [x] 게시글 하나를 클릭 시, 게시글 상세 페이지 모달창 오픈
+   - [x] 스크롤 맨 밑으로 자동 이동
+   - [x] 실시간 포스팅 랜더링
+   - [x] 입력 완료후 입력창 리셋  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+4. 채팅방
+   - [x] 실시간 채팅 랜더링
+   - [x] 입력 완료후 입력창 리셋
+   - [x] 엔터키로 입력값 작성완료  
 
-### Deployment
+5. 게시글 상세 페이지
+   - [x] 댓글 작성
+   - [x] 작성자만 삭제 가능
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `yarn build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 초기설정
+
+```bash
+$ yarn add react@18.1.0
+
+$ yarn add react-router-dom
+
+$ yarn add styled-components
+
+$ yarn add redux react-redux redux-thunk redux-logger redux-actions redux-devtools-extension
+ 
+$ yarn add enhancer
+
+$ yarn add connected-react-router
+
+$ yarn add axios
+
+$ yarn add firebase@9.8.3
+
+$ yarn add storage
+```
+
+## 결과
+
+[여행의민족](http://goldenduck3.s3-website.ap-northeast-2.amazonaws.com)
