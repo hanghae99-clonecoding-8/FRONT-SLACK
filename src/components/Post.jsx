@@ -23,12 +23,12 @@ const Post = ({ scrollRef }) => {
     const text = React.useRef(null)
     // console.log(scrollRef)
 
-    const scollToMyRef = () => {
-        const scroll =
-            scrollRef.current.scrollHeight - scrollRef.current.clientHeight
-        scrollRef.current.scrollTo(0, scroll);
-        // console.log(scrollRef.current.clientHeight)
-    };
+    // const scollToMyRef = () => {
+    //     const scroll =
+    //         scrollRef.current.scrollHeight - scrollRef.current.clientHeight
+    //     scrollRef.current.scrollTo(0, scroll);
+    //     // console.log(scrollRef.current.clientHeight)
+    // };
 
         // useEffect(() => {
         //     dispatch(loadPostJson());
