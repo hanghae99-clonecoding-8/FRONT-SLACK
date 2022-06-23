@@ -123,11 +123,9 @@ const Main = () => {
             {PostReducer?.map((item, index) => {
               //console.log(PostReducer);
               return (
-
                 <Cardbox key={index} boxRef={boxRef}>
                   <Card item={item} setPostId={setPostId} setModalOpen3={setModalOpen3} />
                 </Cardbox>
-
               );
             })}
             <div ref={scrollRef} />
