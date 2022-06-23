@@ -140,6 +140,7 @@ display: flex;
 flex-direction: column;
 width: 30vw;
 padding-left: 10px;
+border-left: 1px dashed #bdbfc4 ;
 `
 const Headbar = styled.div`
   display: flex;
@@ -152,7 +153,7 @@ const DelButton = styled.div`
   cursor: pointer;
 font-size: 20px;
 font-weight: bold;
-margin-left: 10.5vw;
+margin-left: 9vw;
 
 `
 
