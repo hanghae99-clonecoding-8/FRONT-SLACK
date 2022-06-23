@@ -80,7 +80,7 @@ const SideBar = () => {
 
                 <ListElement height="30px" bg="#350D36" >
                     <Grid2 is_flex margin="0 20px" >
-                     <Link to = "/main">  
+                     <Link to = "/main" style={{borderBottom:"0", textDecoration:"none"}}>  
                       <Text margin=" 40px" size="1em" color="#A6A6BC" >
                             <Button addBtn >+</Button>_7기_a반_공지방</Text></Link>
                     </Grid2>
@@ -94,7 +94,7 @@ const SideBar = () => {
                     <Grid2 is_flex margin="0 20px" >
                         <Text margin=" 40px" size="1em" color="#A6A6BC">
                             <Button 
-                            addBtn >+</Button>채널 추가</Text>
+                            addBtn style={{cursur:"pointer"}}>+</Button>채널 추가</Text>
                     </Grid2>
                 </ListElement>
                 {ChatRoom?.map((room) => {

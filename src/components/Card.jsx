@@ -44,17 +44,15 @@ const Card = ({item, setPostId,setModalOpen3} ) => {
         </Toptext>
       <Title>{item?.contents}</Title>
       </TextArea>
-      <Heart>🤍</Heart>
+
           <Dat onClick={openModal2}>💬</Dat>
           
 
       </Wrap>
       {/* <Item>{item?.contents}</Item> */}
       <Underbar className="underbar">
-        
 
-      
-      </Underbar>
+        </Underbar>
     </div>
   );
 };
@@ -108,7 +106,9 @@ const Heart = styled.div`
 
 `;
 const Dat = styled.div`
-
+cursor: pointer;
+font-size: larger;
+margin-right: 20px;
 `;
 
 
