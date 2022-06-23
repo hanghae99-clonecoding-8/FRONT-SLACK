@@ -101,6 +101,7 @@ const Main = () => {
               style={{ marginRight: "8px" }}
             />_7기_a반_공지방
               <IoIosArrowDown style={{ marginLeft: "4px" }} />
+              
             </Topbox>
             <img
               style={{
