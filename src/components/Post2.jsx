@@ -35,7 +35,7 @@ const Post2 = ({ id }) => {
 
     dispatch(createCommentJson(id, text))
 
-
+    setText("")
     //  console.log(text)
   }
 

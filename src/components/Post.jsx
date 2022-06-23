@@ -20,7 +20,7 @@ const Post = ({ scrollRef }) => {
     const navigate = useNavigate();
     const [content, setContent] = React.useState("");
     const [textareaHeight, setTextareaHeight] = useState(0);
-    const text = React.useRef(null)
+    const text = React.useRef()
     // console.log(scrollRef)
 
     const scollToMyRef = () => {
@@ -30,12 +30,11 @@ const Post = ({ scrollRef }) => {
         // console.log(scrollRef.current.clientHeight)
     };
 
-        // useEffect(() => {
-        //     dispatch(loadPostJson());
-        //     return()=>{
-        //         console.log("청소중2")
-        //     }
-        // }, [dispatch]);
+     //여러줄 줄글 보여주기
+     const textareaChange = (e) => {
+        setContent(e.target.value.replaceAll("<br>", "\r\n"));
+        setTextareaHeight(e.target.value.split('\n').length - 1);
+    }
 
     const postNew = async (e) => {
         e.preventDefault();
@@ -44,10 +43,8 @@ const Post = ({ scrollRef }) => {
                 contents: content,
             })
             .then((res) => {
-
                 //res의 타이틀 이런식으로바꿔줘야함
                 dispatch(
-
                     createPostJson({
                         contents: res.data.contents,
                         createdAt: (res.data.createdAt).split("T")[0],
@@ -56,28 +53,17 @@ const Post = ({ scrollRef }) => {
                         nickname: res.data.nickname
                     })
                 );
-                // console.log(text.current.value)
-                    
-                // console.log(res)
-
-                // console.log(res);
-                // dispatch(createPostJson(res.data)); 서버오픈시 시도
-                //window.alert("등록성공");
                  dispatch(loadPostJson())
                  console.log("여기까지왔어")
-                
             })
             .catch((err) => {
                 alert("로그인 후 작성해주세요");
                 navigate("/");
-            });
+            }); 
+            setContent("")
     };
 
-    //여러줄 줄글 보여주기
-    const textareaChange = (e) => {
-        setContent(e.target.value.replaceAll("<br>", "\r\n"));
-        setTextareaHeight(e.target.value.split('\n').length - 1);
-    }
+   
    
     return (
         <> 

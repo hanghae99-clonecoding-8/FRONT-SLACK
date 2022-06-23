@@ -85,45 +85,12 @@ function ChatMessageBox() {
   // 이전 메세지 가져오기
   const message = useSelector((state) => state.chat?.message)
 
-  // React.useEffect(() => {
+  React.useEffect(() => {
 
-  //   dispatch(getMessageDB(Number(roomId.roomid)));
-  // }, [roomId.roomid])
+    dispatch(getMessageDB(Number(roomId.roomid)));
+  }, [roomId.roomid])
+
   const [pressEnter, setPressEnter] = React.useState(false);
-
-  // const scrollRef = React.useRef();
-
-  // const scollToMyRef = () => {
-  //   const scroll =
-  //     scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
-  //   scrollRef.current.scrollTo(0, scroll);
-  // };
-
-  // React.useEffect(()=>{
-  //   scollToMyRef()
-  // })
-  // return (
-  //   <Wrapper>
-  //     <MessageWrapper ref={scrollRef}>
-
-  //       {message?.map((message, idx) => {
-  //         return (
-  //           <ChatMessage 
-  //             key={idx} 
-  //             message={message?.message} 
-  //             nickName={message?.nickname} ////보내는값과 같아야함
-  //             createdAt={message?.createdAt}
-  //             sender = {message?.sender}
-  //             profileUrl = {message?.user?.profileUrl}
-  //             />
-  //         );
-  //       })}
-  //     </MessageWrapper>
-  //     <InputWrpper>
-  //       <ChatInput />
-  //     </InputWrpper>
-  //   </Wrapper>
-  // );
 
   const boxRef = useRef(); // 채팅 박스 ref
   const scrollRef = useRef(); // 채팅 박스 맨 아래를 가르키는 ref
@@ -151,10 +118,10 @@ function ChatMessageBox() {
 
   //메세지 로딩 완료 및 신규 메세지 수신시 스크롤------------------------------------------------------------------------------------------------
   useEffect(() => {
-
     scrollState && (boxRef.current.scrollTop = boxRef.current.scrollHeight);
     // 신규 메세지 수신시 스크롤
   }, [message]);
+
   return (
     <Wrapper>
       <MessageWrapper ref={boxRef}>
@@ -175,7 +142,7 @@ function ChatMessageBox() {
         <div ref={scrollRef} />
       </MessageWrapper>
       <InputWrpper>
-        <ChatInput />
+        <ChatInput enter={setPressEnter}/>
       </InputWrpper>
     </Wrapper>
   );
