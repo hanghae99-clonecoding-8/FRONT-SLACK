@@ -75,11 +75,12 @@
 3. 메인 페이지(게시글 목록 페이지)
 
    - [x] 게시글 목록 노출
-   - [x] 게시글 하나는 작성자 이메일, 닉네임, 유저 프로필 이미지, 작성 날자 텍스트 내용으로 구성
+   - [x] 게시글 하나는 작성자 이메일, 닉네임, 유저 프로필 이미지, 작성 날자  텍스트 내용으로 구성
    - [x] 게시글 하나를 클릭 시, 게시글 상세 페이지 모달창 오픈
    - [x] 스크롤 맨 밑으로 자동 이동
    - [x] 실시간 포스팅 랜더링
    - [x] 입력 완료후 입력창 리셋  
+   - [x] 유저 프로필 확인
 
 4. 채팅방
    - [x] 실시간 채팅 랜더링
@@ -88,8 +89,6 @@
 
 5. 게시글 상세 페이지
    - [x] 댓글 작성
-   - [x] 작성자만 삭제 가능
-
 
 
 ## 초기설정
@@ -97,23 +96,33 @@
 ```bash
 $ yarn add react@18.1.0
 
-$ yarn add react-router-dom
+$ yarn add react-icons react-modal react-chat-engine react-cookie react-query react-redux react-router-dom react-script
 
 $ yarn add styled-components
 
-$ yarn add redux react-redux redux-thunk redux-logger redux-actions redux-devtools-extension
+$ yarn add redux redux-thunk redux-logger redux-actions redux-devtools-extension
  
-$ yarn add enhancer
-
 $ yarn add connected-react-router
 
 $ yarn add axios
 
+$ yarn add grid
+
+$ yarn add net
+
 $ yarn add firebase@9.8.3
 
 $ yarn add storage
+
+$ yarn add json-server
+
+$ yarn sockjs-client
+
+$ yarn add stompjs
+
+$ yarn add websocket
 ```
 
 ## 결과
 
-[여행의민족](http://goldenduck3.s3-website.ap-northeast-2.amazonaws.com)
+[Sleep](http://)
