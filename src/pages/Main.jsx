@@ -17,12 +17,6 @@ import { GiGrapes } from "react-icons/gi";
 import _ from "lodash";
 
 
-// import ScrollToBottom from 'react-scroll-to-bottom';
-
-
-
-
-
 const Main = () => {
 
 
@@ -57,7 +51,7 @@ const Main = () => {
   useEffect(() => {
     dispatch(loadPostJson());
     return () => {
-      console.log("메인청소중")
+      // console.log("메인청소중")
     }
   }, [dispatch, modalOpen3]);
 

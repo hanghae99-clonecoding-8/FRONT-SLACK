@@ -62,11 +62,11 @@ const ChatInput = (props) => {
         ws.send(
           '/pub/api/chat/message',
           { token: token },
-          JSON.stringify(message)
+       JSON.stringify(message)
         );
-        console.log(JSON.stringify(message));
-        
-        dispatch(sendChatMessage(JSON.stringify(message))); //몰루
+        const NewMessage = JSON.stringify(message)
+        // console.log(NewMessage);
+        // dispatch(sendChatMessage(NewMessage.message)); //몰루
       });
     } catch (error) {
       console.log(error);

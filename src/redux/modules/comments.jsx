@@ -43,7 +43,7 @@ export const loadCommentJson = (payload) => {
     // console.log(res)
     dispatch(loadcomments(res.data))}
     catch{
-      console.log("없어")
+      // console.log("없어")
     }
     
   };
@@ -58,10 +58,10 @@ export const AddHeartJson = () => {
 export const createCommentJson = (id, text) => {
   return async function (dispatch) {
    try{const res = await apis.addComment(Number(id) ,{comment:text})
-      console.log(res.data)
+      // console.log(res.data)
      dispatch(createcomment(res.data))}
      catch{
-      console.log("없어")
+      // console.log("없어")
      }
   };
 };

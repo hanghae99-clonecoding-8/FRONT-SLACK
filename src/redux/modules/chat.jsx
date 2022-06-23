@@ -65,7 +65,7 @@ export const getChatRoomDB = (roomId) => {
         apis
         .getChatRoom()
         .then((response) => {
-            console.log("getChatRoomDB : response", response);
+            // console.log("getChatRoomDB : response", response);
             dispatch(getChatRoom(response.data));
         }).catch((error) => {
             console.log("getChatRoomDB : ERROR", error.response)
@@ -77,7 +77,7 @@ export const getChatRoomDB = (roomId) => {
 // 채팅방 추가하기 (완)
 export const addChatRoomDB = (roomName) => {
     return async function (dispatch) {
-        console.log("addChatRoomDB : roomName", roomName)
+        // console.log("addChatRoomDB : roomName", roomName)
     
         const room = {
           chatRoomName: roomName,
@@ -85,7 +85,7 @@ export const addChatRoomDB = (roomName) => {
         // console.log(room);
         apis.addChatRoom(room)
         .then((response) => {
-            console.log("addChatRoomDB : response", response.data);
+            // console.log("addChatRoomDB : response", response.data);
             const roomdata = {
               roomName: roomName,
               roomId: response.data.id
@@ -102,6 +102,7 @@ export const addChatRoomDB = (roomName) => {
 // 방 입장하기 (완)
 export const enterChatRoomDB = (response) => {
     return async function (dispatch) {
+        // console.log(response)
           const room_data = {
             roomId: response.data.roomId,
             roomName: response.data.chatRoomName,
@@ -125,7 +126,7 @@ export const getMessageDB = (roomId) => {
     return async function (dispatch) {
         //console.log("getMessage : roomId ", roomId)
         const res = await apis.getMessage(roomId)
-        console.log(res)
+        // console.log(res)
         dispatch(getChatMessage(res.data.content))
     };
 };
@@ -156,14 +157,14 @@ export default function Chat_reducer(state = intialstate, action) {
         //완
 
         case GET_MESSAGE: {
-            console.log("GET_MESSAGE : message", action.payload);
+            // console.log("GET_MESSAGE : message", action.payload);
             return {  ...state, message: [...action.payload] };
         }
         
-        case SEND_MESSAGE: {
-            console.log("SEND_MESSAGE : message", action.payload);
-            return { ...state, message: [ ...state, action.payload]};
-        }
+        // case SEND_MESSAGE: {
+        //     console.log("SEND_MESSAGE : message", action.payload);
+        //     return { ...state, message: [ ...state, action.payload]};
+        // }
         
         default:
             return state;

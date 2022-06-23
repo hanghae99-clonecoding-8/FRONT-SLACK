@@ -54,7 +54,7 @@ const Post = ({ scrollRef }) => {
                     })
                 );
                  dispatch(loadPostJson())
-                 console.log("여기까지왔어")
+                //  console.log("여기까지왔어")
             })
             .catch((err) => {
                 alert("로그인 후 작성해주세요");

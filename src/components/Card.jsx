@@ -21,19 +21,7 @@ const Card = ({item, setPostId,setModalOpen3} ) => {
     setModalOpen2(false);
   };
 
-  // const [id,setId] = React.useState();
-  
-  // const PostReducer = useSelector((state) => state.Post_reducer.list);
-  // console.log(PostReducer);
-  // const [heart, setHeart] = React.useState(false);
-  // const onHeart = async (e) => {
-  //   e.preventDefault();
-  //   const heartData = await apis.addheart(item.id);
-  //   console.log(heartData.data);
-  //   // dispatch(AddHeartJson(heartData.data))
-  //   setHeart(heartData.data);
-  // };
-//  
+
   return (
     <div>
       {/* <span>{item?.nickname}</span>
