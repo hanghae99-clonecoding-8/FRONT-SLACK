@@ -21,7 +21,7 @@ let ws = Stomp.over(sock);//client
 const ChatInput = (props) => {  
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const inputRef = React.useRef();
 
   //보내는 사람((쿠키한글로보이게해주세요 제발))
   const nickname = getCookie("nickname")
@@ -81,6 +81,7 @@ const ChatInput = (props) => {
       onSend();
       dispatch(getMessageDB(String(roomId.roomid)))
       setText("")
+      inputRef.current.value=""
     }
   };
 
@@ -109,7 +110,7 @@ const ChatInput = (props) => {
         <Center>
           <Box>
             <Box2 bg="#fafafa" br="6px 6px 0 0" />
-            <InputBox onChange={setText} onKeyPress={MessageEnter} />
+            <InputBox onChange={setText} onKeyPress={MessageEnter} ref={inputRef}/>
             <Button sendBtn onClick={onSend} value={text}>
               <HiPaperAirplane color="#aaa" size="18px" transform="rotate(90)" />
             </Button>
