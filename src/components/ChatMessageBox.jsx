@@ -157,7 +157,7 @@ const Wrapper = styled.div`
 `
 const MessageWrapper = styled.div`
   width: 100%;
-  height: 80%;
+  height: 72%;
   overflow-y: scroll;
 `
 const InputWrpper = styled.div`
@@ -170,7 +170,7 @@ const InputWrpper = styled.div`
 
   height: 20%;
 
-  backgroud: #fff;
+  background: #fff;
 
 `
 
