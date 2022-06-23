@@ -59,9 +59,9 @@ useEffect(()=>{
     // loadposts()
     getDetailData()
     getCommentdata()
-    console.log("디테일페이지도는중")
+    // console.log("디테일페이지도는중")
     return()=>{
-      console.log("청소중")
+      // console.log("청소중")
     }
   },[close])
  
@@ -77,7 +77,7 @@ useEffect(()=>{
     };
     const closeModal2 = () =>{
       setModalOpen(false);
-      console.log(modalOpen)
+      // console.log(modalOpen)
       dispatch(deletePostJson(postId))
        dispatch(loadPostJson())
        close()

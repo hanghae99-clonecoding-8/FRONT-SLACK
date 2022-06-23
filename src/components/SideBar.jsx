@@ -23,7 +23,7 @@ const SideBar = () => {
     const roomNameRef = React.useRef(null);
     const dispatch = useDispatch();
     const ChatRoom = useSelector((state) => state.chat?.list);
-    console.log("ChatList : id", id)
+    // console.log("ChatList : id", id)
     const [isOpen, setIsOpen] = React.useState(false);
     const navigate = useNavigate()
 
@@ -35,7 +35,7 @@ const SideBar = () => {
       return;
     }
     // if()
-    console.log("AddChatModal : roomCreate : roomName", roomName);
+    // console.log("AddChatModal : roomCreate : roomName", roomName);
     dispatch(addChatRoomDB(roomName)); 
   }
 
@@ -100,7 +100,7 @@ const SideBar = () => {
                 {ChatRoom?.map((room) => {
                     return (
                         <ListElement key={room.id} height="30px" onClick={() => { 
-                          console.log(room.id)
+                          // console.log(room.id)
                           apis.enterRoom(room.id)
                           .then((response) => {
                             dispatch(enterChatRoomDB(response) )

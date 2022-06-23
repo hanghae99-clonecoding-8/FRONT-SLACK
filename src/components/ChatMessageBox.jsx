@@ -16,6 +16,7 @@ import Stomp from 'stompjs';
 import { getCookie } from '../shared/Cookie';
 
 import _ from "lodash";
+import apis from '../api/api';
 
 
 const token = getCookie("token");
@@ -23,40 +24,44 @@ const token = getCookie("token");
 function ChatMessageBox() {
   let sock = new SockJS('http://3.38.165.46:8080/ws-stomp');
   let ws = Stomp.over(sock);
+ 
+  const [currentMessage, setCurrentMessage] = useState("");
+  const [messageList, setMessageList] = useState([]);
 
   const dispatch = useDispatch();
   // 방 번호
   const roomId = useParams();
-
+  const message = useSelector((state) => state.chat?.message)
   let headers = { Authorization: token }
 
   // 연결하고 구독하기
-  // function 
-  const ConnectSub = (token) => {
-    console.log(roomId.roomid)
-    try {
-      ws.connect({
-        token: token
-      }, () => {
-        console.log("여까진 왔거든")
-        ws.subscribe(
-          `/sub/api/chat/rooms/${Number(roomId.roomid)}`,
-          (response) => {
-            console.log("받은 메세지", response);
-            const newMessage = JSON.parse(response.body);
-            console.log("받은 메세지", newMessage);
-            // dispatch(ChatCreators.getMessage(newMessage));
-          },
-          {
-            token: token
-          }
+    const ConnectSub = (token) => {
+      // console.log(roomId.roomid)
+      try {
+        ws.connect({
+          token: token
+        }, () => {
+          // console.log("여까진 왔거든")
+          ws.subscribe(
+            `/sub/api/chat/rooms/${Number(roomId.roomid)}`,
+            (response) => {
+              // console.log("받은 메세지", response);
+              const newMessage = JSON.parse(response.body);
+              console.log("보낸사람:",newMessage.sender);
+              console.log("받은 메세지:", newMessage.message);
+              // dispatch(apis.getMessage(newMessage));
+            },
+            {
+              token: token
+            }
+          );
+        }
         );
+      } catch (error) {
+        console.log("fdfdfdfdf", error.response);
       }
-      );
-    } catch (error) {
-      console.log("fdfdfdfdf", error.response);
     }
-  }
+  
 
   //구독해제
   const DisConnectUnsub = (token) => {
@@ -64,7 +69,7 @@ function ChatMessageBox() {
       ws.disconnect(
         () => {
           ws.unsubscribe('sub-0');
-          console.log("디스커넥트..")
+          // console.log("디스커넥트..")
         },
         { token: token }
       );
@@ -75,56 +80,19 @@ function ChatMessageBox() {
 
   React.useEffect(() => {
     dispatch(getMessageDB(Number(roomId.roomid)))
-    ConnectSub(token);
-    dispatch(enterChatRoomDB(Number(roomId.roomid)))
+    ConnectSub(token)
+    // dispatch(enterChatRoomDB(Number(roomId.roomid)))
     return () => {
       DisConnectUnsub();
     };
   }, [dispatch, roomId]);
 
   // 이전 메세지 가져오기
-  const message = useSelector((state) => state.chat?.message)
+ React.useEffect(() => {
+    dispatch(getMessageDB(Number(roomId.roomid)));
+  }, [roomId.roomid])
 
-  // React.useEffect(() => {
-
-  //   dispatch(getMessageDB(Number(roomId.roomid)));
-  // }, [roomId.roomid])
   const [pressEnter, setPressEnter] = React.useState(false);
-
-  // const scrollRef = React.useRef();
-
-  // const scollToMyRef = () => {
-  //   const scroll =
-  //     scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
-  //   scrollRef.current.scrollTo(0, scroll);
-  // };
-
-  // React.useEffect(()=>{
-  //   scollToMyRef()
-  // })
-  // return (
-  //   <Wrapper>
-  //     <MessageWrapper ref={scrollRef}>
-
-  //       {message?.map((message, idx) => {
-  //         return (
-  //           <ChatMessage 
-  //             key={idx} 
-  //             message={message?.message} 
-  //             nickName={message?.nickname} ////보내는값과 같아야함
-  //             createdAt={message?.createdAt}
-  //             sender = {message?.sender}
-  //             profileUrl = {message?.user?.profileUrl}
-  //             />
-  //         );
-  //       })}
-  //     </MessageWrapper>
-  //     <InputWrpper>
-  //       <ChatInput />
-  //     </InputWrpper>
-  //   </Wrapper>
-  // );
-
   const boxRef = useRef(); // 채팅 박스 ref
   const scrollRef = useRef(); // 채팅 박스 맨 아래를 가르키는 ref
   const [scrollState, setScrollState] = useState(true); // 자동 스크롤 여부
@@ -151,14 +119,13 @@ function ChatMessageBox() {
 
   //메세지 로딩 완료 및 신규 메세지 수신시 스크롤------------------------------------------------------------------------------------------------
   useEffect(() => {
-
     scrollState && (boxRef.current.scrollTop = boxRef.current.scrollHeight);
     // 신규 메세지 수신시 스크롤
   }, [message]);
+
   return (
     <Wrapper>
       <MessageWrapper ref={boxRef}>
-
         {message?.map((message, idx) => {
           return (
             <ChatMessage
@@ -175,7 +142,7 @@ function ChatMessageBox() {
         <div ref={scrollRef} />
       </MessageWrapper>
       <InputWrpper>
-        <ChatInput />
+        <ChatInput enter={setPressEnter}/>
       </InputWrpper>
     </Wrapper>
   );

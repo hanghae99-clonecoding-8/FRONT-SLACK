@@ -17,12 +17,6 @@ import { GiGrapes } from "react-icons/gi";
 import _ from "lodash";
 
 
-// import ScrollToBottom from 'react-scroll-to-bottom';
-
-
-
-
-
 const Main = () => {
 
 
@@ -57,7 +51,7 @@ const Main = () => {
   useEffect(() => {
     dispatch(loadPostJson());
     return () => {
-      console.log("메인청소중")
+      // console.log("메인청소중")
     }
   }, [dispatch, modalOpen3]);
 
@@ -129,11 +123,9 @@ const Main = () => {
             {PostReducer?.map((item, index) => {
               //console.log(PostReducer);
               return (
-
                 <Cardbox key={index} boxRef={boxRef}>
                   <Card item={item} setPostId={setPostId} setModalOpen3={setModalOpen3} />
                 </Cardbox>
-
               );
             })}
             <div ref={scrollRef} />

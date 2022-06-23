@@ -33,7 +33,7 @@ const Header = () => {
     setModalOpen(false);
   };
 
-  const profileImg = profileUrl.split("profileimages/")[0] + "profileimages%2F" + profileUrl.split("profileimages/")[1]
+  const profileImg = profileUrl.split("profileimages/")[0]+ "profileimages%2F"+ profileUrl.split("profileimages/")[1]
 
 
   return (

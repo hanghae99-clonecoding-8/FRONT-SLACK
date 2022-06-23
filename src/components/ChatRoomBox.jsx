@@ -38,7 +38,7 @@ const ChatRoomBox = () => {
   
   const roomId = useParams();
 
-  console.log(username)
+  // console.log(username)
 
 
   // console.log("ChatRoomBox : user_list", user_list);

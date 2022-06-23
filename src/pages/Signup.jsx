@@ -127,7 +127,7 @@ const SignUp = (props) => {
         );
         // console.log(uploaded_file);
         const file_url = await getDownloadURL(uploaded_file.ref);
-        console.log(file_url);
+        // console.log(file_url);
         fileInputRef.current = { url: file_url };
     };
 

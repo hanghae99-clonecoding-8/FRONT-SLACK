@@ -33,8 +33,8 @@ const Login = (props) => {
       }
     )
 
-  console.log(response)
-  console.log(response.data)
+  // console.log(response)
+  // console.log(response.data)
       setCookie("token", response.headers.authorization.split(" ")[1])  
       setCookie("nickname",response.data.nickname)
       setCookie("profileUrl",response.headers.profileurl)

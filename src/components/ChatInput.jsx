@@ -41,6 +41,7 @@ const ChatInput = (props) => {
   const token = getCookie("token");//베어러 붙여야되는지 확인
 
   const onSend = async () => {
+    props.enter(true)
     try {
 
       if (!token) {
@@ -67,8 +68,11 @@ const ChatInput = (props) => {
         ws.send(
           '/pub/api/chat/message',
           { token: token },
-          JSON.stringify(message)
+       JSON.stringify(message)
         );
+        const NewMessage = JSON.stringify(message)
+        // console.log(NewMessage);
+        // dispatch(sendChatMessage(NewMessage.message)); //몰루
         console.log(JSON.stringify(message));
 
         // dispatch(sendChatMessage(JSON.stringify(message))); //몰루
@@ -86,8 +90,7 @@ const ChatInput = (props) => {
     if (e.key === "Enter") {
       onSend();
       dispatch(getMessageDB(String(roomId.roomid)))
-      setText("")
-      inputRef.current.value = ""
+      inputRef.current.value=""
     }
   };
 
