@@ -127,4 +127,4 @@ $ yarn add websocket
 
 ## 결과
 
-[Sleep](http://goldenduck3.s3-website.ap-northeast-2.amazonaws.com)
+[Sleep](http://sparta-csh.shop.s3-website.ap-northeast-2.amazonaws.com/)
