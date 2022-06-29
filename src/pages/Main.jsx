@@ -103,12 +103,6 @@ const Main = () => {
               <IoIosArrowDown style={{ marginLeft: "4px" }} />
               
             </Topbox>
-            <img
-              style={{
-                marginLeft: "37vw",
-                right: "0px", marginTop: "14px", height: "36px"
-              }}
-              src='https://ifh.cc/g/9VhVVh.png' />
           </div>
           <Topbar2 >
             <FiLink style={{ margin: "0 5px 0 15px" }} />

@@ -29,7 +29,14 @@
   <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=purple">   
   <br>
   <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=pink">   
-  <img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazons3&logoColor=green">     
+  <img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazons3&logoColor=green">   
+  <br>
+  <img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white">   
+  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">   
+
+  
+
+   
 </div>
 
 
@@ -89,6 +96,11 @@
 
 5. 게시글 상세 페이지
    - [x] 댓글 작성
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 4d3a55710bc8fc53b5e92b1522c79a7a5d5ecc3a
 
 
 ## 초기설정
@@ -125,4 +137,8 @@ $ yarn add websocket
 
 ## 결과
 
+<<<<<<< HEAD
 [Sleep](http://)
+=======
+[Sleep](http://sparta-csh.shop.s3-website.ap-northeast-2.amazonaws.com/)
+>>>>>>> 4d3a55710bc8fc53b5e92b1522c79a7a5d5ecc3a

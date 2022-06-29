@@ -266,11 +266,10 @@ const ChatInput = (props) => {
 
 const Wrap = styled.div`
       
-      width: 95%;
+      width: 97%;
       margin: auto;
-      margin-top: 25px;
+      margin-top: 10px;
       position: relative;
-      bottom: px;
       overflow-x: hidden;
     `;
 const MessageForm = styled.div`
